@@ -137,6 +137,7 @@ if (Response::SUCCESSFUL === $GetUsersByConstraintResponse->getCode()) {
 Retrieve contact information based on a user ID.
 
 ```php
+<?php
 
 $GetUserByIDResponse = $client->GetUserByID([
 
@@ -150,6 +151,31 @@ $GetUserByIDResponse = $client->GetUserByID([
 
 if (Response::SUCCESSFUL === $GetUsersByConstraintResponse->getCode()) {
     $userProperties = $GetUsersByConstraintResponse->getProperties();
+}
+
+```
+### CreateUser
+
+Create a contact in the specified list.
+
+```php
+<?php
+
+$userProperties = new Properties();
+$userProperties['NAME'] = 'Thomas';
+$userProperties['EMAIL'] = 'thomas.gasc+test@mediapart.fr';
+
+$CreateUserResponse = $client->CreateUser([
+
+    /* ID or Code of the targeted list */
+    'List' => $list_id,
+
+    /* Properties of the new contact */
+    'Changes' => $userProperties,
+]);
+
+if (Response::SUCCESSFUL === $CreateUserResponse->getCode()) {
+    $user_id = $CreateUserResponse->getUserId();
 }
 
 ```
