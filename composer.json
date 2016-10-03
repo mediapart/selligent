@@ -1,5 +1,9 @@
 {
     "name": "mediapart/selligent",
+    "description": "Selligent Client API. Use to manage your Selligent data from PHP.",
+    "type": "library",
+    "keywords": ["soap", "api", "client", "selligent", "mailing"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Thomas GASC",
