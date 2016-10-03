@@ -4,8 +4,11 @@
 >
 
   <testsuites>
-    <testsuite name="selligent">
-      <directory>./tests</directory>
+    <testsuite name="default">
+      <file>./tests/PropertiesTest.php</file>
+    </testsuite>
+    <testsuite name="real">
+      <file>./tests/RealTest.php</file>
     </testsuite>
   </testsuites>
 

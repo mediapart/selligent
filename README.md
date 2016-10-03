@@ -64,6 +64,16 @@ if (Response::SUCCESSFUL === $response->getCode()) {
 }
 ```
 
+## Test
+
+Some environment variables are required to execute RealTestSuite.
+
+- soap_login
+- soap_password
+- soap_wsdl
+- selligent_listid
+
+
 ## Reference
 
 ### GetStatus
