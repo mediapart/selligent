@@ -9,10 +9,18 @@ use Mediapart\Selligent\Response;
  */
 class GetSystemStatusResponse extends Response
 {
+    /**
+     * @var string
+     */
     protected $GetSystemStatusResult;
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCode()
     {
+        /* This is supposed to always returns something. 
+           So it's always successful*/
         return Response::SUCCESSFUL;
     }
 
@@ -28,7 +36,7 @@ class GetSystemStatusResponse extends Response
 
     /**
      *
-     * @return string System status 
+     * @return string Provider API version 
      */
     public function getVersion()
     {
