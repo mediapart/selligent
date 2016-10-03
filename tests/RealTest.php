@@ -35,8 +35,22 @@ class RealTest extends TestCase
             'List' => $list_id,
             'UserID' => $user_id,
         ]);
-        
+
         $response->ResultSet;
+    }
+
+    /**
+     *
+     */
+    public function testStatus()
+    {
+        $client = $this->getCLient();
+        $response = $client->GetSystemStatus();
+
+        $this->assertInstanceOf('Mediapart\Selligent\Response\GetSystemStatusResponse', $response);
+        $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
+        $this->assertEquals('OK', $response->getStatus());
+        $this->assertEquals('v6.2', substr($response->getVersion(), 0, 4));
     }
 
     /**

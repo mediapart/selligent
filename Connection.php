@@ -21,6 +21,7 @@ class Connection
         $this->options = $options;
 
         $this->options['classmap'] = [
+            'GetSystemStatusResponse' => 'Mediapart\Selligent\Response\GetSystemStatusResponse',
             'GetListsResponse' => 'Mediapart\Selligent\Response\GetListsResponse',
             'GetUsersByConstraintResponse' => 'Mediapart\Selligent\Response\GetUsersByConstraintResponse',
         ];
