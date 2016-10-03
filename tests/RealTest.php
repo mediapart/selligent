@@ -54,6 +54,24 @@ class RealTest extends TestCase
     }
 
     /**
+     *
+     */
+    public function testCountUsersByConstraint()
+    {
+        $client = $this->getClient();
+        $list_id = getenv('selligent_listid');
+
+        $response = $client->CountUsersByConstraint([
+            'List' => $list_id,
+            'Constraint' => '',
+        ]);
+
+        $this->assertInstanceOf('Mediapart\Selligent\Response\CountUsersByConstraintResponse', $response);
+        $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
+        $this->assertEquals(5, $response->getUserCount());
+    }
+
+    /**
      * Retrieves existingg remotes lists
      */
     public function testGetLists()
