@@ -63,3 +63,44 @@ if (Response::SUCCESSFUL === $response->getCode()) {
     printf("%d updated\n", $user_id);
 }
 ```
+
+## Reference
+
+### GetStatus
+
+Provides information about the current status of the system.
+
+```php
+<?php
+
+$SystemStatusResponse = $client->GetSystemStatus();
+
+print $SystemStatusResponse->getStatus(); // OK
+print $SystemStatusResponse->getVersion(); // v6.2.5.1
+
+```
+
+### CountUserByConstraint
+
+Count the number of contacts based on a filter.
+
+```php
+<?php
+
+$CountUserByConstraintResponse = $client->CountUsersByConstraint([
+
+    /* ID or Code of the targeted list */
+    'List' => $list_id,
+
+    /* Constraint applied to the contact’s selection. 
+       The constraint corresponds to the sql WHERE statement */
+    'Constraint' => '',
+
+]);
+
+if (Response::SUCCESSFUL === $CountUserByConstraintResponse->getCode()) {
+    print $CountUserByConstraintResponse->getUserCount(); // 5
+}
+
+```
+
