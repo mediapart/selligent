@@ -1,5 +1,6 @@
 # Reference
 
+
 ## GetStatus
 
 Provides information about the current status of the system.
@@ -13,6 +14,7 @@ print $SystemStatusResponse->getStatus(); // OK
 print $SystemStatusResponse->getVersion(); // v6.2.5.1
 
 ```
+
 
 ## CountUserByConstraint
 
@@ -37,6 +39,7 @@ if (Response::SUCCESSFUL === $CountUserByConstraintResponse->getCode()) {
 }
 
 ```
+
 
 ## GetUsersByConstraint
 
@@ -66,6 +69,7 @@ if (Response::SUCCESSFUL === $GetUsersByConstraintResponse->getCode()) {
 
 ```
 
+
 ## GetUserById
 
 Retrieve contact information based on a user ID.
@@ -88,6 +92,8 @@ if (Response::SUCCESSFUL === $GetUsersByConstraintResponse->getCode()) {
 }
 
 ```
+
+
 ## CreateUser
 
 Create a contact in the specified list.
@@ -113,4 +119,30 @@ if (Response::SUCCESSFUL === $CreateUserResponse->getCode()) {
 }
 
 ```
+
+
+## RetrieveHashForUser
+
+Retrieve the hash code for the selected contact.
+
+```php
+$RetrieveHashForUserResponse = $client->RetrieveHashForUser([
+
+    /* Name of the targeted gate */
+    'GateName' => $gate_name,
+
+    /* ID or Code of the targeted list */
+    'List' => $list_id,
+
+    /* ID of the targeted contact */
+    'UserID' => $user_id,
+
+]);
+
+if (Response::SUCCESSFUL === $RetrieveHashForUserResponse->getCode()) {
+    $user_hash_code = $RetrieveHashForUserResponse->getHashCode();
+}
+
+```
+
 

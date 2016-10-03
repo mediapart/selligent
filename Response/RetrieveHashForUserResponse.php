@@ -16,31 +16,31 @@ use Mediapart\Selligent\Response;
 /**
  *
  */
-class GetUserByIDResponse extends Response
+class RetrieveHashForUserResponse extends Response
 {
     /**
-     *
+     * @var int
      */
-    protected $GetUserByIDResult;
+    protected $RetrieveHashForUserResult;
 
     /**
-     *
+     * @var string
      */
-    protected $ResultSet;
+    protected $HashCode;
 
     /**
      * {@inheritDoc}
      */
     public function getCode()
     {
-        return $this->GetUserByIDResult;
+        return $this->RetrieveHashForUserResult;
     }
 
     /**
-     *
+     * @return string
      */
-    public function getProperties()
+    public function getHashCode()
     {
-        return $this->ResultSet;
+        return $this->HashCode;
     }
 }
