@@ -36,7 +36,8 @@ class RealTest extends TestCase
             'UserID' => $user_id,
         ]);
 
-        $response->ResultSet;
+        $this->assertInstanceOf('Mediapart\Selligent\Response\GetUserByIDResponse', $response);
+        $this->assertInstanceOf('Mediapart\Selligent\Properties', $response->getProperties());
     }
 
     /**

@@ -104,3 +104,53 @@ if (Response::SUCCESSFUL === $CountUserByConstraintResponse->getCode()) {
 
 ```
 
+### GetUsersByConstraint
+
+Retrieve user information based on a constraint.
+
+```php
+<?php
+
+$GetUsersByConstraintResponse = $client->GetUsersByConstraint([
+    
+    /* ID or Code of the targeted list */
+    'List' => $list_id,
+
+    /* Constraint applied to the contact selection */
+    'Constraint' => '',
+
+]);
+
+$users = [];
+if (Response::SUCCESSFUL === $GetUsersByConstraintResponse->getCode()) {
+
+    foreach ($GetUsersByConstraintResponse->getIds() as $user_id) {
+        $users[] = $client->GetUserById($user_id);
+    }
+
+}
+
+```
+
+### GetUserById
+
+Retrieve contact information based on a user ID.
+
+```php
+
+$GetUserByIDResponse = $client->GetUserByID([
+
+    /* ID or Code of the targeted list */
+    'List' => $list_id,
+
+    /* ID of the selected contact */
+    'UserID' => $user_id,
+
+]);
+
+if (Response::SUCCESSFUL === $GetUsersByConstraintResponse->getCode()) {
+    $userProperties = $GetUsersByConstraintResponse->getProperties();
+}
+
+```
+

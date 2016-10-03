@@ -21,8 +21,12 @@ class Connection
         $this->options = $options;
 
         $this->options['classmap'] = [
+            'Property' => 'Mediapart\Selligent\Property',
+            'ArrayOfProperty' => 'Mediapart\Selligent\Properties',
+
             'GetSystemStatusResponse' => 'Mediapart\Selligent\Response\GetSystemStatusResponse',
             'CountUsersByConstraintResponse' => 'Mediapart\Selligent\Response\CountUsersByConstraintResponse',
+            'GetUserByIDResponse' => 'Mediapart\Selligent\Response\GetUserByIDResponse',
             'GetListsResponse' => 'Mediapart\Selligent\Response\GetListsResponse',
             'GetUsersByConstraintResponse' => 'Mediapart\Selligent\Response\GetUsersByConstraintResponse',
         ];

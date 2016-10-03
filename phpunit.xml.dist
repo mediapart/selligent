@@ -9,11 +9,25 @@
     </testsuite>
   </testsuites>
 
+  <filter>
+      <whitelist>
+          <directory>./</directory>
+          <exclude>
+              <directory>./vendor</directory>
+              <directory>./tests</directory>
+          </exclude>
+      </whitelist>
+  </filter>
+
   <php>
     <env name="soap_login" value=""/>
     <env name="soap_password" value=""/>
     <env name="soap_wsdl" value=""/>
     <env name="selligent_listid" value=""/>
   </php>
+
+  <logging>
+      <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+  </logging>
 
 </phpunit>
