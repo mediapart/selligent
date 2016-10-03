@@ -1,0 +1,17 @@
+{
+    "name": "mediapart/selligent",
+    "authors": [
+        {
+            "name": "Thomas GASC",
+            "email": "thomas.gasc@mediapart.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Mediapart\\Selligent\\": ""
+        }
+	},
+    "require": {
+        "phpunit/phpunit": "^5.5"
+    }
+}
