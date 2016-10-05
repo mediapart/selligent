@@ -33,12 +33,17 @@ class Connection
             'Property' => 'Mediapart\Selligent\Property',
             'ArrayOfProperty' => 'Mediapart\Selligent\Properties',
 
+            'ListInfo' => 'Mediapart\Selligent\ListInfo',
+
             'GetSystemStatusResponse' => 'Mediapart\Selligent\Response\GetSystemStatusResponse',
             'CountUsersByConstraintResponse' => 'Mediapart\Selligent\Response\CountUsersByConstraintResponse',
             'CreateUserResponse' => 'Mediapart\Selligent\Response\CreateUserResponse',
             'GetUserByIDResponse' => 'Mediapart\Selligent\Response\GetUserByIDResponse',
             'GetListsResponse' => 'Mediapart\Selligent\Response\GetListsResponse',
             'GetUsersByConstraintResponse' => 'Mediapart\Selligent\Response\GetUsersByConstraintResponse',
+            'GetUserByFilterResponse' => 'Mediapart\Selligent\Response\GetUserByFilterResponse',
+            'TriggerCampaignResponse' => 'Mediapart\Selligent\Response\TriggerCampaignResponse',
+            'TriggerCampaignWithResultResponse' => 'Mediapart\Selligent\Response\TriggerCampaignWithResultResponse',
         ];
     }
 

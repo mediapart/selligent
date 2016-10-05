@@ -1,6 +1,7 @@
 # Example
 
 ```php
+<?php
 
 use Mediapart\Selligent\Connection;
 use Mediapart\Selligent\Response;

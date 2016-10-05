@@ -126,6 +126,8 @@ if (Response::SUCCESSFUL === $CreateUserResponse->getCode()) {
 Retrieve the hash code for the selected contact.
 
 ```php
+<?php
+
 $RetrieveHashForUserResponse = $client->RetrieveHashForUser([
 
     /* Name of the targeted gate */
@@ -145,4 +147,30 @@ if (Response::SUCCESSFUL === $RetrieveHashForUserResponse->getCode()) {
 
 ```
 
+
+## TriggerCampaign
+
+Trigger the execution of the specified journey map.
+
+```php
+<?php
+
+$TriggerCampaignResponse = $client->TriggerCampaign([
+
+    /* Name of the targeted gate */
+    'GateName' => '',
+
+    /* List of input properties */
+    'InputData' => '',
+]);
+
+if (Response::SUCCESSFUL !== $TriggerCampaignResponse->getCode()) {
+    printf(
+        "ERROR %d\t%s",
+        $TriggerCampaignResponse->getCode(),
+        $TriggerCampaignResponse->getError()
+    );
+}
+
+```
 

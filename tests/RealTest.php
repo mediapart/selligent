@@ -60,7 +60,7 @@ class RealTest extends TestCase
         $this->assertInstanceOf('Mediapart\Selligent\Response\GetSystemStatusResponse', $response);
         $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
         $this->assertEquals('OK', $response->getStatus());
-        $this->assertEquals('v6.2', substr($response->getVersion(), 0, 4));
+        $this->assertEquals('v6.3', substr($response->getVersion(), 0, 4));
     }
 
     /**
@@ -78,7 +78,7 @@ class RealTest extends TestCase
 
         $this->assertInstanceOf('Mediapart\Selligent\Response\CountUsersByConstraintResponse', $response);
         $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
-        $this->assertEquals(5, $response->getUserCount());
+        $this->assertGreaterThanOrEqual(4, $response->getUserCount());
     }
 
     /**
@@ -91,6 +91,9 @@ class RealTest extends TestCase
 
         $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
         $this->assertEquals('', $response->getError());
+        $this->assertGreaterThanOrEqual(1, count($response->getLists()));
+
+        $list = $response->getLists()->ListInfo[0];
     }
 
     /**

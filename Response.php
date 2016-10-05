@@ -109,7 +109,7 @@ abstract class Response
     /**
      * @var string
      */
-    protected $clientErrorStr;
+    protected $ErrorStr;
 
     /**
      * @return int
@@ -121,6 +121,6 @@ abstract class Response
      */
     public function getError()
     {
-        return $this->clientErrorStr;
+        return $this->ErrorStr;
     }
 }
