@@ -45,7 +45,7 @@ class RealTest extends TestCase
             'UserID' => $user_id,
         ]);
 
-        $this->assertInstanceOf('Mediapart\Selligent\Response\GetUserByIDResponse', $response);
+        $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
         $this->assertInstanceOf('Mediapart\Selligent\Properties', $response->getProperties());
     }
 
@@ -93,7 +93,7 @@ class RealTest extends TestCase
         $this->assertEquals('', $response->getError());
         $this->assertGreaterThanOrEqual(1, count($response->getLists()));
 
-        $list = $response->getLists()->ListInfo[0];
+        //$list = $response->getLists()->ListInfo[0];
     }
 
     /**
@@ -116,4 +116,15 @@ class RealTest extends TestCase
             }
         }
     }
+
+    /**
+     *
+     */
+    public function testRetrievesUserHash()
+    {
+        $client = $this->getClient();
+        $list_id = getenv('selligent_listid');
+        
+    }
+
 }

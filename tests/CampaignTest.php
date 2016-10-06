@@ -68,18 +68,20 @@ class CampaignTest extends TestCase
             $user_id = $response->getProperties()['ID']->getValue();
         }
 
+        // should have an user id to trigger the campaign
         $this->assertNotNull($user_id);
 
-        $user['ID'] = $user_id;
-        $response = $client->TriggerCampaignForUser([
+        // trigger the campaign
+        $data = new Properties();
+        $data['ID_UTILISATEUR'] = $user_id;
+
+        $response = $client->TriggerCampaign([
             'List' => $list_id,
             'UserID' => $user_id,
             'GateName' => $gate_name,
-            'InputData' => $user,
+            'InputData' => $data,
         ]);
-        var_dump($response);exit;
 
-        $this->assertEquals('', $response->getError());
         $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
     }
 }

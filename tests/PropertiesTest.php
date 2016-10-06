@@ -44,6 +44,7 @@ class PropertiesTest extends TestCase
 
         unset($properties['EMAIL']);
         $this->assertFalse(isset($properties['EMAIL']));
+        $this->assertNull($properties['EMAIL']);
 
         $properties['NAME'] = 'jacques';
         $jacques = $properties['NAME'];
