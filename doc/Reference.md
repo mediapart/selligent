@@ -296,6 +296,8 @@ if (Response::SUCCESSFUL === $UpdateUserResponse->getCode()) {
 Update multiple contact profiles in the specified list.
 
 ```php
+<?php
+
 use Mediapart\Selligent\Request\UpdateUsers;
 
 $UpdateUsersResponse = $client->UpdateUsers([
@@ -322,6 +324,7 @@ $UpdateUsersResponse = $client->UpdateUsers([
 ]);
 
 if (Response::SUCCESSFUL === $UpdateUsersResponse->getCode()) {
+    print "changes saved."
 }
 
 ```
