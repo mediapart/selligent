@@ -10,8 +10,8 @@ use Mediapart\Selligent\Property;
 use Mediapart\Selligent\ArrayOfProperty;
 
 
-$connection = new Connection($login, $password);
-$client = $connection->open(Connection::INDIVIDUAL);
+$connection = new Connection();
+$client = $connection->open($login, $password, $wsdl);
 
 
 /* output lists infos */

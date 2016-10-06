@@ -2,19 +2,29 @@
 
 ## Installation
 
-```
+```bash
 composer require mediapart/selligent
+```
+
+```php
+<?php
+
+use Mediapart\Selligent\Connection;
+
+$connection = new Connection();
+$client = $connection->open($login, $password, $wsdl);
+
 ```
 
 ## Test
 
-Executing default test suite :
+Executing `default` test suite :
 
-```
-/vendor/bin/phpunit --configuration phpunit.xml.dist --testsuite default
+```bash
+./vendor/bin/phpunit --configuration phpunit.xml.dist --testsuite default
 ```
 
-## Test by connecting to a custom server
+### Test by connecting to a Soap server
 
 With the `real` testsuite, you could execute a serie of test who will be applied to a given host. Some environment variables are required to execute RealTestSuite :
 
