@@ -232,7 +232,9 @@ if (Response::SUCCESSFUL === $GetUsersByConstraintResponse->getCode()) {
 ```
 
 
-## CreateUser
+## Create / Update contact
+
+### CreateUser
 
 Create a contact in the specified list.
 
@@ -254,6 +256,72 @@ $CreateUserResponse = $client->CreateUser([
 
 if (Response::SUCCESSFUL === $CreateUserResponse->getCode()) {
     $user_id = $CreateUserResponse->getUserId();
+}
+
+```
+
+
+### UpdateUser
+
+Update a contact profile in the specified list.
+
+```php
+<?php
+
+$changes = new Properties();
+$changes['NAME'] = 'Thomas';
+$changes['EMAIL'] = 'thomas.gasc+test@mediapart.fr';
+
+$UpdateUserResponse = $client->UpdateUser([
+
+    /* ID or Code of the targeted list */
+    'List' => 1,
+
+    /* ID of the selected contact */
+    'UserID' => 2,
+
+    /* List of modified properties */
+    'Changes' => $changes,
+
+]);
+
+if (Response::SUCCESSFUL === $UpdateUserResponse->getCode()) {
+}
+
+```
+
+
+### UpdateUsers
+
+Update multiple contact profiles in the specified list.
+
+```php
+use Mediapart\Selligent\Request\UpdateUsers;
+
+$UpdateUsersResponse = $client->UpdateUsers([
+
+    /* ID or Code of the targeted list */
+    'List' => 1,
+
+    /* An array of contact profiles to update. 
+       The ID is used to perform mapping with existing records. 
+       In case of insert, set the ID to 0. */
+    'UserChanges' => [
+        [
+            'ID' => 1,
+            'Changes' => $properties
+        ],
+    ],
+
+    /* The type of operation.
+        - 1, insert only
+        - 2, update only
+        - 3, insert and update */
+    'mode' => UpdateUsers::INSERT & UpdateUsers::UPDATE,
+
+]);
+
+if (Response::SUCCESSFUL === $UpdateUsersResponse->getCode()) {
 }
 
 ```

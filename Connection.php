@@ -87,6 +87,8 @@ class Connection
             'ArrayOfProperty' => 'Mediapart\Selligent\Properties',
             'CountUsersByConstraintResponse' => 'Mediapart\Selligent\Response\CountUsersByConstraintResponse',
             'CreateUserResponse' => 'Mediapart\Selligent\Response\CreateUserResponse',
+            'UpdateUserResponse' => 'Mediapart\Selligent\Response\UpdateUserResponse',
+            'UpdateUsersResponse' => 'Mediapart\Selligent\Response\UpdateUsersResponse',
             'GetUserByIDResponse' => 'Mediapart\Selligent\Response\GetUserByIDResponse',
             'GetUsersByConstraintResponse' => 'Mediapart\Selligent\Response\GetUsersByConstraintResponse',
             'GetUserByFilterResponse' => 'Mediapart\Selligent\Response\GetUserByFilterResponse',
