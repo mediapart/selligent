@@ -1,0 +1,2072 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetSystemStatus">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSystemStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemStatusResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AutomationAuthHeader" type="tns:AutomationAuthHeader" />
+      <s:complexType name="AutomationAuthHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="CountUsersByConstraint">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Constraint" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CountUsersByConstraintResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CountUsersByConstraintResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CountUsersByFilter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Filter" type="tns:ArrayOfProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Property" nillable="true" type="tns:Property" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Property">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CountUsersByFilterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CountUsersByFilterResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersByFilter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Filter" type="tns:ArrayOfProperty" />
+            <s:element minOccurs="1" maxOccurs="1" name="MaxCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersByFilterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUsersByFilterResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ResultIDs" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUsersByConstraint">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Constraint" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MaxCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersByConstraintResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUsersByConstraintResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ResultIDs" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersXmlByConstraint">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Constraint" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersXmlByConstraintResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUsersXmlByConstraintResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Xml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserByFilter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Filter" type="tns:ArrayOfProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserByFilterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUserByFilterResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ResultSet" type="tns:ArrayOfProperty" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserByConstraint">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Constraint" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserByConstraintResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUserByConstraintResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ResultSet" type="tns:ArrayOfProperty" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUserByIDResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ResultSet" type="tns:ArrayOfProperty" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Changes" type="tns:ArrayOfProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUserResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="changes" type="tns:ArrayOfUserChanges" />
+            <s:element minOccurs="1" maxOccurs="1" name="mode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUserChanges">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserChanges" nillable="true" type="tns:UserChanges" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserChanges">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Changes" type="tns:ArrayOfProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUsersResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Changes" type="tns:ArrayOfProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateUserResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveHashForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveHashForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RetrieveHashForUserResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="HashCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="InputData" type="tns:ArrayOfProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TriggerCampaignForUserResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignForUserWithResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="InputData" type="tns:ArrayOfProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignForUserWithResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TriggerCampaignForUserWithResultResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignForUserAndActionListItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ActionListID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ActionCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ActionListItemData" type="tns:ArrayOfProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignForUserAndActionListItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TriggerCampaignForUserAndActionListItemResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignForUserAndActionListItemWithResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ActionListID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ActionCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ActionListItemData" type="tns:ArrayOfProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignForUserAndActionListItemWithResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TriggerCampaignForUserAndActionListItemWithResultResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaign">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="InputData" type="tns:ArrayOfProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TriggerCampaignResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignWithResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="InputData" type="tns:ArrayOfProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignWithResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TriggerCampaignWithResultResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignByXml">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignByXmlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TriggerCampaignByXmlResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignByXmlWithResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerCampaignByXmlWithResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TriggerCampaignByXmlWithResultResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPlannendCampaigns">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPlannendCampaignsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetPlannendCampaignsResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="plannedCampaigns" type="tns:ArrayOfPlannedCampaignInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPlannedCampaignInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PlannedCampaignInfo" nillable="true" type="tns:PlannedCampaignInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PlannedCampaignInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tag" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TriggerChannelForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="List" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ChannelName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="InputData" type="tns:ArrayOfProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerChannelForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TriggerChannelForUserResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerChannel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChannelName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="InputData" type="tns:ArrayOfProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerChannelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TriggerChannelResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetListIDResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ids" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="constraint" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetListsResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="lists" type="tns:ArrayOfListInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientErrorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfListInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ListInfo" nillable="true" type="tns:ListInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ListInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModifiedDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tag" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSegmentRecordCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="segmentId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSegmentRecordCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetSegmentRecordCountResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="segmentCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSegments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="listId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSegmentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetSegmentsResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="segments" type="tns:ArrayOfSegmentInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSegmentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SegmentInfo" nillable="true" type="tns:SegmentInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SegmentInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateSegment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="listid" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateSegmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateSegmentResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="segmentId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateSegmentInfolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="listid" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="mailtreeId" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateSegmentInfolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateSegmentInfolderResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="segmentId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddToSegment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="segmentid" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ids" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddToSegmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddToSegmentResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateActionList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="additionalFields" type="tns:ArrayOfFieldsDefinition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFieldsDefinition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FieldsDefinition" nillable="true" type="tns:FieldsDefinition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FieldsDefinition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DataType" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Size" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateActionListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateActionListResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="actionListId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRecordsToActionList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actionListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="tns:ArrayOfArrayOfProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArrayOfProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfProperty" nillable="true" type="tns:ArrayOfProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddRecordsToActionListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddRecordsToActionListResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRecordToActionList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actionListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="tns:ArrayOfProperty" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRecordToActionListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddRecordToActionListResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActionLists">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetActionListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetActionListsResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="actionLists" type="tns:ArrayOfActionListInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfActionListInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ActionListInfo" nillable="true" type="tns:ActionListInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ActionListInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddActionCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actionListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddActionCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddActionCodeResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddActionCodes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actionListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="codes" type="tns:ArrayOfActionCode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfActionCode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ActionCode" nillable="true" type="tns:ActionCode" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ActionCode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddActionCodesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddActionCodesResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActionCodes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actionListID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActionCodesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetActionCodesResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="codes" type="tns:ArrayOfActionCode" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetSystemStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemStatusAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="CountUsersByConstraintSoapIn">
+    <wsdl:part name="parameters" element="tns:CountUsersByConstraint" />
+  </wsdl:message>
+  <wsdl:message name="CountUsersByConstraintSoapOut">
+    <wsdl:part name="parameters" element="tns:CountUsersByConstraintResponse" />
+  </wsdl:message>
+  <wsdl:message name="CountUsersByConstraintAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="CountUsersByFilterSoapIn">
+    <wsdl:part name="parameters" element="tns:CountUsersByFilter" />
+  </wsdl:message>
+  <wsdl:message name="CountUsersByFilterSoapOut">
+    <wsdl:part name="parameters" element="tns:CountUsersByFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="CountUsersByFilterAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByFilterSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersByFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByFilterSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersByFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByFilterAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByConstraintSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersByConstraint" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByConstraintSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersByConstraintResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByConstraintAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersXmlByConstraintSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersXmlByConstraint" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersXmlByConstraintSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersXmlByConstraintResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersXmlByConstraintAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByFilterSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserByFilter" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByFilterSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserByFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByFilterAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByConstraintSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserByConstraint" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByConstraintSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserByConstraintResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByConstraintAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserByID" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByIDAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUsers" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUsersAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateUser" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveHashForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveHashForUser" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveHashForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveHashForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveHashForUserAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignForUser" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignForUserAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignForUserWithResultSoapIn">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignForUserWithResult" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignForUserWithResultSoapOut">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignForUserWithResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignForUserWithResultAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignForUserAndActionListItemSoapIn">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignForUserAndActionListItem" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignForUserAndActionListItemSoapOut">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignForUserAndActionListItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignForUserAndActionListItemAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignForUserAndActionListItemWithResultSoapIn">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignForUserAndActionListItemWithResult" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignForUserAndActionListItemWithResultSoapOut">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignForUserAndActionListItemWithResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignForUserAndActionListItemWithResultAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignSoapIn">
+    <wsdl:part name="parameters" element="tns:TriggerCampaign" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignSoapOut">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignWithResultSoapIn">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignWithResult" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignWithResultSoapOut">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignWithResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignWithResultAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignByXmlSoapIn">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignByXml" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignByXmlSoapOut">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignByXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignByXmlAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignByXmlWithResultSoapIn">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignByXmlWithResult" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignByXmlWithResultSoapOut">
+    <wsdl:part name="parameters" element="tns:TriggerCampaignByXmlWithResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="TriggerCampaignByXmlWithResultAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetPlannendCampaignsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPlannendCampaigns" />
+  </wsdl:message>
+  <wsdl:message name="GetPlannendCampaignsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPlannendCampaignsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPlannendCampaignsAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="TriggerChannelForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:TriggerChannelForUser" />
+  </wsdl:message>
+  <wsdl:message name="TriggerChannelForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:TriggerChannelForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="TriggerChannelForUserAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="TriggerChannelSoapIn">
+    <wsdl:part name="parameters" element="tns:TriggerChannel" />
+  </wsdl:message>
+  <wsdl:message name="TriggerChannelSoapOut">
+    <wsdl:part name="parameters" element="tns:TriggerChannelResponse" />
+  </wsdl:message>
+  <wsdl:message name="TriggerChannelAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetListIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListID" />
+  </wsdl:message>
+  <wsdl:message name="GetListIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListIDAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetListsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLists" />
+  </wsdl:message>
+  <wsdl:message name="GetListsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListsAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSegmentRecordCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSegmentRecordCount" />
+  </wsdl:message>
+  <wsdl:message name="GetSegmentRecordCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSegmentRecordCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSegmentRecordCountAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSegmentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSegments" />
+  </wsdl:message>
+  <wsdl:message name="GetSegmentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSegmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSegmentsAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreateSegmentSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateSegment" />
+  </wsdl:message>
+  <wsdl:message name="CreateSegmentSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateSegmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateSegmentAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreateSegmentInfolderSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateSegmentInfolder" />
+  </wsdl:message>
+  <wsdl:message name="CreateSegmentInfolderSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateSegmentInfolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateSegmentInfolderAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="AddToSegmentSoapIn">
+    <wsdl:part name="parameters" element="tns:AddToSegment" />
+  </wsdl:message>
+  <wsdl:message name="AddToSegmentSoapOut">
+    <wsdl:part name="parameters" element="tns:AddToSegmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddToSegmentAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreateActionListSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateActionList" />
+  </wsdl:message>
+  <wsdl:message name="CreateActionListSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateActionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateActionListAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="AddRecordsToActionListSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRecordsToActionList" />
+  </wsdl:message>
+  <wsdl:message name="AddRecordsToActionListSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRecordsToActionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRecordsToActionListAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="AddRecordToActionListSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRecordToActionList" />
+  </wsdl:message>
+  <wsdl:message name="AddRecordToActionListSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRecordToActionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRecordToActionListAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetActionListsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetActionLists" />
+  </wsdl:message>
+  <wsdl:message name="GetActionListsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetActionListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActionListsAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="AddActionCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:AddActionCode" />
+  </wsdl:message>
+  <wsdl:message name="AddActionCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:AddActionCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddActionCodeAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="AddActionCodesSoapIn">
+    <wsdl:part name="parameters" element="tns:AddActionCodes" />
+  </wsdl:message>
+  <wsdl:message name="AddActionCodesSoapOut">
+    <wsdl:part name="parameters" element="tns:AddActionCodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddActionCodesAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetActionCodesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetActionCodes" />
+  </wsdl:message>
+  <wsdl:message name="GetActionCodesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetActionCodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActionCodesAutomationAuthHeader">
+    <wsdl:part name="AutomationAuthHeader" element="tns:AutomationAuthHeader" />
+  </wsdl:message>
+  <wsdl:portType name="IndividualSoap">
+    <wsdl:operation name="GetSystemStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the status of the system.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemStatusSoapIn" />
+      <wsdl:output message="tns:GetSystemStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CountUsersByConstraint">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the number of users of a List that correspond to the passed Constraint.</wsdl:documentation>
+      <wsdl:input message="tns:CountUsersByConstraintSoapIn" />
+      <wsdl:output message="tns:CountUsersByConstraintSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CountUsersByFilter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the number of users of a List that correspond to the passed Filter.</wsdl:documentation>
+      <wsdl:input message="tns:CountUsersByFilterSoapIn" />
+      <wsdl:output message="tns:CountUsersByFilterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByFilter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the ID values of users of a List that correspond to the passed Filter and MaxCount.</wsdl:documentation>
+      <wsdl:input message="tns:GetUsersByFilterSoapIn" />
+      <wsdl:output message="tns:GetUsersByFilterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByConstraint">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the ID values of users of a List that correspond to the passed Constraint and MaxCount.</wsdl:documentation>
+      <wsdl:input message="tns:GetUsersByConstraintSoapIn" />
+      <wsdl:output message="tns:GetUsersByConstraintSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersXmlByConstraint">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets users for a certain List given the Constraint to filter the results as XML.</wsdl:documentation>
+      <wsdl:input message="tns:GetUsersXmlByConstraintSoapIn" />
+      <wsdl:output message="tns:GetUsersXmlByConstraintSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByFilter">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a user's properties for the given List and Filter.</wsdl:documentation>
+      <wsdl:input message="tns:GetUserByFilterSoapIn" />
+      <wsdl:output message="tns:GetUserByFilterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByConstraint">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a user's properties for the given List and Constraint.</wsdl:documentation>
+      <wsdl:input message="tns:GetUserByConstraintSoapIn" />
+      <wsdl:output message="tns:GetUserByConstraintSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a user's properties for the given List and UserID</wsdl:documentation>
+      <wsdl:input message="tns:GetUserByIDSoapIn" />
+      <wsdl:output message="tns:GetUserByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Updates the properties for a user for the given UserID in the given list.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateUserSoapIn" />
+      <wsdl:output message="tns:UpdateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUsers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Updates multiple users at the time.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateUsersSoapIn" />
+      <wsdl:output message="tns:UpdateUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new user for the given list</wsdl:documentation>
+      <wsdl:input message="tns:CreateUserSoapIn" />
+      <wsdl:output message="tns:CreateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveHashForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the HashCode for a user with given UserID in a List.</wsdl:documentation>
+      <wsdl:input message="tns:RetrieveHashForUserSoapIn" />
+      <wsdl:output message="tns:RetrieveHashForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Triggers a campaign for a specific user.</wsdl:documentation>
+      <wsdl:input message="tns:TriggerCampaignForUserSoapIn" />
+      <wsdl:output message="tns:TriggerCampaignForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignForUserWithResult">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Triggers a campaign for a specific user.</wsdl:documentation>
+      <wsdl:input message="tns:TriggerCampaignForUserWithResultSoapIn" />
+      <wsdl:output message="tns:TriggerCampaignForUserWithResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignForUserAndActionListItem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Triggers a campaign for a specific user using a specific actionlist record.</wsdl:documentation>
+      <wsdl:input message="tns:TriggerCampaignForUserAndActionListItemSoapIn" />
+      <wsdl:output message="tns:TriggerCampaignForUserAndActionListItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignForUserAndActionListItemWithResult">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Triggers a campaign for a specific user using a specific actionlist record.</wsdl:documentation>
+      <wsdl:input message="tns:TriggerCampaignForUserAndActionListItemWithResultSoapIn" />
+      <wsdl:output message="tns:TriggerCampaignForUserAndActionListItemWithResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaign">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Triggers a Campaign.</wsdl:documentation>
+      <wsdl:input message="tns:TriggerCampaignSoapIn" />
+      <wsdl:output message="tns:TriggerCampaignSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignWithResult">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Triggers a Campaign.</wsdl:documentation>
+      <wsdl:input message="tns:TriggerCampaignWithResultSoapIn" />
+      <wsdl:output message="tns:TriggerCampaignWithResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignByXml">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Triggers a Campaign.</wsdl:documentation>
+      <wsdl:input message="tns:TriggerCampaignByXmlSoapIn" />
+      <wsdl:output message="tns:TriggerCampaignByXmlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignByXmlWithResult">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Triggers a Campaign.</wsdl:documentation>
+      <wsdl:input message="tns:TriggerCampaignByXmlWithResultSoapIn" />
+      <wsdl:output message="tns:TriggerCampaignByXmlWithResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlannendCampaigns">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the campaigns that are scheduled to run.</wsdl:documentation>
+      <wsdl:input message="tns:GetPlannendCampaignsSoapIn" />
+      <wsdl:output message="tns:GetPlannendCampaignsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TriggerChannelForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Triggers a Channel for a certain user by the name of the channel.</wsdl:documentation>
+      <wsdl:input message="tns:TriggerChannelForUserSoapIn" />
+      <wsdl:output message="tns:TriggerChannelForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TriggerChannel">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Triggers a channel by its name.</wsdl:documentation>
+      <wsdl:input message="tns:TriggerChannelSoapIn" />
+      <wsdl:output message="tns:TriggerChannelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the id of a list using its name.</wsdl:documentation>
+      <wsdl:input message="tns:GetListIDSoapIn" />
+      <wsdl:output message="tns:GetListIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLists">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the lists.</wsdl:documentation>
+      <wsdl:input message="tns:GetListsSoapIn" />
+      <wsdl:output message="tns:GetListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSegmentRecordCount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the amount of recipients in a segment.</wsdl:documentation>
+      <wsdl:input message="tns:GetSegmentRecordCountSoapIn" />
+      <wsdl:output message="tns:GetSegmentRecordCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSegments">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the segments for a specified list.</wsdl:documentation>
+      <wsdl:input message="tns:GetSegmentsSoapIn" />
+      <wsdl:output message="tns:GetSegmentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSegment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new static segment for a list.</wsdl:documentation>
+      <wsdl:input message="tns:CreateSegmentSoapIn" />
+      <wsdl:output message="tns:CreateSegmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSegmentInfolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new static segment for a list in a folder.</wsdl:documentation>
+      <wsdl:input message="tns:CreateSegmentInfolderSoapIn" />
+      <wsdl:output message="tns:CreateSegmentInfolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddToSegment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds a list of ids to a segment.</wsdl:documentation>
+      <wsdl:input message="tns:AddToSegmentSoapIn" />
+      <wsdl:output message="tns:AddToSegmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateActionList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new ActionList.</wsdl:documentation>
+      <wsdl:input message="tns:CreateActionListSoapIn" />
+      <wsdl:output message="tns:CreateActionListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRecordsToActionList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds a new batch of records to an ActionList</wsdl:documentation>
+      <wsdl:input message="tns:AddRecordsToActionListSoapIn" />
+      <wsdl:output message="tns:AddRecordsToActionListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRecordToActionList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds a new record to an ActionList</wsdl:documentation>
+      <wsdl:input message="tns:AddRecordToActionListSoapIn" />
+      <wsdl:output message="tns:AddRecordToActionListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActionLists">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an overview of the ActionLists that are available</wsdl:documentation>
+      <wsdl:input message="tns:GetActionListsSoapIn" />
+      <wsdl:output message="tns:GetActionListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddActionCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds a new ActionCode for an actionlist</wsdl:documentation>
+      <wsdl:input message="tns:AddActionCodeSoapIn" />
+      <wsdl:output message="tns:AddActionCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddActionCodes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds multiple ActionCodes at once for an actionlist</wsdl:documentation>
+      <wsdl:input message="tns:AddActionCodesSoapIn" />
+      <wsdl:output message="tns:AddActionCodesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActionCodes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets all Action Codes for an action list.</wsdl:documentation>
+      <wsdl:input message="tns:GetActionCodesSoapIn" />
+      <wsdl:output message="tns:GetActionCodesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IndividualSoap" type="tns:IndividualSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetSystemStatus">
+      <soap:operation soapAction="http://tempuri.org/GetSystemStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSystemStatusAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountUsersByConstraint">
+      <soap:operation soapAction="http://tempuri.org/CountUsersByConstraint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CountUsersByConstraintAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountUsersByFilter">
+      <soap:operation soapAction="http://tempuri.org/CountUsersByFilter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CountUsersByFilterAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByFilter">
+      <soap:operation soapAction="http://tempuri.org/GetUsersByFilter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUsersByFilterAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByConstraint">
+      <soap:operation soapAction="http://tempuri.org/GetUsersByConstraint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUsersByConstraintAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersXmlByConstraint">
+      <soap:operation soapAction="http://tempuri.org/GetUsersXmlByConstraint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUsersXmlByConstraintAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByFilter">
+      <soap:operation soapAction="http://tempuri.org/GetUserByFilter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUserByFilterAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByConstraint">
+      <soap:operation soapAction="http://tempuri.org/GetUserByConstraint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUserByConstraintAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByID">
+      <soap:operation soapAction="http://tempuri.org/GetUserByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUserByIDAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateUserAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUsers">
+      <soap:operation soapAction="http://tempuri.org/UpdateUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateUsersAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="http://tempuri.org/CreateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateUserAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveHashForUser">
+      <soap:operation soapAction="http://tempuri.org/RetrieveHashForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RetrieveHashForUserAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignForUser">
+      <soap:operation soapAction="http://tempuri.org/TriggerCampaignForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:TriggerCampaignForUserAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignForUserWithResult">
+      <soap:operation soapAction="http://tempuri.org/TriggerCampaignForUserWithResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:TriggerCampaignForUserWithResultAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignForUserAndActionListItem">
+      <soap:operation soapAction="http://tempuri.org/TriggerCampaignForUserAndActionListItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:TriggerCampaignForUserAndActionListItemAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignForUserAndActionListItemWithResult">
+      <soap:operation soapAction="http://tempuri.org/TriggerCampaignForUserAndActionListItemWithResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:TriggerCampaignForUserAndActionListItemWithResultAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaign">
+      <soap:operation soapAction="http://tempuri.org/TriggerCampaign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:TriggerCampaignAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignWithResult">
+      <soap:operation soapAction="http://tempuri.org/TriggerCampaignWithResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:TriggerCampaignWithResultAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignByXml">
+      <soap:operation soapAction="http://tempuri.org/TriggerCampaignByXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:TriggerCampaignByXmlAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignByXmlWithResult">
+      <soap:operation soapAction="http://tempuri.org/TriggerCampaignByXmlWithResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:TriggerCampaignByXmlWithResultAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlannendCampaigns">
+      <soap:operation soapAction="http://tempuri.org/GetPlannendCampaigns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetPlannendCampaignsAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerChannelForUser">
+      <soap:operation soapAction="http://tempuri.org/TriggerChannelForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:TriggerChannelForUserAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerChannel">
+      <soap:operation soapAction="http://tempuri.org/TriggerChannel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:TriggerChannelAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListID">
+      <soap:operation soapAction="http://tempuri.org/GetListID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetListIDAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLists">
+      <soap:operation soapAction="http://tempuri.org/GetLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetListsAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSegmentRecordCount">
+      <soap:operation soapAction="http://tempuri.org/GetSegmentRecordCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSegmentRecordCountAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSegments">
+      <soap:operation soapAction="http://tempuri.org/GetSegments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSegmentsAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSegment">
+      <soap:operation soapAction="http://tempuri.org/CreateSegment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateSegmentAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSegmentInfolder">
+      <soap:operation soapAction="http://tempuri.org/CreateSegmentInfolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateSegmentInfolderAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddToSegment">
+      <soap:operation soapAction="http://tempuri.org/AddToSegment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddToSegmentAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateActionList">
+      <soap:operation soapAction="http://tempuri.org/CreateActionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateActionListAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecordsToActionList">
+      <soap:operation soapAction="http://tempuri.org/AddRecordsToActionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddRecordsToActionListAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecordToActionList">
+      <soap:operation soapAction="http://tempuri.org/AddRecordToActionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddRecordToActionListAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActionLists">
+      <soap:operation soapAction="http://tempuri.org/GetActionLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetActionListsAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddActionCode">
+      <soap:operation soapAction="http://tempuri.org/AddActionCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddActionCodeAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddActionCodes">
+      <soap:operation soapAction="http://tempuri.org/AddActionCodes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddActionCodesAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActionCodes">
+      <soap:operation soapAction="http://tempuri.org/GetActionCodes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetActionCodesAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IndividualSoap12" type="tns:IndividualSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetSystemStatus">
+      <soap12:operation soapAction="http://tempuri.org/GetSystemStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSystemStatusAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountUsersByConstraint">
+      <soap12:operation soapAction="http://tempuri.org/CountUsersByConstraint" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CountUsersByConstraintAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountUsersByFilter">
+      <soap12:operation soapAction="http://tempuri.org/CountUsersByFilter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CountUsersByFilterAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByFilter">
+      <soap12:operation soapAction="http://tempuri.org/GetUsersByFilter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUsersByFilterAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByConstraint">
+      <soap12:operation soapAction="http://tempuri.org/GetUsersByConstraint" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUsersByConstraintAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersXmlByConstraint">
+      <soap12:operation soapAction="http://tempuri.org/GetUsersXmlByConstraint" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUsersXmlByConstraintAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByFilter">
+      <soap12:operation soapAction="http://tempuri.org/GetUserByFilter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUserByFilterAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByConstraint">
+      <soap12:operation soapAction="http://tempuri.org/GetUserByConstraint" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUserByConstraintAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByID">
+      <soap12:operation soapAction="http://tempuri.org/GetUserByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUserByIDAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap12:operation soapAction="http://tempuri.org/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateUserAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUsers">
+      <soap12:operation soapAction="http://tempuri.org/UpdateUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateUsersAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap12:operation soapAction="http://tempuri.org/CreateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateUserAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveHashForUser">
+      <soap12:operation soapAction="http://tempuri.org/RetrieveHashForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RetrieveHashForUserAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignForUser">
+      <soap12:operation soapAction="http://tempuri.org/TriggerCampaignForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:TriggerCampaignForUserAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignForUserWithResult">
+      <soap12:operation soapAction="http://tempuri.org/TriggerCampaignForUserWithResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:TriggerCampaignForUserWithResultAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignForUserAndActionListItem">
+      <soap12:operation soapAction="http://tempuri.org/TriggerCampaignForUserAndActionListItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:TriggerCampaignForUserAndActionListItemAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignForUserAndActionListItemWithResult">
+      <soap12:operation soapAction="http://tempuri.org/TriggerCampaignForUserAndActionListItemWithResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:TriggerCampaignForUserAndActionListItemWithResultAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaign">
+      <soap12:operation soapAction="http://tempuri.org/TriggerCampaign" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:TriggerCampaignAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignWithResult">
+      <soap12:operation soapAction="http://tempuri.org/TriggerCampaignWithResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:TriggerCampaignWithResultAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignByXml">
+      <soap12:operation soapAction="http://tempuri.org/TriggerCampaignByXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:TriggerCampaignByXmlAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerCampaignByXmlWithResult">
+      <soap12:operation soapAction="http://tempuri.org/TriggerCampaignByXmlWithResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:TriggerCampaignByXmlWithResultAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlannendCampaigns">
+      <soap12:operation soapAction="http://tempuri.org/GetPlannendCampaigns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetPlannendCampaignsAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerChannelForUser">
+      <soap12:operation soapAction="http://tempuri.org/TriggerChannelForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:TriggerChannelForUserAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerChannel">
+      <soap12:operation soapAction="http://tempuri.org/TriggerChannel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:TriggerChannelAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListID">
+      <soap12:operation soapAction="http://tempuri.org/GetListID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetListIDAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLists">
+      <soap12:operation soapAction="http://tempuri.org/GetLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetListsAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSegmentRecordCount">
+      <soap12:operation soapAction="http://tempuri.org/GetSegmentRecordCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSegmentRecordCountAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSegments">
+      <soap12:operation soapAction="http://tempuri.org/GetSegments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSegmentsAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSegment">
+      <soap12:operation soapAction="http://tempuri.org/CreateSegment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateSegmentAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSegmentInfolder">
+      <soap12:operation soapAction="http://tempuri.org/CreateSegmentInfolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateSegmentInfolderAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddToSegment">
+      <soap12:operation soapAction="http://tempuri.org/AddToSegment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddToSegmentAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateActionList">
+      <soap12:operation soapAction="http://tempuri.org/CreateActionList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateActionListAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecordsToActionList">
+      <soap12:operation soapAction="http://tempuri.org/AddRecordsToActionList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddRecordsToActionListAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecordToActionList">
+      <soap12:operation soapAction="http://tempuri.org/AddRecordToActionList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddRecordToActionListAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActionLists">
+      <soap12:operation soapAction="http://tempuri.org/GetActionLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetActionListsAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddActionCode">
+      <soap12:operation soapAction="http://tempuri.org/AddActionCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddActionCodeAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddActionCodes">
+      <soap12:operation soapAction="http://tempuri.org/AddActionCodes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddActionCodesAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActionCodes">
+      <soap12:operation soapAction="http://tempuri.org/GetActionCodes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetActionCodesAutomationAuthHeader" part="AutomationAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Individual">
+    <wsdl:port name="IndividualSoap" binding="tns:IndividualSoap">
+      <soap:address location="https://mediapart.emsecure.net/automation/individual.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IndividualSoap12" binding="tns:IndividualSoap12">
+      <soap12:address location="https://mediapart.emsecure.net/automation/individual.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

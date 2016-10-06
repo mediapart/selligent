@@ -49,21 +49,15 @@ abstract class Response
     const ERROR_NORESULT = 10005;
 
     /**
-     * Insecure constraint. 
-     * Occurs for instance when special characters are used (e.g. $)
-     */
-    const ERROR_UNSAFECONSTRAINT = 10008;
-
-    /**
      * The individual call has failed 
      */
     const ERROR_FAILED = 10006;
 
     /**
-     * One or more arguments are invalid. 
-     * Occurs when one of the entry parameters is incorrect.
+     * Insecure constraint. 
+     * Occurs for instance when special characters are used (e.g. $)
      */
-    const ERROR_INVALID_ARGUMENT = 10013;
+    const ERROR_UNSAFECONSTRAINT = 10008;
 
     /**
      * The given constraint cannot be parsed. 
@@ -88,6 +82,12 @@ abstract class Response
      * The gate has been disabled
      */
     const ERROR_GATE_DISABLED = 10012;
+
+    /**
+     * One or more arguments are invalid. 
+     * Occurs when one of the entry parameters is incorrect.
+     */
+    const ERROR_INVALID_ARGUMENT = 10013;
 
     /**
      * No rights to create entities

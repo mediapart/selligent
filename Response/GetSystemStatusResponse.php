@@ -14,7 +14,7 @@ namespace Mediapart\Selligent\Response;
 use Mediapart\Selligent\Response;
 
 /**
- *
+ * Provides information about the current status of the system.
  */
 class GetSystemStatusResponse extends Response
 {
@@ -22,6 +22,14 @@ class GetSystemStatusResponse extends Response
      * @var string
      */
     protected $GetSystemStatusResult;
+
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->GetSystemStatusResult = 'error (unknown)';
+    }
 
     /**
      * {@inheritdoc}

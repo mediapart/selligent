@@ -6,6 +6,10 @@
   <testsuites>
     <testsuite name="default">
       <file>./tests/PropertiesTest.php</file>
+      <file>./tests/SegmentsTest.php</file>
+      <file>./tests/ConnectionTest.php</file>
+      <file>./tests/Response/GetListsReponseTest.php</file>
+      <file>./tests/Response/GetListIDResponseTest.php</file>
     </testsuite>
     <testsuite name="real">
       <file>./tests/RealTest.php</file>

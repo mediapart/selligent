@@ -23,12 +23,13 @@ class RealTest extends TestCase
      */
     public function getClient()
     {
-        $con = new Connection(
-            getenv('soap_login'),
-            getenv('soap_password')
-        );
+        $con = new Connection();
 
-        return $con->open(getenv('soap_wsdl'));
+        return $con->open(
+            getenv('soap_login'),
+            getenv('soap_password'),
+            getenv('soap_wsdl')
+        );
     }
 
     /**

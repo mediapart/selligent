@@ -12,45 +12,44 @@
 namespace Mediapart\Selligent\Response;
 
 use Mediapart\Selligent\Response;
-use Mediapart\Selligent\ArrayOfListInfo;
 
 /**
- * Retrieve a series of lists
+ * Get the id of a list by using its name
  */
-class GetListsResponse extends Response
+class GetListIDResponse extends Response
 {
     /**
-     * @var int
+     * @var int Id of the found list
      */
-    protected $GetListsResult;
+    protected $GetListIDResult;
 
     /**
-     * @var ArrayOfListInfo
+     * @var int Id of the found list
      */
-    protected $lists;
+    protected $id;
 
     /**
      * @return void
      */
     public function __construct()
     {
-        $this->GetListsResult = Response::ERROR_NORESULT;
-        $this->lists = new ArrayOfListInfo();
+        $this->GetListIDResult = 0;
+        $this->id = null;
     }
 
     /**
-     * @return int Result of the function
+     * {@inheritDoc}
      */
     public function getCode()
     {
-        return $this->GetListsResult;
+        return $this->GetListIDResult;
     }
 
     /**
-     * @return ArrayOfListInfo List of found lists
+     * @return int Id of the found list
      */
-    public function getLists()
+    public function getId()
     {
-        return $this->lists;
+        return $this->id;
     }
 }
