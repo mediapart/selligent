@@ -23,12 +23,13 @@ class CampaignTest extends TestCase
      */
     public function getClient()
     {
-        $con = new Connection(
-            getenv('soap_login'),
-            getenv('soap_password')
-        );
+        $con = new Connection();
 
-        return $con->open(getenv('soap_wsdl'));
+        return $con->open(
+            getenv('soap_login'),
+            getenv('soap_password'),
+            getenv('soap_wsdl')
+        );
     }
 
     /**
@@ -39,6 +40,7 @@ class CampaignTest extends TestCase
         $list_id = getenv('selligent_listid');
         $gate_name = getenv('selligent_gate');
         $client = $this->getCLient();
+
         $user = new Properties();
         $user['NAME'] = 'Thomas Test G.';
         $user['MAIL'] = 'thomas.gasc+test@mediapart.fr';

@@ -92,10 +92,16 @@ class Connection
             'GetUserByIDResponse' => 'Mediapart\Selligent\Response\GetUserByIDResponse',
             'GetUsersByConstraintResponse' => 'Mediapart\Selligent\Response\GetUsersByConstraintResponse',
             'GetUserByFilterResponse' => 'Mediapart\Selligent\Response\GetUserByFilterResponse',
-            
+
             # Manage Campaign
             'TriggerCampaignResponse' => 'Mediapart\Selligent\Response\TriggerCampaignResponse',
             'TriggerCampaignWithResultResponse' => 'Mediapart\Selligent\Response\TriggerCampaignWithResultResponse',
+            'TriggerCampaignByXmlResponse' => 'Mediapart\Selligent\Response\TriggerCampaignByXmlResponse',
+            'TriggerCampaignByXmlWithResponse' => 'Mediapart\Selligent\Response\TriggerCampaignByXmlWithResponse',
+            'TriggerCampaignForUser' => 'Mediapart\Selligent\Response\TriggerCampaignForUser',
+            #'TriggerCampaignForUserWithResult' => 'Mediapart\Selligent\Response\TriggerCampaignForUserWithResult',
+            #'TriggerCampaignForUserAndActionListItem' => 'Mediapart\Selligent\Response\TriggerCampaignForUserAndActionListItem',
+            #'TriggerCampaignForUserAndActionListItemWithResult' => 'Mediapart\Selligent\Response\TriggerCampaignForUserAndActionListItemWithResult',
 
         ];
     }

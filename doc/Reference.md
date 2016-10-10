@@ -356,8 +356,9 @@ if (Response::SUCCESSFUL === $RetrieveHashForUserResponse->getCode()) {
 
 ```
 
+## Journey map Management
 
-## TriggerCampaign
+### TriggerCampaign
 
 Trigger the execution of the specified journey map.
 
@@ -382,4 +383,40 @@ if (Response::SUCCESSFUL !== $TriggerCampaignResponse->getCode()) {
 }
 
 ```
+
+
+## TriggerCampaignByXml
+
+Trigger the execution of the specified journey map.
+
+```php
+<?php
+
+$TriggerCampaignByXmlResponse = $client->TriggerCampaignByXml([
+
+    /* Name of the targeted gate in the journey map */
+    'GateName' => '',
+
+    /* XML with key-value pairs of properties */
+    'Xml' => <<<XML
+        <xml>
+            <ID_UTILISATEUR>3</ID_UTILISATEUR>
+        </xml>
+XML,
+
+]);
+
+if (Response::SUCCESSFUL !== $TriggerCampaignResponse->getCode()) {
+    printf(
+        "ERROR %d\t%s",
+        $TriggerCampaignResponse->getCode(),
+        $TriggerCampaignResponse->getError()
+    );
+}
+
+```
+
+
+## TriggerCampaignByXmlWith
+
 

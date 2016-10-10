@@ -1,37 +1,46 @@
 <?php
 
+/**
+ * This file is part of the Mediapart Selligent Client API
+ *
+ * (c) mediapart <https://github.com/mediapart/selligent>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mediapart\Selligent;
 
+/**
+ *
+ */
 class SegmentInfo
 {
     /**
-     *
+     * @var int identifier
      */
     protected $ID;
 
     /**
-     *
+     * @var string name
      */
     protected $Name;
 
     /**
-     *
+     * @var string type
      */
     protected $Type;
 
     /**
      *
+     * @var strinf description
      */
     protected $Description;
 
     /**
+     * Gets the segment's identifier
      *
-     */
-    public function __construct()
-    {}
-
-    /**
-     *
+     * @return int identifier
      */
     public function getId()
     {
@@ -39,7 +48,9 @@ class SegmentInfo
     }
 
     /**
+     * Gets the segment's name
      *
+     * @return string name
      */
     public function getName()
     {
@@ -47,7 +58,9 @@ class SegmentInfo
     }
 
     /**
+     * Gets the segment's type
      *
+     * @return string type
      */
     public function getType()
     {
@@ -55,7 +68,9 @@ class SegmentInfo
     }
 
     /**
+     * Gets the segment's description
      *
+     * @return string description
      */
     public function getDescription()
     {

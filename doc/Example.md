@@ -30,7 +30,7 @@ if (Response::SUCCESSFUL === $response->getCode()) {
 
 
 /* register a new user */
-$user = new ArrayOfProperty();
+$user = new Properties();
 $user[] = new Property('NAME', 'Thomas Gasc');
 $user[] = new Property('MAIL', 'thomas@gasc.fr');
 
