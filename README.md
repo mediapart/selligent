@@ -10,10 +10,37 @@ composer require mediapart/selligent
 <?php
 
 use Mediapart\Selligent\Connection;
+use Mediapart\Selligent\Transport;
+
+$config = [
+    'login' => '******',
+    'password' => '******',
+    'wsdl' => '',
+    'list_id' => 1,
+    'gate_name' => 'TESTGATE',
+];
 
 $connection = new Connection();
-$client = $connection->open($login, $password, $wsdl);
+$client = $connection->open(
+    $config['login'],
+    $config['password'],
+    $config['wsdl']
+);
 
+try {
+    $transport = new Transport($client);
+    $result = $transport
+        ->setList($config['list_id'])
+        ->subscribe($user)
+        ->setCampaign($config['gate_name'])
+        ->triggerCampaign(
+            $inputData,
+            Selligent::TRIGGER & Selligent::WITH_RESULT
+        )
+    ;
+} catch (Exception $e) {
+
+}
 ```
 
 ## Test

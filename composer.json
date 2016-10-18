@@ -3,7 +3,7 @@
     "description": "Selligent Client API. Use to manage your Selligent data from PHP.",
     "type": "library",
     "keywords": ["soap", "api", "client", "selligent", "mailing"],
-    "license": "MIT",
+    "license": "CC BY-NC-SA",
     "authors": [
         {
             "name": "Thomas GASC",
