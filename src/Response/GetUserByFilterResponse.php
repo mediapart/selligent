@@ -21,7 +21,7 @@ class GetUserByFilterResponse extends Response
     /**
      * @var int
      */
-    protected $GetUserByFilterResponse;
+    protected $GetUserByFilterResult;
 
     /**
      * @var Mediapart\Selligent\Properties
@@ -33,7 +33,7 @@ class GetUserByFilterResponse extends Response
      */
     public function getCode()
     {
-        return $this->GetUserByFilterResponse;
+        return $this->GetUserByFilterResult;
     }
 
     /**

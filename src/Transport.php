@@ -17,22 +17,12 @@ namespace Mediapart\Selligent;
 class Transport
 {
     /**
-     *
-     */
-    const TRIGGER = 0x01;
-
-    /**
-     *
-     */
-    const WITH_RESULT = 0x10;
-
-    /**
      * @var \SoapClient
      */
     protected $client;
 
     /**
-     * @var string
+     * @var int
      */
     protected $list;
 
@@ -42,8 +32,9 @@ class Transport
     protected $campaign;
 
     /**
-     * @param SoapClient
-     * @param $list
+     * @param \SoapClient $client
+     * @param string $list
+     * @param string $campaign
      */
     public function __construct(\SoapClient $client, $list = null, $campaign = null)
     {
@@ -105,20 +96,80 @@ class Transport
     }
 
     /**
+     * Subscribe the given user, if not already in list, and returns his identifier
      *
+     * @param Properties $user
+     * @return int User id
+     * @throws UnexpectedValueException if $idKey is not an existing Property
+     * @throws Exception If something happens during the request
      */
-    public function subscribe($user)
-    {}
+    public function subscribe(Properties $user, $idKey = 'ID')
+    {
+        $response = $this->client->GetUserByFilter([
+            'List' => $this->list,
+            'Filter' => $user,
+        ]);
+
+        switch ($response->getCode()) {
+
+            /* the user already exists */
+            case Response::SUCCESSFUL:
+                $properties = $response->getProperties();
+                if (isset($properties[$idKey])) {
+                    $id = $properties[$idKey]->getValue();
+                    break;
+                } else {
+                    throw new \UnexpectedValueException(sprintf(
+                        "key %s do not exists in %s",
+                        $idKey,
+                        implode(',', array_keys((array) $properties))
+                    ));
+                }
+
+            /* the user do not exist, we create it */
+            case Response::ERROR_NORESULT:
+                $response = $this->client->CreateUser([
+                    'List' => $this->list,
+                    'Changes' => $user,
+                ]);
+                if (Response::SUCCESSFUL===$response->getCode()) {
+                    $id = $response->getUserId();
+                    break;
+                }
+
+            /* something wrong */
+            default:
+                throw new \Exception(
+                    $response->getError(),
+                    $response->getCode()
+                );
+        }
+
+        return $id;
+    }
 
     /**
-     *
+     * @param int $userId
+     * @param Properties $inputData
+     * @return string
+     * @throws Exception
      */
-    public function unsubscribe($userId)
-    {}
+    public function triggerCampaign($userId, Properties $inputData)
+    {
+        $response = $this->client->TriggerCampaignWithResult([
+            'List' => $this->list,
+            'UserID' => $userId,
+            'GateName' => $this->campaign,
+            'InputData' => $inputData,
+        ]);
 
-    /**
-     * @param 
-     */
-    public function triggerCampaign($inputData, $mode = 1)
-    {}
+        if (Response::SUCCESSFUL!==$response->getCode()) {
+            throw new \Exception(
+                $response->getError(),
+                $response->getCode()
+            );
+        } else {
+            return $response->getResult();
+        }
+    }
 }

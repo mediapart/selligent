@@ -11,15 +11,18 @@ composer require mediapart/selligent
 
 use Mediapart\Selligent\Connection;
 use Mediapart\Selligent\Transport;
+use Mediapart\Selligent\Properties;
 
+/* define your API credentials */
 $config = [
     'login' => '******',
     'password' => '******',
-    'wsdl' => '',
-    'list_id' => 1,
-    'gate_name' => 'TESTGATE',
+    'wsdl' => 'http://emsecure/?wsdl',
+    'list' => 'TESTLIST',
+    'campaign' => 'TESTGATE',
 ];
 
+/* connect you to your Selligent API server */
 $connection = new Connection();
 $client = $connection->open(
     $config['login'],
@@ -27,19 +30,34 @@ $client = $connection->open(
     $config['wsdl']
 );
 
+/*
+    Example : Trigger the TESTGATE campaign to an user.
+    We will register the user first an then, we will trigger
+    the campaign with a custom message :
+ */
 try {
-    $transport = new Transport($client);
-    $result = $transport
-        ->setList($config['list_id'])
-        ->subscribe($user)
-        ->setCampaign($config['gate_name'])
-        ->triggerCampaign(
-            $inputData,
-            Selligent::TRIGGER & Selligent::WITH_RESULT
-        )
-    ;
-} catch (Exception $e) {
 
+    $transport = new Transport($client);
+
+    $user = new Properties();
+    $user['NAME'] = 'Foo Bar';
+    $user['MAIL'] = 'foo@bar.tld';
+
+    $userId = $transport
+        ->setList($config['list'])
+        ->subscribe($user)
+    ;
+
+    $inputData = new Properties();
+    $inputData['MESSAGE'] = 'Lorem ipsum dolor sit amet conceptuem.';
+
+    $result = $transport
+        ->setCampaign($config['campaign'])
+        ->triggerCampaign($userId, $inputData)
+    ;
+
+} catch (\Exception $e) {
+    echo 'something bad happens.';
 }
 ```
 
