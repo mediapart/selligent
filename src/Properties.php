@@ -43,7 +43,7 @@ class Properties implements \ArrayAccess, \IteratorAggregate
     {
         foreach ($this->Property as $property) {
             if ($offset === $property->getKey()) {
-                return $property;
+                return $property->getValue();
             }
         }
         return null;
