@@ -47,8 +47,7 @@ class PropertiesTest extends TestCase
         $this->assertNull($properties['EMAIL']);
 
         $properties['NAME'] = 'jacques';
-        $jacques = $properties['NAME'];
-        $this->assertEquals('jacques', $jacques->getValue());
+        $this->assertEquals('jacques', $properties['NAME']);
     }
 
     /**
@@ -60,6 +59,6 @@ class PropertiesTest extends TestCase
         $properties[] = new Property( 'NAME', 'thomas');
         $properties[] = new Property('EMAIL', 'thomas.gasc+test@mediapart.fr');
 
-        $this->assertEquals('thomas', $properties['NAME']->getValue());
+        $this->assertEquals('thomas', $properties['NAME']);
     }
 }
