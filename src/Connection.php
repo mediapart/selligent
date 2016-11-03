@@ -53,7 +53,7 @@ class Connection
     {
         $load = function($class, $expected) {
             $result = new \ReflectionClass($class);
-            if ($class!=$expected && !$result->isSubclassOf($expected)) {
+            if ($class != $expected && !$result->isSubclassOf($expected)) {
                 throw new \InvalidArgumentException(sprintf(
                     "%s is not an instance of %s",
                     $class, $expected
