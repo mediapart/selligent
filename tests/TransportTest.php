@@ -255,7 +255,7 @@ class TransportTest extends TestCase
             ->method('getCode')
             ->willReturn($CreateUserResponseCode)
         ;
-        $id = isset($userProperties['ID']) ? $userProperties['ID']->getValue() : null;
+        $id = isset($userProperties['ID']) ? $userProperties['ID'] : null;
         $CreateUserResponse
             ->method('getUserId')
             ->willReturn($id)
@@ -311,7 +311,7 @@ class TransportTest extends TestCase
 
         $id = $transport->subscribe($user);
 
-        $this->assertEquals($userProperties['ID']->getValue(), $id);
+        $this->assertEquals($userProperties['ID'], $id);
     }
 
     /**
@@ -392,7 +392,7 @@ class TransportTest extends TestCase
 
         $id = $transport->subscribe($user);
 
-        $this->assertEquals($userProperties['ID']->getValue(), $id);
+        $this->assertEquals($userProperties['ID'], $id);
     }
 
     /**

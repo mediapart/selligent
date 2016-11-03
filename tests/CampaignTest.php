@@ -40,15 +40,24 @@ class CampaignTest extends TestCase
         $list_id = getenv('selligent_listid');
         $gate_name = getenv('selligent_gate');
         $client = $this->getCLient();
+        $user_id = null;
 
         $user = new Properties();
-        $user['NAME'] = 'Thomas Test G.';
+        $user['NAME'] = 'Thomas G.';
         $user['MAIL'] = 'thomas.gasc+test@mediapart.fr';
 
         // check the connection
         $response = $client->GetSystemStatus();
         $this->assertEquals('OK', $response->getStatus());
         $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
+
+        // check the list
+        $response = $client->GetLists();
+        $available_lists = [];
+        foreach ($response->getLists() as $list) {
+            $available_lists[$list->ID] = $list->Name;
+        }
+        $this->assertTrue(array_key_exists($list_id, $available_lists));
 
         // check if the user already exists
         $response = $client->GetUserByFilter([
@@ -66,7 +75,7 @@ class CampaignTest extends TestCase
         }
 
         // retrieves the user id
-        if (Response::SUCCESSFUL !== $response) {
+        elseif (Response::SUCCESSFUL === $response->getCode()) {
             $user_id = $response->getProperties()['ID']->getValue();
         }
 
@@ -75,9 +84,19 @@ class CampaignTest extends TestCase
 
         // trigger the campaign
         $data = new Properties();
-        $data['ID_UTILISATEUR'] = $user_id;
+        $data['ID'] = $user_id;
+        $data['TRANSAC.PRENOM_ACHETEUR'] = "prenom_acheteur";
+        $data['TRANSAC.NOM_ACHETEUR'] = "nom_acheteur";
+        $data['TRANSAC.PRENOM'] = "prenom";
+        $data['TRANSAC.NOM'] = "nom";
+        $data['TRANSAC.MESSAGE'] = "message";
+        $data['TRANSAC.DOMAINE'] = "domaine";
+        $data['TRANSAC.LINK'] = "link";
+        $data['TRANSAC.IDABONNEMENT'] = "idabonnement";
+        $data['TRANSAC.EMAIL'] = "email";
+        $data['TRANSAC.EMAIL_ACHETEUR'] = "email_acheteur";
 
-        $response = $client->TriggerCampaign([
+        $response = $client->TriggerCampaignWithResult([
             'List' => $list_id,
             'UserID' => $user_id,
             'GateName' => $gate_name,
@@ -85,5 +104,6 @@ class CampaignTest extends TestCase
         ]);
 
         $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
+        $this->assertEquals('[OK]', $response->getResult());
     }
 }

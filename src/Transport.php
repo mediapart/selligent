@@ -116,7 +116,7 @@ class Transport
             case Response::SUCCESSFUL:
                 $properties = $response->getProperties();
                 if (isset($properties[$idKey])) {
-                    $id = $properties[$idKey]->getValue();
+                    $id = $properties[$idKey];
                     break;
                 } else {
                     throw new \UnexpectedValueException(sprintf(
