@@ -11,12 +11,10 @@
 
 namespace Mediapart\Selligent;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  *
  */
-class CampaignTest extends TestCase
+class CampaignTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @return \SoapClient A client to Selligent's API

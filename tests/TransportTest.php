@@ -11,12 +11,10 @@
 
 namespace Mediapart\Selligent;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  *
  */
-class TransportTest extends TestCase
+class TransportTest extends \PHPUnit_Framework_TestCase
 {
     /**
      *
