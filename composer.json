@@ -15,7 +15,10 @@
             "Mediapart\\Selligent\\": "src/"
         }
 	},
-    "require-dev": {
+    "require": {
+        "php": ">=5.5"
+    },
+     "require-dev": {
         "phpunit/phpunit": "*",
         "ext-xdebug": "*"
     }

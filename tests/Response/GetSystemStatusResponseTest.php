@@ -11,13 +11,12 @@
 
 namespace Mediapart\Selligent\Response;
 
-use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\Response;
 
 /**
  *
  */
-class GetSystemStatusResponseTest extends TestCase
+class GetSystemStatusResponseTest extends \PHPUnit_Framework_TestCase
 {
     /**
      *

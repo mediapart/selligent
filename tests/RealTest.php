@@ -11,12 +11,10 @@
 
 namespace Mediapart\Selligent;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  *
  */
-class RealTest extends TestCase
+class RealTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @return \SoapClient A client to Selligent's API

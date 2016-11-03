@@ -11,14 +11,13 @@
 
 namespace Mediapart\Selligent;
 
-use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\Property;
 use Mediapart\Selligent\Properties;
 
 /**
  *
  */
-class PropertiesTest extends TestCase
+class PropertiesTest extends \PHPUnit_Framework_TestCase
 {
     /**
      *

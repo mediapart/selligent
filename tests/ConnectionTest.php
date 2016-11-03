@@ -11,12 +11,10 @@
 
 namespace Mediapart\Selligent;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  *
  */
-class ConnectionTest extends TestCase
+class ConnectionTest extends \PHPUnit_Framework_TestCase
 {
     /**
      *
@@ -34,7 +32,7 @@ class ConnectionTest extends TestCase
      */
     public function testWrongSoapClassConnection()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->setExpectedException(\InvalidArgumentException::class);
 
         $connection = new Connection('stdClass');
     }
@@ -44,7 +42,7 @@ class ConnectionTest extends TestCase
      */
     public function testWrongHeaderClassConnection()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->setExpectedException(\InvalidArgumentException::class);
 
         $connection = new Connection(Connection::CLASS_SOAPCLIENT, 'stdClass');
     }

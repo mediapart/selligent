@@ -11,12 +11,10 @@
 
 namespace Mediapart\Selligent;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  *
  */
-class SegmentsTest extends TestCase
+class SegmentsTest extends \PHPUnit_Framework_TestCase
 {
     /**
      *
