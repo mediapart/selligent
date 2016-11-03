@@ -32,7 +32,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
      */
     public function testWrongSoapClassConnection()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->setExpectedException(\InvalidArgumentException::class);
 
         $connection = new Connection('stdClass');
     }
@@ -42,7 +42,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
      */
     public function testWrongHeaderClassConnection()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->setExpectedException(\InvalidArgumentException::class);
 
         $connection = new Connection(Connection::CLASS_SOAPCLIENT, 'stdClass');
     }
