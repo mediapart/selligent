@@ -58,7 +58,7 @@ class Transport
     {
         $response = $this->client->GetListID(['name' => $list]);
 
-        if (Response::SUCCESSFUL!==$response->getCode()) {
+        if (Response::SUCCESSFUL !== $response->getCode()) {
             throw new \Exception();
         } else {
             $this->list = $response->getId();
@@ -132,7 +132,7 @@ class Transport
                     'List' => $this->list,
                     'Changes' => $user,
                 ]);
-                if (Response::SUCCESSFUL===$response->getCode()) {
+                if (Response::SUCCESSFUL === $response->getCode()) {
                     $id = $response->getUserId();
                     break;
                 }
@@ -163,7 +163,7 @@ class Transport
             'InputData' => $inputData,
         ]);
 
-        if (Response::SUCCESSFUL!==$response->getCode()) {
+        if (Response::SUCCESSFUL !== $response->getCode()) {
             throw new \Exception(
                 $response->getError(),
                 $response->getCode()

@@ -1,6 +1,6 @@
 # Selligent Soap API Client
 
-[![Build Status](https://secure.travis-ci.org/mediapart/selligent.svg?branch=master)](http://travis-ci.org/mediapart/selligent) [![Total Downloads](https://poser.pugx.org/mediapart/selligent/downloads.png)](https://packagist.org/packages/mediapart/selligent) [![Latest Stable Version](https://poser.pugx.org/mediapart/selligent/v/stable.png)](https://packagist.org/packages/mediapart/selligent)
+[![Build Status](https://secure.travis-ci.org/mediapart/selligent.svg?branch=master)](http://travis-ci.org/mediapart/selligent) [![Code Coverage](https://scrutinizer-ci.com/g/mediapart/selligent/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mediapart/selligent) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/mediapart/selligent/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mediapart/selligent) [![Total Downloads](https://poser.pugx.org/mediapart/selligent/downloads.png)](https://packagist.org/packages/mediapart/selligent) [![Latest Stable Version](https://poser.pugx.org/mediapart/selligent/v/stable.png)](https://packagist.org/packages/mediapart/selligent)
 
 
 ## Usage

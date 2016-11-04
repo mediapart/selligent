@@ -53,7 +53,7 @@ class Connection
     {
         $load = function($class, $expected) {
             $result = new \ReflectionClass($class);
-            if ($class!=$expected && !$result->isSubclassOf($expected)) {
+            if ($class != $expected && !$result->isSubclassOf($expected)) {
                 throw new \InvalidArgumentException(sprintf(
                     "%s is not an instance of %s",
                     $class, $expected
@@ -99,9 +99,6 @@ class Connection
             'TriggerCampaignByXmlResponse' => 'Mediapart\Selligent\Response\TriggerCampaignByXmlResponse',
             'TriggerCampaignByXmlWithResponse' => 'Mediapart\Selligent\Response\TriggerCampaignByXmlWithResponse',
             'TriggerCampaignForUser' => 'Mediapart\Selligent\Response\TriggerCampaignForUser',
-            #'TriggerCampaignForUserWithResult' => 'Mediapart\Selligent\Response\TriggerCampaignForUserWithResult',
-            #'TriggerCampaignForUserAndActionListItem' => 'Mediapart\Selligent\Response\TriggerCampaignForUserAndActionListItem',
-            #'TriggerCampaignForUserAndActionListItemWithResult' => 'Mediapart\Selligent\Response\TriggerCampaignForUserAndActionListItemWithResult',
 
         ];
     }

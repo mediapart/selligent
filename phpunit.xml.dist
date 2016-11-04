@@ -5,11 +5,8 @@
 
   <testsuites>
     <testsuite name="default">
-      <file>./tests/PropertiesTest.php</file>
-      <file>./tests/SegmentsTest.php</file>
-      <file>./tests/ConnectionTest.php</file>
-      <file>./tests/Response/GetListsReponseTest.php</file>
-      <file>./tests/Response/GetListIDResponseTest.php</file>
+      <directory>./tests</directory>
+      <exclude>./tests/RealTest.php</exclude>
     </testsuite>
     <testsuite name="real">
       <file>./tests/RealTest.php</file>
@@ -25,16 +22,5 @@
           </exclude>
       </whitelist>
   </filter>
-
-  <php>
-    <env name="soap_login" value=""/>
-    <env name="soap_password" value=""/>
-    <env name="soap_wsdl" value=""/>
-    <env name="selligent_listid" value=""/>
-  </php>
-
-  <logging>
-      <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
-  </logging>
 
 </phpunit>
