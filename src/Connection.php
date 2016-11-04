@@ -47,7 +47,6 @@ class Connection
      * @param string $header
      *
      * @throws InvalidArgumentException
-     * @return void
      */
     public function __construct($client = 'SoapClient', $header = 'SoapHeader')
     {

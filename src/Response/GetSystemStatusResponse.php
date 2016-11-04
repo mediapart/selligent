@@ -24,7 +24,7 @@ class GetSystemStatusResponse extends Response
     protected $GetSystemStatusResult;
 
     /**
-     * @return void
+     *
      */
     public function __construct()
     {

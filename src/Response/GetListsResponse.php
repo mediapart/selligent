@@ -30,7 +30,7 @@ class GetListsResponse extends Response
     protected $lists;
 
     /**
-     * @return void
+     *
      */
     public function __construct()
     {

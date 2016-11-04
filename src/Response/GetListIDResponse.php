@@ -29,7 +29,7 @@ class GetListIDResponse extends Response
     protected $id;
 
     /**
-     * @return void
+     *
      */
     public function __construct()
     {
