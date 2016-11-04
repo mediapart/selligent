@@ -129,23 +129,23 @@ class TransportTest extends \PHPUnit_Framework_TestCase
             ->method('getId')
             ->willReturn($listId)
         ;
-        $TriggerCampaignWithResultResponse = $this
-            ->getMockBuilder('Mediapart\Selligent\Response\TriggerCampaignWithResultResponse')
+        $TriggerCampaignForUserWithResultResponse = $this
+            ->getMockBuilder('Mediapart\Selligent\Response\TriggerCampaignForUserWithResultResponse')
             ->setMethods(['getCode', 'getResult'])
             ->getMock()
         ;
-        $TriggerCampaignWithResultResponse
+        $TriggerCampaignForUserWithResultResponse
             ->method('getCode')
             ->willReturn($responseCode)
         ;
-        $TriggerCampaignWithResultResponse
+        $TriggerCampaignForUserWithResultResponse
             ->method('getResult')
             ->willReturn($TriggerCampaignResult)
         ;
         $client = $this
             ->getMockBuilder('SoapClient')
             ->disableOriginalConstructor()
-            ->setMethods(['GetListID', 'TriggerCampaignWithResult'])
+            ->setMethods(['GetListID', 'TriggerCampaignForUserWithResult'])
             ->getMock()
         ;
         $client
@@ -154,14 +154,14 @@ class TransportTest extends \PHPUnit_Framework_TestCase
             ->willReturn($GetListIdResponse)
         ;
         $client
-            ->method('TriggerCampaignWithResult')
+            ->method('TriggerCampaignForUserWithResult')
             ->with($this->equalTo([
                 'List' => $listId,
                 'UserID' => $userId,
                 'GateName' => $campaign,
                 'InputData' => $inputData,
             ]))
-            ->willReturn($TriggerCampaignWithResultResponse)
+            ->willReturn($TriggerCampaignForUserWithResultResponse)
         ;
 
         return $client;

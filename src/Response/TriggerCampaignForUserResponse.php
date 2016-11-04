@@ -12,30 +12,23 @@
 namespace Mediapart\Selligent\Response;
 
 use Mediapart\Selligent\Response;
-use Mediapart\Selligent\Properties;
 
 /**
  *
  */
-class GetUserByIDResponse extends Response
+class TriggerCampaignForUserResponse extends Response
 {
     /**
-     *
+     * @var int
      */
-    protected $GetUserByIDResult;
-
-    /**
-     *
-     */
-    protected $ResultSet;
+    protected $TriggerCampaignForUserResult;
 
     /**
      *
      */
     public function __construct()
     {
-        $this->GetUserByIDResult = Response::ERROR_NORESULT;
-        $this->ResultSet = new Properties();
+        $this->TriggerCampaignForUserResult = Response::ERROR_FAILED;
     }
 
     /**
@@ -43,14 +36,6 @@ class GetUserByIDResponse extends Response
      */
     public function getCode()
     {
-        return $this->GetUserByIDResult;
-    }
-
-    /**
-     * @return Properties
-     */
-    public function getProperties()
-    {
-        return $this->ResultSet;
+        return $this->TriggerCampaignForUserResult;
     }
 }

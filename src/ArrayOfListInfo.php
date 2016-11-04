@@ -22,8 +22,9 @@ class ArrayOfListInfo implements \IteratorAggregate
     protected $ListInfo = [];
 
     /**
+     * @param Array[ListInfo] $lists
      */
-    public function __construct($lists) 
+    public function __construct($lists = array()) 
     {
         $this->ListInfo = $lists;
     }

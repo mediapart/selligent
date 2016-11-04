@@ -16,18 +16,16 @@ use Mediapart\Selligent\Response;
 /**
  *
  */
-class TriggerCampaignByXmlResponse extends Response
+class CreateUserResponseTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var int
+     *
      */
-    protected $TriggerCampaignByXmlResult;
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getCode()
+    public function testResponse()
     {
-        return $this->TriggerCampaignByXmlResult;
+        $response = new CreateUserResponse();
+
+        $this->assertEquals(0, $response->getUserId());
+        $this->assertEquals(Response::ERROR_FAILED, $response->getCode());
     }
 }

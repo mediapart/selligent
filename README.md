@@ -92,5 +92,5 @@ With the `real` testsuite, you could execute a serie of test who will be applied
 
 ## Read More
 
-- Illustrated [Reference](doc/Reference.md) of all available API endpoints.
+- Illustrated [Reference](doc/Reference/Readme.md) of all available API endpoints.
 - Little use case [Example](doc/Example.md) from connection to triggering campaign

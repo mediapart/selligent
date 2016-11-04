@@ -29,6 +29,15 @@ class CreateUserResponse extends Response
     protected $ID;
 
     /**
+     *
+     */
+    public function __construct()
+    {
+        $this->ID = 0;
+        $this->CreateUserResult = Response::ERROR_FAILED;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function getCode()

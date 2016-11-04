@@ -12,17 +12,23 @@
 namespace Mediapart\Selligent\Request;
 
 /**
+ * Request to update users.
  *
+ * @doc See doc/Reference.md#updateusers
  */
 class UpdateUsers
 {
     /**
-     * @var int
+     * Insert mode
+     *
+     * @var int 1
      */
     const INSERT = 0x01;
 
     /**
-     * @var int
+     * Update mode
+     *
+     * @var int 2
      */
     const UPDATE = 0x10;
 }

@@ -24,6 +24,14 @@ class TriggerCampaignResponse extends Response
     protected $TriggerCampaignResult;
 
     /**
+     *
+     */
+    public function __construct()
+    {
+        $this->TriggerCampaignResult = Response::ERROR_FAILED;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function getCode()
