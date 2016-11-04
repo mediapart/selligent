@@ -43,6 +43,6 @@ class TriggerCampaignWithResultResponse extends Response
      */
     public function getResult()
     {
-    	return $this->result;
+        return $this->result;
     }
 }
