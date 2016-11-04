@@ -99,9 +99,6 @@ class Connection
             'TriggerCampaignByXmlResponse' => 'Mediapart\Selligent\Response\TriggerCampaignByXmlResponse',
             'TriggerCampaignByXmlWithResponse' => 'Mediapart\Selligent\Response\TriggerCampaignByXmlWithResponse',
             'TriggerCampaignForUser' => 'Mediapart\Selligent\Response\TriggerCampaignForUser',
-            #'TriggerCampaignForUserWithResult' => 'Mediapart\Selligent\Response\TriggerCampaignForUserWithResult',
-            #'TriggerCampaignForUserAndActionListItem' => 'Mediapart\Selligent\Response\TriggerCampaignForUserAndActionListItem',
-            #'TriggerCampaignForUserAndActionListItemWithResult' => 'Mediapart\Selligent\Response\TriggerCampaignForUserAndActionListItemWithResult',
 
         ];
     }
