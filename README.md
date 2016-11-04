@@ -2,14 +2,13 @@
 
 [![Build Status](https://secure.travis-ci.org/mediapart/selligent.svg?branch=master)](http://travis-ci.org/mediapart/selligent) [![Total Downloads](https://poser.pugx.org/mediapart/selligent/downloads.png)](https://packagist.org/packages/mediapart/selligent) [![Latest Stable Version](https://poser.pugx.org/mediapart/selligent/v/stable.png)](https://packagist.org/packages/mediapart/selligent)
 
-## Installation
 
-```bash
-composer require mediapart/selligent
-```
+## Usage
 
 ```php
-<?php
+<?php # example.php
+
+require './vendor/autoload.php';
 
 use Mediapart\Selligent\Connection;
 use Mediapart\Selligent\Transport;
@@ -62,6 +61,16 @@ try {
     echo 'something bad happens.';
 }
 ```
+
+
+## Installation
+
+Simply install this package with [Composer](http://getcomposer.org/).
+
+```bash
+composer require mediapart/selligent
+```
+
 
 ## Test
 
