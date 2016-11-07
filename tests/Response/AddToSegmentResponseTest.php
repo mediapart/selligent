@@ -9,25 +9,22 @@
  * file that was distributed with this source code.
  */
 
-namespace Mediapart\Selligent\Reponse;
+namespace Mediapart\Selligent\Response;
 
-use Mediapart\Selligent\Reponse;
+use Mediapart\Selligent\Response;
 
 /**
  *
  */
-class TriggerCampaignByXmlWithResultResponse extends Response
+class AddToSegmentResponseTest extends \PHPUnit_Framework_TestCase
 {
     /**
      *
      */
-    protected $TriggerCampaignByXmlWithResultResult;
-
-    /**
-     *
-     */
-    public function getCode()
+    public function testResponse()
     {
-        return $this->TriggerCampaignByXmlWithResultResult;
+        $response = new AddToSegmentResponse();
+
+        $this->assertEquals(Response::ERROR_QUERY, $response->getCode());
     }
 }

@@ -14,28 +14,18 @@ namespace Mediapart\Selligent\Response;
 use Mediapart\Selligent\Response;
 
 /**
- * Update a contact profile in the specified list.
+ *
  */
-class UpdateUserResponse extends Response
+class CountUsersByConstraintResponseTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var int
-     */
-    protected $UpdateUserResult;
-
     /**
      *
      */
-    public function __construct()
+    public function testResponse()
     {
-        $this->UpdateUserResult = Response::ERROR_FAILED;
-    }
+        $response = new CountUsersByConstraintResponse();
 
-    /**
-     * {@inheritDoc}
-     */
-    public function getCode()
-    {
-        return $this->UpdateUserResult;
+        $this->assertEquals(0, $response->getUserCount());
+        $this->assertEquals(Response::ERROR_FAILED, $response->getCode());
     }
 }

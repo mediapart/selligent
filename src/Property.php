@@ -12,7 +12,8 @@
 namespace Mediapart\Selligent;
 
 /**
- *
+ * Combination of a key and a value.
+ * The key is a field name and the value is a formatted string.
  */
 class Property
 {

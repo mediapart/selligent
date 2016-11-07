@@ -16,32 +16,58 @@ namespace Mediapart\Selligent;
  */
 class RealTest extends \PHPUnit_Framework_TestCase
 {
+    const API_VERSION = 'v6.3';
+
     /**
-     * @return \SoapClient A client to Selligent's API
+     * @var \SoapClient
      */
-    public function getClient()
+    protected $client;
+
+    /**
+     * @var integer
+     */
+    protected $listId;
+
+    /**
+     * @var string
+     */
+    protected $gateName;
+
+    /**
+     *
+     */
+    public function __construct()
     {
         $con = new Connection();
-
-        return $con->open(
+        $this->client = $con->open(
             getenv('soap_login'),
             getenv('soap_password'),
             getenv('soap_wsdl')
         );
+
+        $response = $this
+            ->client
+            ->getListID([
+                'name' => getenv('selligent_list'),
+            ])
+        ;
+
+        $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
+
+        $this->listId = $response->getId();
+        $this->gateName = getenv('selligent_gate');
     }
 
     /**
-     * @param SoapClient $client
-     * @param $user_id
-     * @param $list_id 
+     * Assert that the $userId exists in Selligent database
+     *
+     * @param integer $userId
      */
-    public function assertUserId(\SoapClient $client, $user_id, $list_id = null)
+    public function assertUserId($userId)
     {
-        $list_id = is_null($list_id) ? getenv('selligent_listid') : $list_id;
-
-        $response = $client->GetUserById([
-            'List' => $list_id,
-            'UserID' => $user_id,
+        $response = $this->client->GetUserById([
+            'List' => $this->listId,
+            'UserID' => $userId,
         ]);
 
         $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
@@ -49,17 +75,14 @@ class RealTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
+     * Check the system status and version
      */
     public function testStatus()
     {
-        $client = $this->getCLient();
-        $response = $client->GetSystemStatus();
+        $response = $this->client->GetSystemStatus();
 
-        $this->assertInstanceOf('Mediapart\Selligent\Response\GetSystemStatusResponse', $response);
-        $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
         $this->assertEquals('OK', $response->getStatus());
-        $this->assertEquals('v6.3', substr($response->getVersion(), 0, 4));
+        $this->assertEquals(self::API_VERSION, substr($response->getVersion(), 0, 4));
     }
 
     /**
@@ -67,17 +90,12 @@ class RealTest extends \PHPUnit_Framework_TestCase
      */
     public function testCountUsersByConstraint()
     {
-        $client = $this->getClient();
-        $list_id = getenv('selligent_listid');
-
-        $response = $client->CountUsersByConstraint([
-            'List' => $list_id,
-            'Constraint' => '',
+        $response = $this->client->CountUsersByConstraint([
+            'List' => $this->listId,
+            'Constraint' => "NAME LIKE '%thomas%'",
         ]);
 
-        $this->assertInstanceOf('Mediapart\Selligent\Response\CountUsersByConstraintResponse', $response);
-        $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
-        $this->assertGreaterThanOrEqual(4, $response->getUserCount());
+        $this->assertGreaterThanOrEqual(1, $response->getUserCount());
     }
 
     /**
@@ -85,14 +103,9 @@ class RealTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLists()
     {
-        $client = $this->getCLient();
-        $response = $client->getLists();
+        $response = $this->client->getLists();
 
-        $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
-        $this->assertEquals('', $response->getError());
         $this->assertGreaterThanOrEqual(1, count($response->getLists()));
-
-        //$list = $response->getLists()->ListInfo[0];
     }
 
     /**
@@ -100,18 +113,15 @@ class RealTest extends \PHPUnit_Framework_TestCase
      */
     public function testListUsers()
     {
-        $client = $this->getClient();
-        $list_id = getenv('selligent_listid');
-
-        $response = $client->GetUsersByConstraint([
-            'List' => $list_id,
+        $response = $this->client->GetUsersByConstraint([
+            'List' => $this->listId,
             'Constraint' => "NAME LIKE '%thomas%'",
             'MaxCount' => 5,
         ]);
 
         if (Response::SUCCESSFUL === $response->getCode()) {
-            foreach ($response->getIds() as $user_id) {
-                $this->assertUserId($client, $user_id, $list_id);
+            foreach ($response->getIds() as $userId) {
+                $this->assertUserId($userId);
             }
         }
     }
@@ -120,10 +130,70 @@ class RealTest extends \PHPUnit_Framework_TestCase
      *
      */
     public function testRetrievesUserHash()
-    {
-        $client = $this->getClient();
-        $list_id = getenv('selligent_listid');
-        
+    {        
+        $response = $this->client->RetrieveHashForUser([
+            'GateName' => $this->gateName,
+            'List' => $this->listId,
+            'UserID' => 1,
+        ]);
+
+        $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
+        $this->assertNotNull($response->getHashCode());
     }
 
+    /**
+     *
+     */
+    public function testTriggerCampaign()
+    {
+        $response = $this->client->triggerCampaign([
+            'GateName' => $this->gateName,
+            'InputData' => new Properties(),
+        ]);
+
+        $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
+    }
+
+    /**
+     *
+     */
+    public function testTriggerCampaignWithResult()
+    {
+        $response = $this->client->triggerCampaignWithResult([
+            'GateName' => $this->gateName,
+            'InputData' => new Properties(),
+        ]);
+
+        $this->assertNotNull($response->getResult());
+    }
+
+    /**
+     *
+     */
+    public function testTriggerCampaignForUser()
+    {
+        $response = $this->client->triggerCampaignForUser([
+            'List' => $this->listId,
+            'UserID' => 10,
+            'GateName' => $this->gateName,
+            'InputData' => new Properties(),
+        ]);
+
+        $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
+    }
+
+    /**
+     *
+     */
+    public function testTriggerCampaignForUserWithResult()
+    {
+        $response = $this->client->triggerCampaignForUserWithResult([
+            'List' => $this->listId,
+            'UserID' => 10,
+            'GateName' => $this->gateName,
+            'InputData' => new Properties(),
+        ]);
+
+        $this->assertNotNull($response->getResult());
+    }
 }

@@ -156,7 +156,7 @@ class Transport
      */
     public function triggerCampaign($userId, Properties $inputData)
     {
-        $response = $this->client->TriggerCampaignWithResult([
+        $response = $this->client->TriggerCampaignForUserWithResult([
             'List' => $this->list,
             'UserID' => $userId,
             'GateName' => $this->campaign,

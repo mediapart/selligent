@@ -19,12 +19,27 @@ use Mediapart\Selligent\Response;
 class AddToSegmentResponse extends Response
 {
     /**
-     * @var int
+     * @var integer response code
      */
     protected $AddToSegmentResult;
 
     /**
-     * {@inheritDoc}
+     *
+     */
+    public function __construct()
+    {
+        $this->AddToSegmentResult = Response::ERROR_QUERY;
+    }
+
+    /**
+     * Possible errors returned :
+     *
+     * - Response::ERROR_FAILED
+     * - Response::ERROR_LIST
+     * - Response::ERROR_QUERY
+     * - Response::ERROR_SEGMENT_NOT_FOUND
+     *
+     * @return integer response code
      */
     public function getCode()
     {

@@ -14,27 +14,21 @@ namespace Mediapart\Selligent\Response;
 use Mediapart\Selligent\Response;
 
 /**
- * Get the id of a list by using its name
+ *
  */
-class GetListIDResponse extends Response
+class TriggerCampaignForUserResponse extends Response
 {
     /**
-     * @var int Id of the found list
+     * @var int
      */
-    protected $GetListIDResult;
-
-    /**
-     * @var int Id of the found list
-     */
-    protected $id;
+    protected $TriggerCampaignForUserResult;
 
     /**
      *
      */
     public function __construct()
     {
-        $this->GetListIDResult = 0;
-        $this->id = null;
+        $this->TriggerCampaignForUserResult = Response::ERROR_FAILED;
     }
 
     /**
@@ -42,14 +36,6 @@ class GetListIDResponse extends Response
      */
     public function getCode()
     {
-        return $this->GetListIDResult;
-    }
-
-    /**
-     * @return int Id of the found list
-     */
-    public function getId()
-    {
-        return $this->id;
+        return $this->TriggerCampaignForUserResult;
     }
 }

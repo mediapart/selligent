@@ -12,6 +12,7 @@
 namespace Mediapart\Selligent\Response;
 
 use Mediapart\Selligent\Response;
+use Mediapart\Selligent\Properties;
 
 /**
  *
@@ -29,6 +30,15 @@ class GetUserByIDResponse extends Response
     protected $ResultSet;
 
     /**
+     *
+     */
+    public function __construct()
+    {
+        $this->GetUserByIDResult = Response::ERROR_NORESULT;
+        $this->ResultSet = new Properties();
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function getCode()
@@ -37,7 +47,7 @@ class GetUserByIDResponse extends Response
     }
 
     /**
-     *
+     * @return Properties
      */
     public function getProperties()
     {

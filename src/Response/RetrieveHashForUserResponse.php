@@ -29,6 +29,15 @@ class RetrieveHashForUserResponse extends Response
     protected $HashCode;
 
     /**
+     *
+     */
+    public function __construct()
+    {
+        $this->RetrieveHashForUserResult = Response::ERROR_FAILED;
+        $this->HashCode = null;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function getCode()

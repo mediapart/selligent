@@ -29,6 +29,9 @@ class GetListsResponse extends Response
      */
     protected $lists;
 
+    /**
+     *
+     */
     public function __construct()
     {
         $this->GetListsResult = Response::ERROR_NORESULT;

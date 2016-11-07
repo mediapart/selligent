@@ -24,6 +24,14 @@ class UpdateUsersResponse extends Response
     protected $UpdateUsersResult;
 
     /**
+     *
+     */
+    public function __construct()
+    {
+        $this->UpdateUsersResult = Response::ERROR_FAILED;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function getCode()

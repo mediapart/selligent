@@ -12,29 +12,31 @@
 namespace Mediapart\Selligent\Response;
 
 use Mediapart\Selligent\Response;
+use Mediapart\Selligent\Properties;
 
 /**
- * Get the id of a list by using its name
+ *
  */
-class GetListIDResponse extends Response
+class GetUsersByFilterResponse extends Response
 {
     /**
-     * @var int Id of the found list
+     * @var integer
      */
-    protected $GetListIDResult;
+    protected $GetUsersByFilterResult;
 
     /**
-     * @var int Id of the found list
+     * @var stdClass
      */
-    protected $id;
+    protected $ResultIDs;
 
     /**
      *
      */
     public function __construct()
     {
-        $this->GetListIDResult = 0;
-        $this->id = null;
+        $this->GetUsersByFilterResult = Response::ERROR_NORESULT;
+        $this->ResultIDs = new \stdClass;
+        $this->ResultIDs->int = [];
     }
 
     /**
@@ -42,14 +44,14 @@ class GetListIDResponse extends Response
      */
     public function getCode()
     {
-        return $this->GetListIDResult;
+        return $this->GetUsersByFilterResult;
     }
 
     /**
-     * @return int Id of the found list
+     * @return Array[integer]
      */
-    public function getId()
+    public function getIds()
     {
-        return $this->id;
+        return $this->ResultIDs->int;
     }
 }

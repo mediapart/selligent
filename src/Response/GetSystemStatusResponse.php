@@ -23,6 +23,9 @@ class GetSystemStatusResponse extends Response
      */
     protected $GetSystemStatusResult;
 
+    /**
+     *
+     */
     public function __construct()
     {
         $this->GetSystemStatusResult = 'error (unknown)';

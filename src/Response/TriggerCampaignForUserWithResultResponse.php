@@ -14,14 +14,14 @@ namespace Mediapart\Selligent\Response;
 use Mediapart\Selligent\Response;
 
 /**
- *
+ * Trigger the execution of the specified journey map for a specific contact.
  */
-class TriggerCampaignWithResultResponse extends Response
+class TriggerCampaignForUserWithResultResponse extends Response
 {
     /**
      * @var int
      */
-    protected $TriggerCampaignWithResultResult;
+    protected $TriggerCampaignForUserWithResultResult;
 
     /**
      * @var string
@@ -33,7 +33,7 @@ class TriggerCampaignWithResultResponse extends Response
      */
     public function __construct()
     {
-        $this->TriggerCampaignWithResultResult = Response::ERROR_NORESULT;
+        $this->TriggerCampaignForUserWithResultResult = Response::ERROR_NORESULT;
         $this->result = '';
     }
 
@@ -42,7 +42,7 @@ class TriggerCampaignWithResultResponse extends Response
      */
     public function getCode()
     {
-        return $this->TriggerCampaignWithResultResult;
+        return $this->TriggerCampaignForUserWithResultResult;
     }
 
     /**

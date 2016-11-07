@@ -66,12 +66,15 @@ class Connection
 
         $this->options['classmap'] = [
 
+            'ArrayOfListInfo' => 'Mediapart\Selligent\ArrayOfListInfo',
+            'ListInfo' => 'Mediapart\Selligent\ListInfo',
+            'Property' => 'Mediapart\Selligent\Property',
+            'ArrayOfProperty' => 'Mediapart\Selligent\Properties',
+
             # System info
             'GetSystemStatusResponse' => 'Mediapart\Selligent\Response\GetSystemStatusResponse',
 
             # Manage Lists
-            'ArrayOfListInfo' => 'Mediapart\Selligent\ArrayOfListInfo',
-            'ListInfo' => 'Mediapart\Selligent\ListInfo',
             'GetListsResponse' => 'Mediapart\Selligent\Response\GetListsResponse',
             'GetListIDResponse' => 'Mediapart\Selligent\Response\GetListIDResponse',
 
@@ -82,22 +85,23 @@ class Connection
             'GetSegmentRecordCountResponse' => 'Mediapart\Selligent\Response\GetSegmentRecordCountResponse',
 
             # Manage Users
-            'Property' => 'Mediapart\Selligent\Property',
-            'ArrayOfProperty' => 'Mediapart\Selligent\Properties',
-            'CountUsersByConstraintResponse' => 'Mediapart\Selligent\Response\CountUsersByConstraintResponse',
             'CreateUserResponse' => 'Mediapart\Selligent\Response\CreateUserResponse',
             'UpdateUserResponse' => 'Mediapart\Selligent\Response\UpdateUserResponse',
             'UpdateUsersResponse' => 'Mediapart\Selligent\Response\UpdateUsersResponse',
             'GetUserByIDResponse' => 'Mediapart\Selligent\Response\GetUserByIDResponse',
+            'RetrieveHashForUserResponse' => 'Mediapart\Selligent\Response\RetrieveHashForUserResponse',
+            'CountUsersByConstraintResponse' => 'Mediapart\Selligent\Response\CountUsersByConstraintResponse',
             'GetUsersByConstraintResponse' => 'Mediapart\Selligent\Response\GetUsersByConstraintResponse',
+            'GetUserByConstraintResponse' => 'Mediapart\Selligent\Response\GetUserByConstraintResponse',
+            'CountUsersByFilterResponse' => 'Mediapart\Selligent\Response\CountUsersByFilterResponse',
+            'GetUsersByFilterResponse' => 'Mediapart\Selligent\Response\GetUsersByFilterResponse',
             'GetUserByFilterResponse' => 'Mediapart\Selligent\Response\GetUserByFilterResponse',
 
             # Manage Campaign
             'TriggerCampaignResponse' => 'Mediapart\Selligent\Response\TriggerCampaignResponse',
             'TriggerCampaignWithResultResponse' => 'Mediapart\Selligent\Response\TriggerCampaignWithResultResponse',
-            'TriggerCampaignByXmlResponse' => 'Mediapart\Selligent\Response\TriggerCampaignByXmlResponse',
-            'TriggerCampaignByXmlWithResponse' => 'Mediapart\Selligent\Response\TriggerCampaignByXmlWithResponse',
-            'TriggerCampaignForUser' => 'Mediapart\Selligent\Response\TriggerCampaignForUser',
+            'TriggerCampaignForUserResponse' => 'Mediapart\Selligent\Response\TriggerCampaignForUserResponse',
+            'TriggerCampaignForUserWithResultResponse' => 'Mediapart\Selligent\Response\TriggerCampaignForUserWithResultResponse',
 
         ];
     }

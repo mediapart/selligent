@@ -12,6 +12,7 @@
 namespace Mediapart\Selligent\Response;
 
 use Mediapart\Selligent\Response;
+use Mediapart\Selligent\Properties;
 
 /**
  *
@@ -19,14 +20,23 @@ use Mediapart\Selligent\Response;
 class GetUserByFilterResponse extends Response
 {
     /**
-     * @var int
+     * @var integer
      */
     protected $GetUserByFilterResult;
 
     /**
-     * @var Mediapart\Selligent\Properties
+     * @var Properties
      */
     protected $ResultSet;
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->GetUserByFilterResult = Response::ERROR_NORESULT;
+        $this->ResultSet = new Properties();
+    }
 
     /**
      * {@inheritDoc}
@@ -37,7 +47,7 @@ class GetUserByFilterResponse extends Response
     }
 
     /**
-     * @return Mediapart\Selligent\Properties
+     * @return Properties
      */
     public function getProperties()
     {

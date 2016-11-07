@@ -14,42 +14,42 @@ namespace Mediapart\Selligent\Response;
 use Mediapart\Selligent\Response;
 
 /**
- * Get the id of a list by using its name
+ *
  */
-class GetListIDResponse extends Response
+class CountUsersByFilterResponse extends Response
 {
     /**
-     * @var int Id of the found list
+     * @var int
      */
-    protected $GetListIDResult;
+    protected $CountUsersByFilterResult;
 
     /**
-     * @var int Id of the found list
+     * @var int
      */
-    protected $id;
+    protected $userCount;
 
     /**
      *
      */
     public function __construct()
     {
-        $this->GetListIDResult = 0;
-        $this->id = null;
+        $this->CountUsersByFilterResult = Response::ERROR_FAILED;
+        $this->userCount = 0;
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getCode()
     {
-        return $this->GetListIDResult;
+        return $this->CountUsersByFilterResult;
     }
 
     /**
-     * @return int Id of the found list
+     * @return int
      */
-    public function getId()
+    public function getUserCount()
     {
-        return $this->id;
+        return $this->userCount;
     }
 }
