@@ -87,10 +87,14 @@ class Connection
             # Manage Users
             'CreateUserResponse' => 'Mediapart\Selligent\Response\CreateUserResponse',
             'UpdateUserResponse' => 'Mediapart\Selligent\Response\UpdateUserResponse',
+            'UpdateUsersResponse' => 'Mediapart\Selligent\Response\UpdateUsersResponse',
             'GetUserByIDResponse' => 'Mediapart\Selligent\Response\GetUserByIDResponse',
-            
+            'RetrieveHashForUserResponse' => 'Mediapart\Selligent\Response\RetrieveHashForUserResponse',
             'CountUsersByConstraintResponse' => 'Mediapart\Selligent\Response\CountUsersByConstraintResponse',
             'GetUsersByConstraintResponse' => 'Mediapart\Selligent\Response\GetUsersByConstraintResponse',
+            'GetUserByConstraintResponse' => 'Mediapart\Selligent\Response\GetUserByConstraintResponse',
+            'CountUsersByFilterResponse' => 'Mediapart\Selligent\Response\CountUsersByFilterResponse',
+            'GetUsersByFilterResponse' => 'Mediapart\Selligent\Response\GetUsersByFilterResponse',
             'GetUserByFilterResponse' => 'Mediapart\Selligent\Response\GetUserByFilterResponse',
 
             # Manage Campaign

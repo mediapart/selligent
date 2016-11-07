@@ -17,12 +17,12 @@ use Mediapart\Selligent\Properties;
 /**
  *
  */
-class GetUserByFilterResponse extends Response
+class GetUserByConstraintResponse extends Response
 {
     /**
      * @var integer
      */
-    protected $GetUserByFilterResult;
+    protected $GetUserByConstraintResult;
 
     /**
      * @var Properties
@@ -34,7 +34,7 @@ class GetUserByFilterResponse extends Response
      */
     public function __construct()
     {
-        $this->GetUserByFilterResult = Response::ERROR_NORESULT;
+        $this->GetUserByConstraintResult = Response::ERROR_NORESULT;
         $this->ResultSet = new Properties();
     }
 
@@ -43,7 +43,7 @@ class GetUserByFilterResponse extends Response
      */
     public function getCode()
     {
-        return $this->GetUserByFilterResult;
+        return $this->GetUserByConstraintResult;
     }
 
     /**

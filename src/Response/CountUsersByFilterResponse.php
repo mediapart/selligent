@@ -12,45 +12,44 @@
 namespace Mediapart\Selligent\Response;
 
 use Mediapart\Selligent\Response;
-use Mediapart\Selligent\Properties;
 
 /**
  *
  */
-class GetUserByFilterResponse extends Response
+class CountUsersByFilterResponse extends Response
 {
     /**
-     * @var integer
+     * @var int
      */
-    protected $GetUserByFilterResult;
+    protected $CountUsersByFilterResult;
 
     /**
-     * @var Properties
+     * @var int
      */
-    protected $ResultSet;
+    protected $userCount;
 
     /**
      *
      */
     public function __construct()
     {
-        $this->GetUserByFilterResult = Response::ERROR_NORESULT;
-        $this->ResultSet = new Properties();
+        $this->CountUsersByFilterResult = Response::ERROR_FAILED;
+        $this->userCount = 0;
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getCode()
     {
-        return $this->GetUserByFilterResult;
+        return $this->CountUsersByFilterResult;
     }
 
     /**
-     * @return Properties
+     * @return int
      */
-    public function getProperties()
+    public function getUserCount()
     {
-        return $this->ResultSet;
+        return $this->userCount;
     }
 }

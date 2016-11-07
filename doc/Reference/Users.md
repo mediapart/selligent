@@ -1,5 +1,17 @@
 # Manage Users
 
+- [CreateUser](#createuser)
+- [UpdateUser](#updateuser)
+- [UpdateUsers](#updateusers)
+- [GetUserById](#getuserbyid)
+- [RetrieveHashForUser](#retrievehashforuser)
+- [CountUserByFilter](#countuserbyfilter)
+- [GetUsersByFilter](#getusersbyfilter)
+- [GetUserByFilter](#getusersbyfilter)
+- [CountUserByConstraint](#countuserbyconstraint)
+- [GetUsersByConstraint](#getusersbyconstraint)
+- [GetUserByConstraint](#getusersbyconstraint)
+
 
 ## CreateUser
 
@@ -28,7 +40,7 @@ if (Response::SUCCESSFUL === $CreateUserResponse->getCode()) {
 ```
 
 
-### UpdateUser
+## UpdateUser
 
 Update a contact profile in the specified list.
 
@@ -59,7 +71,57 @@ if (Response::SUCCESSFUL !== $UpdateUserResponse->getCode()) {
 ```
 
 
-### GetUserById
+## UpdateUsers
+
+Update multiple contact profiles in the specified list.
+
+```php
+<?php
+
+use Mediapart\Selligent\Properties;
+use Mediapart\Selligent\Request\UpdateUsers;
+
+$user1Properties = new Properties();
+$user1Properties['Foo'] = 'Bar 1';
+
+$user2Properties = new Properties();
+$user2Properties['Foo'] = 'Bar 2';
+
+$UpdateUsersResponse = $client->UpdateUsers([
+
+    /* ID or Code of the targeted list */
+    'List' => 1,
+
+    /* An array of contact profiles to update. 
+       The ID is used to perform mapping with existing records. 
+       In case of insert, set the ID to 0. */
+    'UserChanges' => [
+        [
+            'ID' => 1,
+            'Changes' => $user1Properties
+        ],
+        [
+            'ID' => 2,
+            'Changes' => $user2Properties
+        ],
+    ],
+
+    /* The type of operation.
+        - 1, insert only
+        - 2, update only
+        - 3, insert and update */
+    'mode' => UpdateUsers::INSERT & UpdateUsers::UPDATE,
+
+]);
+
+if (Response::SUCCESSFUL === $UpdateUsersResponse->getCode()) {
+    print "changes saved."
+}
+
+```
+
+
+## GetUserById
 
 Retrieve contact information based on a user ID.
 
@@ -78,107 +140,6 @@ $GetUserByIDResponse = $client->GetUserByID([
 
 if (Response::SUCCESSFUL === $GetUsersByConstraintResponse->getCode()) {
     $userProperties = $GetUsersByConstraintResponse->getProperties();
-}
-
-```
-
-
-
-### CountUserByConstraint
-
-Count the number of contacts based on a filter.
-
-```php
-<?php
-
-$CountUserByConstraintResponse = $client->CountUsersByConstraint([
-
-    /* ID or Code of the targeted list */
-    'List' => $list_id,
-
-    /* Constraint applied to the contact’s selection. 
-       The constraint corresponds to the sql WHERE statement */
-    'Constraint' => '',
-
-]);
-
-if (Response::SUCCESSFUL === $CountUserByConstraintResponse->getCode()) {
-    print $CountUserByConstraintResponse->getUserCount();
-}
-
-```
-
-
-### GetUsersByConstraint
-
-Retrieve user information based on a constraint.
-
-```php
-<?php
-
-$GetUsersByConstraintResponse = $client->GetUsersByConstraint([
-    
-    /* ID or Code of the targeted list */
-    'List' => $list_id,
-
-    /* Constraint applied to the contact selection */
-    'Constraint' => '',
-
-]);
-
-$users = [];
-if (Response::SUCCESSFUL === $GetUsersByConstraintResponse->getCode()) {
-
-    foreach ($GetUsersByConstraintResponse->getIds() as $user_id) {
-        $users[] = $client->GetUserById($user_id);
-    }
-
-}
-
-```
-
-
-
-
-
-
-
-
-
-### UpdateUsers
-
-Update multiple contact profiles in the specified list.
-
-```php
-<?php
-
-use Mediapart\Selligent\Request\UpdateUsers;
-
-$UpdateUsersResponse = $client->UpdateUsers([
-
-    /* ID or Code of the targeted list */
-    'List' => 1,
-
-    /* An array of contact profiles to update. 
-       The ID is used to perform mapping with existing records. 
-       In case of insert, set the ID to 0. */
-    'UserChanges' => [
-        [
-            'ID' => 1,
-            'Changes' => $properties
-        ],
-    ],
-
-    /* The type of operation.
-        - 1, insert only
-        - 2, update only
-        - 3, insert and update */
-    'mode' => UpdateUsers::INSERT & UpdateUsers::UPDATE,
-
-]);
-
-if (Response::SUCCESSFUL === $UpdateUsersResponse->getCode()) {
-    print "changes saved."
 }
 
 ```
@@ -210,3 +171,174 @@ if (Response::SUCCESSFUL === $RetrieveHashForUserResponse->getCode()) {
 
 ```
 
+
+## CountUserByConstraint
+
+Count the number of contacts based on a constraint.
+
+```php
+<?php
+
+$CountUserByConstraintResponse = $client->CountUsersByConstraint([
+
+    /* ID or Code of the targeted list */
+    'List' => $list_id,
+
+    /* Constraint applied to the contact’s selection. 
+       The constraint corresponds to the sql WHERE statement */
+    'Constraint' => 'NAME LIKE %foobar%',
+
+]);
+
+if (Response::SUCCESSFUL === $CountUserByConstraintResponse->getCode()) {
+    print $CountUserByConstraintResponse->getUserCount();
+}
+
+```
+
+
+## GetUsersByConstraint
+
+Retrieve a list of contacts based on a constraint.
+
+```php
+<?php
+
+$GetUsersByConstraintResponse = $client->GetUsersByConstraint([
+    
+    /* ID or Code of the targeted list */
+    'List' => $list_id,
+
+    /* Constraint applied to the contact selection */
+    'Constraint' => 'NAME LIKE %foobar%',
+
+    /* Maximum amount of records retrieved */
+    'MaxCount' => 5,
+
+]);
+
+$users = [];
+if (Response::SUCCESSFUL === $GetUsersByConstraintResponse->getCode()) {
+
+    foreach ($GetUsersByConstraintResponse->getIds() as $user_id) {
+        $users[] = $client->GetUserById($user_id);
+    }
+
+}
+
+```
+
+
+## GetUserByConstraint
+
+Retrieve user information based on a constraint.
+
+```php
+<?php
+
+$GetUserByConstraintResponse = $client->GetUsersByConstraint([
+    
+    /* ID or Code of the targeted list */
+    'List' => $list_id,
+
+    /* Constraint applied to the contact selection */
+    'Constraint' => 'NAME = %foobar%',
+
+]);
+
+if (Response::SUCCESSFUL === $GetUserByConstraintResponse->getCode()) {
+    $user = $GetUserByConstraintResponse->getProperperties();
+}
+
+```
+
+
+## CountUserByFilter
+
+Count the number of contacts based on a filter.
+
+```php
+<?php
+
+$filter = new Properties();
+$filter['NAME'] = 'foobar';
+
+$CountUserByFilterResponse = $client->CountUsersByFilter([
+
+    /* ID or Code of the targeted list */
+    'List' => $list_id,
+
+    /* Filter applied to the contact’s selection. 
+       This is represented by an array of keys and values */
+    'Filter' => $filter,
+
+]);
+
+if (Response::SUCCESSFUL === $CountUserByFilterResponse->getCode()) {
+    print $CountUserByFilterResponse->getUserCount();
+}
+
+```
+
+
+## GetUsersByFilter
+
+Retrieve a list of contacts based on a filter.
+
+```php
+<?php
+
+$filter = new Properties();
+$filter['NAME'] = 'foobar';
+
+$GetUsersByFilterResponse = $client->GetUsersByFilter([
+    
+    /* ID or Code of the targeted list */
+    'List' => $list_id,
+
+    /* Filter applied to the contact’s selection.
+       This is represented by an array of keys and values */
+    'Filter' => $filter,
+
+    /* Maximum amount of records retrieved */
+    'MaxCount' => 5,
+
+]);
+
+$users = [];
+if (Response::SUCCESSFUL === $GetUsersByFilterResponse->getCode()) {
+
+    foreach ($GetUsersByFilterResponse->getIds() as $user_id) {
+        $users[] = $client->GetUserById($user_id);
+    }
+
+}
+
+```
+
+
+## GetUserByFilter
+
+Retrieve contact information based on a filter
+
+```php
+<?php
+
+$filter = new Properties();
+$filter['NAME'] = 'foobar';
+
+$GetUserByFilterResponse = $client->GetUsersByFilter([
+    
+    /* ID or Code of the targeted list */
+    'List' => $list_id,
+
+    /* Filter applied to the contact selection */
+    'Filter' => $filter,
+
+]);
+
+if (Response::SUCCESSFUL === $GetUserByFilterResponse->getCode()) {
+    $user = $GetUserByFilterResponse->getProperperties();
+}
+
+```

@@ -17,25 +17,26 @@ use Mediapart\Selligent\Properties;
 /**
  *
  */
-class GetUserByFilterResponse extends Response
+class GetUsersByFilterResponse extends Response
 {
     /**
      * @var integer
      */
-    protected $GetUserByFilterResult;
+    protected $GetUsersByFilterResult;
 
     /**
-     * @var Properties
+     * @var stdClass
      */
-    protected $ResultSet;
+    protected $ResultIDs;
 
     /**
      *
      */
     public function __construct()
     {
-        $this->GetUserByFilterResult = Response::ERROR_NORESULT;
-        $this->ResultSet = new Properties();
+        $this->GetUsersByFilterResult = Response::ERROR_NORESULT;
+        $this->ResultIDs = new \stdClass;
+        $this->ResultIDs->int = [];
     }
 
     /**
@@ -43,14 +44,14 @@ class GetUserByFilterResponse extends Response
      */
     public function getCode()
     {
-        return $this->GetUserByFilterResult;
+        return $this->GetUsersByFilterResult;
     }
 
     /**
-     * @return Properties
+     * @return Array[integer]
      */
-    public function getProperties()
+    public function getIds()
     {
-        return $this->ResultSet;
+        return $this->ResultIDs->int;
     }
 }

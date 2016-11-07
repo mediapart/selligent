@@ -29,6 +29,15 @@ class CountUsersByConstraintResponse extends Response
     protected $userCount;
 
     /**
+     *
+     */
+    public function __construct()
+    {
+        $this->CountUsersByConstraintResult = Response::ERROR_FAILED;
+        $this->userCount = 0;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getCode()

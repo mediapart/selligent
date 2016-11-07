@@ -1,5 +1,10 @@
 # Campaigns
 
+- [TriggerCampaign](#triggercampaign)
+- [TriggerCampaignWithResult](#triggercampaignwithresult)
+- [TriggerCampaignForUser](#triggercampaignforuser)
+- [TriggerCampaignForUserWithResult](#triggercampaignforuserwithresult)
+
 
 ## TriggerCampaign
 
@@ -61,7 +66,13 @@ Trigger the execution of the specified journey map for a specific contact.
 <?php
 
 $inputData = new Properties();
-$TriggerCampaignWithResultResponse = $client->TriggerCampaign([
+$TriggerCampaignForUserResponse = $client->TriggerCampaign([
+
+    /* ID or code of the targeted list */
+    'List' => 1,
+
+    /* ID of the selected contact */
+    'UserID' => 1,
 
     /* Name of the targeted gate */
     'GateName' => 'TESTGATE',
@@ -70,8 +81,36 @@ $TriggerCampaignWithResultResponse = $client->TriggerCampaign([
     'InputData' => $inputData,
 ]);
 
-if (Response::SUCCESSFUL === $TriggerCampaignWithResultResponse->getCode()) {
-    print $TriggerCampaignWithResultResponse->getResult();
+if (Response::SUCCESSFUL === $TriggerCampaignForUserResponse->getCode()) {
+    print "campaign sent";
+}
+
+
+```## TriggerCampaignForUserWithResult
+
+Trigger the execution of the specified journey map for a specific contact.
+
+```php
+<?php
+
+$inputData = new Properties();
+$TriggerCampaignForUserWithResultResponse = $client->TriggerCampaign([
+
+    /* ID or code of the targeted list */
+    'List' => 1,
+
+    /* ID of the selected contact */
+    'UserID' => 1,
+
+    /* Name of the targeted gate */
+    'GateName' => 'TESTGATE',
+
+    /* List of input properties */
+    'InputData' => $inputData,
+]);
+
+if (Response::SUCCESSFUL === $TriggerCampaignForUserWithResultResponse->getCode()) {
+    print $TriggerCampaignForUserWithResultResponse->getResult();
 }
 
 ```

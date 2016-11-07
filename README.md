@@ -87,7 +87,8 @@ With the `real` testsuite, you could execute a serie of test who will be applied
 - soap_login
 - soap_password
 - soap_wsdl
-- selligent_listid
+- selligent_list
+- selligent_gate
 
 
 ## Read More
