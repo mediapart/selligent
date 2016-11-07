@@ -61,7 +61,7 @@ class Connection
             return $result;
         };
 
-        $this->client = $load($client, self::CLASS_SOAPCLIENT); 
+        $this->client = $load($client, self::CLASS_SOAPCLIENT);
         $this->header = $load($header, self::CLASS_SOAPHEADER);
 
         $this->options['classmap'] = [

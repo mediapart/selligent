@@ -36,14 +36,14 @@ class GetSystemStatusResponse extends Response
      */
     public function getCode()
     {
-        /* This is supposed to always returns something. 
+        /* This is supposed to always returns something.
            So it's always successful*/
         return Response::SUCCESSFUL;
     }
 
     /**
      *
-     * @return string System status 
+     * @return string System status
      */
     public function getStatus()
     {
@@ -53,7 +53,7 @@ class GetSystemStatusResponse extends Response
 
     /**
      *
-     * @return string Provider API version 
+     * @return string Provider API version
      */
     public function getVersion()
     {
