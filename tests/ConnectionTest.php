@@ -46,4 +46,23 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
 
         $connection = new Connection(Connection::CLASS_SOAPCLIENT, 'stdClass');
     }
+
+    /**
+     *
+     */
+    public function testConnectionWithLogger()
+    {
+        $logger = $this
+            ->getMockBuilder('Psr\Log\NullLogger')
+            ->getMock()
+        ;
+        $logger
+            ->expects($this->exactly(2))
+            ->method('debug')
+        ;
+
+        $connection = new Connection();
+        $connection->setLogger($logger);
+        $connection->open('', '', 'tests/individual.xml');
+    }
 }
