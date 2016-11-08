@@ -184,8 +184,10 @@ class TransportTest extends \PHPUnit_Framework_TestCase
             $listId, $listName, $campaign, $userId, 
             $TriggerCampaignResult, $inputData, $responseCode
         );
+        $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
 
         $transport = new Transport($client, $listName, $campaign);
+        $transport->setLogger($logger);
         $result = $transport->triggerCampaign($userId, $inputData);
 
         $this->assertEquals($TriggerCampaignResult, $result);
@@ -208,8 +210,10 @@ class TransportTest extends \PHPUnit_Framework_TestCase
             $listId, $listName, $campaign, $userId, 
             $TriggerCampaignResult, $inputData, $responseCode
         );
+        $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
 
         $transport = new Transport($client, $listName, $campaign);
+        $transport->setLogger($logger);
 
         $this->setExpectedException('\Exception');
 
@@ -304,8 +308,10 @@ class TransportTest extends \PHPUnit_Framework_TestCase
             $listId, $listName, $campaign, $user, $userProperties, 
             $GetUserByFilterResponseCode, $CreateUserResponseCode
         );
-        $transport = new Transport($client, $listName, $campaign);
+        $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
 
+        $transport = new Transport($client, $listName, $campaign);
+        $transport->setLogger($logger);
 
         $id = $transport->subscribe($user);
 
@@ -332,7 +338,10 @@ class TransportTest extends \PHPUnit_Framework_TestCase
             $listId, $listName, $campaign, $user, $userProperties, 
             $GetUserByFilterResponseCode, $CreateUserResponseCode
         );
+        $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
+
         $transport = new Transport($client, $listName, $campaign);
+        $transport->setLogger($logger);
 
         $this->setExpectedException('\UnexpectedValueException');
 
@@ -359,7 +368,10 @@ class TransportTest extends \PHPUnit_Framework_TestCase
             $listId, $listName, $campaign, $user, $userProperties, 
             $GetUserByFilterResponseCode, $CreateUserResponseCode
         );
+        $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
+
         $transport = new Transport($client, $listName, $campaign);
+        $transport->setLogger($logger);
 
         $this->setExpectedException('\Exception');
 
@@ -386,7 +398,10 @@ class TransportTest extends \PHPUnit_Framework_TestCase
             $listId, $listName, $campaign, $user, $userProperties, 
             $GetUserByFilterResponseCode, $CreateUserResponseCode
         );
+        $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
+
         $transport = new Transport($client, $listName, $campaign);
+        $transport->setLogger($logger);
 
         $id = $transport->subscribe($user);
 
@@ -413,7 +428,10 @@ class TransportTest extends \PHPUnit_Framework_TestCase
             $listId, $listName, $campaign, $user, $userProperties, 
             $GetUserByFilterResponseCode, $CreateUserResponseCode
         );
+        $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
+
         $transport = new Transport($client, $listName, $campaign);
+        $transport->setLogger($logger);
 
         $this->setExpectedException('\Exception');
 
