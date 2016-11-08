@@ -95,3 +95,4 @@ With the `real` testsuite, you could execute a serie of test who will be applied
 
 - Illustrated [Reference](doc/Reference/Readme.md) of all available API endpoints.
 - Little use case [Example](doc/Example.md) from connection to triggering campaign
+- You could use PSR3 to [log informations from this library](doc/Logging.md).
