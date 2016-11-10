@@ -12,7 +12,6 @@
 namespace Mediapart\Selligent\Response;
 
 use Mediapart\Selligent\Response;
-use Mediapart\Selligent\Properties;
 
 /**
  *
@@ -25,7 +24,7 @@ class GetUsersByFilterResponse extends Response
     protected $GetUsersByFilterResult;
 
     /**
-     * @var stdClass
+     * @var \stdClass
      */
     protected $ResultIDs;
 
@@ -48,7 +47,7 @@ class GetUsersByFilterResponse extends Response
     }
 
     /**
-     * @return Array[integer]
+     * @return integer[]
      */
     public function getIds()
     {

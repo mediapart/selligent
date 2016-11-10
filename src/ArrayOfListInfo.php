@@ -17,12 +17,12 @@ namespace Mediapart\Selligent;
 class ArrayOfListInfo implements \IteratorAggregate
 {
     /**
-     * @var Array
+     * @var ListInfo[]
      */
     protected $ListInfo = [];
 
     /**
-     * @param Array[ListInfo] $lists
+     * @param ListInfo[] $lists
      */
     public function __construct($lists = array()) 
     {

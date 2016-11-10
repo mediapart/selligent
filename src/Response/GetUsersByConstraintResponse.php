@@ -12,7 +12,6 @@
 namespace Mediapart\Selligent\Response;
 
 use Mediapart\Selligent\Response;
-use Mediapart\Selligent\Properties;
 
 /**
  *
@@ -25,7 +24,7 @@ class GetUsersByConstraintResponse extends Response
     protected $GetUsersByConstraintResult;
 
     /**
-     * @var stdClass
+     * @var s\tdClass
      */
     protected $ResultIDs;
 
@@ -48,7 +47,7 @@ class GetUsersByConstraintResponse extends Response
     }
 
     /**
-     * @return Array[integer]
+     * @return integer[]
      */
     public function getIds()
     {
