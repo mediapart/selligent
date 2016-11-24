@@ -1,0 +1,8 @@
+selligent:
+  login: ~
+  password: ~
+  namespace: ~
+  wsdl: ~
+  options:
+    "classmap":
+      CreateCampaign: "Mediapart\Selligent\CreateCampaign"
