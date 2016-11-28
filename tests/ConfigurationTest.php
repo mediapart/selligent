@@ -20,8 +20,22 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testConfigurationKO()
     {
         $this->setExpectedException('\Symfony\Component\Config\Definition\Exception\InvalidConfigurationException');
-        $configFile = file_get_contents(__DIR__.'/../config/individual_default_config.yaml');
+        $configFile = file_get_contents(__DIR__.'/test_config_ko.yaml');
+        $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
+
         $cfg = new Configuration();
+        $cfg->setLogger($logger);
         $cfg->loadConfig($configFile);
+        
+    }
+
+    public function testCheckReturnedConfig()
+    {
+        $configFile = file_get_contents(__DIR__.'/test_config_ok.yaml');
+        $cfg = new Configuration();
+        $config = $cfg->loadConfig($configFile);
+        $fixture = ['login' => 'MY_LOGIN', 'namespace' => "http://tempuri.org/"];
+        $this->assertEquals($fixture['login'], $config['login']);
+        $this->assertEquals($fixture['namespace'], $config['namespace']);
     }
 }

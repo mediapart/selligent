@@ -16,6 +16,7 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Config\Definition\Processor;
 
+use Psr\Log\LoggerInterface;
 
 /**
  * Class Configuration
@@ -23,6 +24,19 @@ use Symfony\Component\Config\Definition\Processor;
  */
 class Configuration implements ConfigurationInterface
 {
+    /**
+     * @var LoggerInterface
+     */
+    protected $logger = null;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
     /**
      * Define configTree
      * @return TreeBuilder
@@ -75,18 +89,22 @@ class Configuration implements ConfigurationInterface
     {
         if (!empty($configFile)) {
             $config = Yaml::parse($configFile);
-            $processor = new Processor();
 
             try {
+                $processor = new Processor();
                 $processedConfiguration = $processor->processConfiguration(
                   new Configuration(),
                   $config
                 );
 
                 return $processedConfiguration;
-            } catch (Exception $e) {
-                echo $e->getMessage() . PHP_EOL;
+            } catch (InvalidConfigurationException $e) {
+                if ($this->logger) {
+                    $this->logger->error($e->getMessage());
+                }
             }
         }
     }
+
+
 }
