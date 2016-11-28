@@ -10,26 +10,21 @@
 
 require './vendor/autoload.php';
 
+use Mediapart\Selligent\Configuration;
 use Mediapart\Selligent\Connection;
 use Mediapart\Selligent\Transport;
 use Mediapart\Selligent\Properties;
 
-/* define your API credentials */
-$config = [
-    'login' => '******',
-    'password' => '******',
-    'wsdl' => 'http://emsecure/?wsdl',
-    'list' => 'TESTLIST',
-    'campaign' => 'TESTGATE',
-];
+/* before define your API credentials in config/YOUR_CONFIG.yml*/
+$configFile = file_get_contents(
+	__DIR__.'/config/individual_default_config.yaml'
+);
+$cfg = new \Mediapart\Selligent\Configuration();
+
 
 /* connect you to your Selligent API server */
 $connection = new Connection();
-$client = $connection->open(
-    $config['login'],
-    $config['password'],
-    $config['wsdl']
-);
+$client = $connection->open($cfg->loadConfig($configFile));
 
 /*
     Example : Trigger the TESTGATE campaign to an user.

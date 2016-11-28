@@ -13,9 +13,20 @@ namespace Mediapart\Selligent;
 
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Config\Definition\Processor;
 
+
+/**
+ * Class Configuration
+ * @package Mediapart\Selligent
+ */
 class Configuration implements ConfigurationInterface
 {
+    /**
+     * Define configTree
+     * @return TreeBuilder
+     */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
@@ -53,5 +64,22 @@ class Configuration implements ConfigurationInterface
         ;
 
         return $treeBuilder;
+    }
+
+    /**
+     * load, validate and return configuration
+     * @param string $configFile
+     * @return array
+     */
+    public function loadConfig($configFile)
+    {
+        $config = Yaml::parse($configFile);
+        $processor = new Processor();
+
+        $processedConfiguration = $processor->processConfiguration(
+          new Configuration(),
+          $config
+        );
+        return $processedConfiguration;
     }
 }
