@@ -16,5 +16,12 @@ namespace Mediapart\Selligent;
  */
 class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
-    
+
+    public function testConfigurationKO()
+    {
+        $this->setExpectedException('\Symfony\Component\Config\Definition\Exception\InvalidConfigurationException');
+        $configFile = file_get_contents(__DIR__.'/../config/individual_default_config.yaml');
+        $cfg = new Configuration();
+        $cfg->loadConfig($configFile);
+    }
 }

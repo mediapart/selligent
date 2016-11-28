@@ -73,13 +73,20 @@ class Configuration implements ConfigurationInterface
      */
     public function loadConfig($configFile)
     {
-        $config = Yaml::parse($configFile);
-        $processor = new Processor();
+        if (!empty($configFile)) {
+            $config = Yaml::parse($configFile);
+            $processor = new Processor();
 
-        $processedConfiguration = $processor->processConfiguration(
-          new Configuration(),
-          $config
-        );
-        return $processedConfiguration;
+            try {
+                $processedConfiguration = $processor->processConfiguration(
+                  new Configuration(),
+                  $config
+                );
+
+                return $processedConfiguration;
+            } catch (Exception $e) {
+                echo $e->getMessage() . PHP_EOL;
+            }
+        }
     }
 }
