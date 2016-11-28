@@ -38,17 +38,28 @@ class RealTest extends \PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
+        $config = [
+          'selligent' => [
+            'login' => getenv('soap_login'),
+            'password' => getenv('soap_password'),
+            'wsdl' => getenv('soap_wsdl'),
+            'namespace' => 'http://tempuri.org/',
+            'list' =>   getenv('selligent_list'),
+            'options' => [
+              'classmap' => [
+                'CountUsersByConstraint' => ''
+              ]
+            ]
+          ]
+        ];
+
         $con = new Connection();
-        $this->client = $con->open(
-            getenv('soap_login'),
-            getenv('soap_password'),
-            getenv('soap_wsdl')
-        );
+        $this->client = $con->open($config['selligent']);
 
         $response = $this
             ->client
             ->getListID([
-                'name' => getenv('selligent_list'),
+                'name' => $config['selligent']['list'],
             ])
         ;
 

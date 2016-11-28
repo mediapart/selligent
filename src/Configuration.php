@@ -1,11 +1,20 @@
 <?php
 
+/**
+ * This file is part of the Mediapart Selligent Client API
+ *
+ * CC BY-NC-SA <https://github.com/mediapart/selligent>
+ *
+ * For the full license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mediapart\Selligent;
 
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
-class SelligentConfiguration implements ConfigurationInterface
+class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
@@ -36,6 +45,7 @@ class SelligentConfiguration implements ConfigurationInterface
                 ->children()
                     ->arrayNode('classmap')
                         ->isRequired()
+                        ->prototype('scalar')
                     ->end()
                 ->end()
             ->end()

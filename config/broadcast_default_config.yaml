@@ -1,8 +1,8 @@
 selligent:
   login: ~
   password: ~
-  namespace: ~
+  namespace: "http://tempuri.org/"
   wsdl: ~
   options:
-    "classmap":
-      CreateCampaign: "Mediapart\Selligent\CreateCampaign"
+    classmap:
+      CreateCampaign: "Mediapart\\Selligent\\CreateCampaign"
