@@ -24,18 +24,6 @@ use Psr\Log\LoggerInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * @var LoggerInterface
-     */
-    protected $logger = null;
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setLogger(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-    }
 
     /**
      * Define configTree
@@ -90,21 +78,14 @@ class Configuration implements ConfigurationInterface
         if (!empty($configFile)) {
             $config = Yaml::parse($configFile);
 
-            try {
-                $processor = new Processor();
-                $processedConfiguration = $processor->processConfiguration(
-                  new Configuration(),
-                  $config
-                );
+            $processor = new Processor();
+            $processedConfiguration = $processor->processConfiguration(
+              new Configuration(),
+              $config
+            );
 
-                return $processedConfiguration;
-            } catch (InvalidConfigurationException $e) {
-                if ($this->logger) {
-                    $this->logger->error($e->getMessage());
-                }
-            }
+            return $processedConfiguration;
         }
     }
-
 
 }

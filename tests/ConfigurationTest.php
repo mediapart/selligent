@@ -21,10 +21,8 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\Symfony\Component\Config\Definition\Exception\InvalidConfigurationException');
         $configFile = file_get_contents(__DIR__.'/test_config_ko.yaml');
-        $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
 
         $cfg = new Configuration();
-        $cfg->setLogger($logger);
         $cfg->loadConfig($configFile);
         
     }
