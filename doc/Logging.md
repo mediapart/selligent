@@ -16,6 +16,8 @@ require './vendor/autoload.php';
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+
+use Mediapart\Selligent\Configuration;
 use Mediapart\Selligent\Connection;
 use Mediapart\Selligent\Transport;
 use Mediapart\Selligent\Properties;
@@ -23,10 +25,16 @@ use Mediapart\Selligent\Properties;
 $log = new Logger('selligent');
 $log->pushHandler(new StreamHandler('monolog-example.log'));
 
+$configFile = file_get_contents(
+	__DIR__.'/config/individual_default_config.yaml'
+);
+$cfg = new \Mediapart\Selligent\Configuration();
+
+
 $con = new Connection();
 $con->setLogger($log);
 
-$client = $con->open('login', 'password', 'wsdl');
+$client = $con->open($cfg->loadConfig($configFile));
 
 $transport = new Transport($client);
 $transport->setLogger($log);
