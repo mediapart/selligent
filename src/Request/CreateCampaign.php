@@ -1,15 +1,33 @@
 <?php
 
+/**
+ * This file is part of the Mediapart Selligent Client API
+ *
+ * CC BY-NC-SA <https://github.com/mediapart/selligent>
+ *
+ * For the full license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mediapart\Selligent\Request;
 
 use Mediapart\Selligent\Broadcast\Campaign;
 use Mediapart\Selligent\Broadcast\Target;
 use Mediapart\Selligent\Broadcast\Email;
 
+/**
+ *
+ */
 class CreateCampaign
 {
+    /**
+     * @var \XMLWriter $writer
+     */
     private $writer;
 
+    /**
+     * @param \XMLWriter $writer
+     */
     public function __construct(\XMLWriter $writer)
     {
         $writer->openMemory();
@@ -18,6 +36,10 @@ class CreateCampaign
         $this->writer = $writer;
     }
 
+    /**
+     * @param Campaign $campaign
+     * @return string Xml
+     */
     public function basedOn(Campaign $campaign)
     {
         $this->writer->startDocument('1.0');
@@ -32,6 +54,11 @@ class CreateCampaign
         return $this->writer->outputMemory(TRUE);
     }
 
+    /**
+     * @param string $name
+     * @param Array $attributes 
+     * @param boolena $end
+     */
     private function element($name, $attributes = array(), $end = true)
     {
         $this->writer->startElement($name);
@@ -45,11 +72,18 @@ class CreateCampaign
         }
     }
 
+    /**
+     * @param string $name
+     * @param string $value
+     */
     private function attr($name, $value)
     {
         $this->writer->writeAttribute($name, $value);
     }
 
+    /**
+     * @param Campaign $campaign
+     */
     private function campaign(Campaign $campaign)
     {
         $this->element(
@@ -67,6 +101,9 @@ class CreateCampaign
         );
     }
 
+    /**
+     * @param Email[] $emails
+     */
     private function emails($emails)
     {
         $this->writer->startElement('EMAILS');
@@ -78,6 +115,9 @@ class CreateCampaign
         $this->writer->endElement();
     }
 
+    /**
+     * @param Target $target
+     */
     private function target(Target $target)
     {
         $this->element(
@@ -93,6 +133,9 @@ class CreateCampaign
         );
     }
 
+    /**
+     * @param Email $email
+     */
     private function email(Email $email)
     {
         $this->element(

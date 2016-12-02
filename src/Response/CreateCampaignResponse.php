@@ -24,12 +24,12 @@ class CreateCampaignResponse extends Response
     const WARNING = 20001;
 
     /**
-     *
+     * @var integer
      */
     protected $CreateCampaignResult;
 
     /**
-     *
+     * @var string
      */
     protected $Xml;
 
@@ -39,11 +39,11 @@ class CreateCampaignResponse extends Response
     public function __construct()
     {
         $this->CreateCampaignResult = Response::ERROR_NORESULT;
-        $this->Xml = null;
+        $this->Xml = '';
     }
 
     /**
-     *
+     * {@inheritDoc}
      */
     public function getCode()
     {
@@ -57,6 +57,7 @@ class CreateCampaignResponse extends Response
     }
 
     /**
+     * @return string Xml
      */
     public function getXml()
     {

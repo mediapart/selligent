@@ -1,7 +1,19 @@
 <?php
 
+/**
+ * This file is part of the Mediapart Selligent Client API
+ *
+ * CC BY-NC-SA <https://github.com/mediapart/selligent>
+ *
+ * For the full license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mediapart\Selligent\Broadcast;
 
+/**
+ *
+ */
 class Email
 {
     /**
@@ -10,7 +22,7 @@ class Email
     private $name;
 
     /**
-     * @var integer The ID of the folder in which the email is stored
+     * @var integer The ID of the folder in which the email is stored.
      */
     private $folderId;
 
@@ -49,6 +61,10 @@ class Email
      */
     private $content;
 
+    /**
+     * @param string $name The name as defined for the email message properties.
+     * @return self
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -56,11 +72,18 @@ class Email
         return $this;
     }
 
+    /**
+     * @return string The name as defined for the email message properties.
+     */
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * @param integer $folderId The ID of the folder in which the email is stored
+     * @return self
+     */
     public function setFolderId($folderId)
     {
         $this->folderId = $folderId;
@@ -68,11 +91,18 @@ class Email
         return $this;
     }
 
+    /**
+     * @return integer The ID of the folder in which the email is stored
+     */
     public function getFolderId()
     {
         return $this->folderId;
     }
 
+    /**
+     * @param boolean This indicates if the list unsubscribe option has been activated for the email message.
+     * @return self
+     */
     public function listUnsubscribe($unsubscribe = true)
     {
         $this->unsubscribe = $unsubscribe;
@@ -80,11 +110,18 @@ class Email
         return $this;
     }
 
+    /**
+     * @return boolean Indicates if the list unsubscribe option has been activated for the email message.
+     */
     public function canUnsubscribe()
     {
         return $this->unsubscribe;
     }
 
+    /**
+     * @param integer The queue to which the email messages are transferred for broadcast.
+     * @return self
+     */
     public function setQueueId($queueId) 
     {
         $this->queueId = $queueId;
@@ -92,11 +129,18 @@ class Email
         return $this;
     }
 
+    /**
+     * @return integer The queue to which the email messages are transferred for broadcast.
+     */
     public function getQueueId()
     {
         return $this->queueId;
     }
 
+    /**
+     * @param integer The Brand used for sending out the email message.
+     * @return self
+     */
     public function setMailDomainId($mailDomainId)
     {
         $this->mailDomainId = $mailDomainId;
@@ -104,11 +148,18 @@ class Email
         return $this;
     }
 
+    /**
+     * @return integer The Brand used for sending out the email message.
+     */
     public function getMailDomainId()
     {
         return $this->mailDomainId;
     }
 
+    /**
+     * @param string $tag
+     * @return self
+     */
     public function setTag($tag)
     {
         $this->tag = $tag;
@@ -116,11 +167,18 @@ class Email
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getTag()
     {
         return $this->tag;
     }
 
+    /**
+     * @param string The category attributed to the email message.
+     * @return self
+     */
     public function setMaCategory($maCategory)
     {
         $this->maCategory = $maCategory;
@@ -128,11 +186,18 @@ class Email
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getMaCategory()
     {
         return $this->maCategory;
     }
 
+    /**
+     * @param Target $target
+     * @return self
+     */
     public function setTarget($target)
     {
         $this->target = $target;
@@ -140,13 +205,15 @@ class Email
         return $this;
     }
 
+    /**
+     * @return Target
+     */
     public function getTarget()
     {
         return $this->target;
     }
 
     /**
-     * @param Array 
      *
      * With the folling key/values :
      *
@@ -159,6 +226,9 @@ class Email
      * - REPLY_ADDR: The ‘reply to’ address
      * - REPLY_NAME: The ‘reply to’ name
      * - SUBJECT: The subject line of the email message
+     *
+     * @param Array 
+     * @return self
      */
     public function setContent($content)
     {
@@ -167,6 +237,9 @@ class Email
         return $this;
     }
 
+    /**
+     * @return Array
+     */
     public function getContent()
     {
         return $this->content;

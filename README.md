@@ -86,9 +86,16 @@ With the `real` testsuite, you could execute a serie of test who will be applied
 
 - soap_login
 - soap_password
-- soap_wsdl
+- soap_wsdl_individual
+- soap_wsdl_broadcast
 - selligent_list
 - selligent_gate
+- selligent_folderid 
+- selligent_maildomainid 
+- selligent_listid 
+- selligent_segmentid 
+- selligent_queueid 
+- selligent_macategory 
 
 
 ## Read More

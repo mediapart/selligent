@@ -1,12 +1,27 @@
 <?php
 
+/**
+ * This file is part of the Mediapart Selligent Client API
+ *
+ * CC BY-NC-SA <https://github.com/mediapart/selligent>
+ *
+ * For the full license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Mediapart\Selligent\Broadcast;
 
 use Mediapart\Selligent\Request\CreateCampaign;
 use \XMLWriter;
 
+/**
+ *
+ */
 class CampaignTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     *
+     */
     public function testWrongCampaignState()
     {
         $campaign = new Campaign();
@@ -16,6 +31,9 @@ class CampaignTest extends \PHPUnit_Framework_TestCase
         $campaign->setState('Lorem ipsum dolor');
     }
 
+    /**
+     *
+     */
     public function testXml()
     {
         $campaign = $this->getCampaign();
@@ -68,6 +86,9 @@ class CampaignTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+     * @return Campaign
+     */
     private function getCampaign()
     {
         $campaign = new Campaign();
@@ -89,7 +110,7 @@ class CampaignTest extends \PHPUnit_Framework_TestCase
             ->setPrioritySorting('DESC')
             ->setSegmentid(2)
             ->setConstraint('')
-            ->setScopes('')
+            ->setScopes(['foo', 'bar'])
         ;
 
         $email = new Email();
@@ -103,8 +124,8 @@ class CampaignTest extends \PHPUnit_Framework_TestCase
             ->setMaCategory('Science')
             ->setTarget($target)
             ->setContent([
-                'HTML' => '',
-                'TEXT' => '',
+                'HTML' => 'du html ici',
+                'TEXT' => 'du texte là',
                 'FROM_ADDR' => 'demo@emsecure.net',
                 'FROM_NAME' => 'SIM Training',
                 'TO_ADDR' => '~MAIL~',

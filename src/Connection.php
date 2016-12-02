@@ -115,6 +115,8 @@ class Connection implements LoggerAwareInterface
                 'TriggerCampaignWithResultResponse' => 'Mediapart\Selligent\Response\TriggerCampaignWithResultResponse',
                 'TriggerCampaignForUserResponse' => 'Mediapart\Selligent\Response\TriggerCampaignForUserResponse',
                 'TriggerCampaignForUserWithResultResponse' => 'Mediapart\Selligent\Response\TriggerCampaignForUserWithResultResponse',
+
+                'CreateCampaignResponse' => 'Mediapart\Selligent\Response\CreateCampaignResponse',
             ]
         ];
 

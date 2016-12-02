@@ -14,7 +14,7 @@ namespace Mediapart\Selligent;
 /**
  *
  */
-class RealTest extends \PHPUnit_Framework_TestCase
+class IndividualTest extends \PHPUnit_Framework_TestCase
 {
     const API_VERSION = 'v6.3';
 
@@ -42,7 +42,7 @@ class RealTest extends \PHPUnit_Framework_TestCase
         $this->client = $con->open(
             getenv('soap_login'),
             getenv('soap_password'),
-            getenv('soap_wsdl')
+            getenv('soap_wsdl_individual')
         );
 
         $response = $this
