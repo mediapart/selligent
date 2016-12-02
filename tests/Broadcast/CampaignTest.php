@@ -26,7 +26,7 @@ class CampaignTest extends \PHPUnit_Framework_TestCase
     {
         $campaign = new Campaign();
 
-        $this->expectException(\InvalidArgumentException::class);
+        $this->setExpectedException(\InvalidArgumentException::class);
 
         $campaign->setState('Lorem ipsum dolor');
     }
