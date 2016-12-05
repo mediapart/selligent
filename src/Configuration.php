@@ -13,10 +13,6 @@ namespace Mediapart\Selligent;
 
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
-use Symfony\Component\Yaml\Yaml;
-use Symfony\Component\Config\Definition\Processor;
-
-use Psr\Log\LoggerInterface;
 
 /**
  * Class Configuration

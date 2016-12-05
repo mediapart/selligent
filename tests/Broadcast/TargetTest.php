@@ -9,7 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Mediapart\Selligent\Broadcast;
+namespace Mediapart\Selligent\Tests\Broadcast;
+
+use Mediapart\Selligent\Broadcast\Target;
 
 /**
  *

@@ -9,9 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Mediapart\Selligent\Response;
+namespace Mediapart\Selligent\Tests\Response;
 
 use Mediapart\Selligent\Response;
+use Mediapart\Selligent\Response\UpdateUsersResponse;
 
 /**
  *

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Mediapart\Selligent;
+namespace Mediapart\Selligent\Tests;
 
 use \XMLWriter;
 use Mediapart\Selligent\Response;
@@ -17,17 +17,30 @@ use Mediapart\Selligent\Broadcast\Campaign;
 use Mediapart\Selligent\Broadcast\Target;
 use Mediapart\Selligent\Broadcast\Email;
 use Mediapart\Selligent\Request\CreateCampaign;
+use Mediapart\Selligent\Tests\RealTestCase;
 
 /**
  *
  */
-class BroadcastTest extends \PHPUnit_Framework_TestCase
+class BroadcastTest extends RealTestCase
 {
     /**
      *
      */
-    public function __construct()
+    protected function setUp()
     {
+        $this->requireEnv([
+            'soap_login',
+            'soap_password',
+            'soap_wsdl_broadcast',
+            'selligent_folderid',
+            'selligent_maildomainid',
+            'selligent_listid',
+            'selligent_segmentid',
+            'selligent_queueid',
+            'selligent_macategory',
+        ]);
+
         $con = new Connection();
         $this->client = $con->open(
             [

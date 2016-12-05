@@ -9,7 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Mediapart\Selligent;
+namespace Mediapart\Selligent\Tests;
+
+use Mediapart\Selligent\Response;
+use Mediapart\Selligent\Transport;
+use Mediapart\Selligent\Properties;
 
 /**
  *
