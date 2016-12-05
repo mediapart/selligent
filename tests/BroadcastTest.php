@@ -30,9 +30,13 @@ class BroadcastTest extends \PHPUnit_Framework_TestCase
     {
         $con = new Connection();
         $this->client = $con->open(
-            getenv('soap_login'),
-            getenv('soap_password'),
-            getenv('soap_wsdl_broadcast')
+            [
+                'login' => getenv('soap_login'),
+                'password' => getenv('soap_password'),
+                'wsdl' => getenv('soap_wsdl_broadcast'),
+                'list' => getenv('selligent_list'),
+            ],
+            Connection::API_BROADCAST
         );
     }
 

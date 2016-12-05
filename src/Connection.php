@@ -13,6 +13,8 @@ namespace Mediapart\Selligent;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerAwareInterface;
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Config\Definition\Processor;
 
 /**
  *
@@ -28,6 +30,16 @@ class Connection implements LoggerAwareInterface
      * @var string
      */
     const CLASS_SOAPHEADER = 'SoapHeader';
+
+    /**
+     * @var string
+     */
+    const API_INDIVIDUAL = 'individual.yml';
+
+    /**
+     * @var string
+     */
+    const API_BROADCAST = 'broadcast.yml';
 
     /**
      * @var ReflectionClass
@@ -73,61 +85,6 @@ class Connection implements LoggerAwareInterface
     }
 
     /**
-     * @return Array
-     */
-    private function resolveOptions()
-    {
-        $options = [
-            'classmap' => [
-                'ArrayOfListInfo' => 'Mediapart\Selligent\ArrayOfListInfo',
-                'ListInfo' => 'Mediapart\Selligent\ListInfo',
-                'Property' => 'Mediapart\Selligent\Property',
-                'ArrayOfProperty' => 'Mediapart\Selligent\Properties',
-
-                # System info
-                'GetSystemStatusResponse' => 'Mediapart\Selligent\Response\GetSystemStatusResponse',
-
-                # Manage Lists
-                'GetListsResponse' => 'Mediapart\Selligent\Response\GetListsResponse',
-                'GetListIDResponse' => 'Mediapart\Selligent\Response\GetListIDResponse',
-
-                # Manage Segments
-                'CreateSegmentResponse' => 'Mediapart\Selligent\Response\CreateSegmentResponse',
-                'AddToSegmentResponse' => 'Mediapart\Selligent\Response\AddToSegmentResponse',
-                'GetSegmentsResponse' => 'Mediapart\Selligent\Response\GetSegmentsResponse',
-                'GetSegmentRecordCountResponse' => 'Mediapart\Selligent\Response\GetSegmentRecordCountResponse',
-
-                # Manage Users
-                'CreateUserResponse' => 'Mediapart\Selligent\Response\CreateUserResponse',
-                'UpdateUserResponse' => 'Mediapart\Selligent\Response\UpdateUserResponse',
-                'UpdateUsersResponse' => 'Mediapart\Selligent\Response\UpdateUsersResponse',
-                'GetUserByIDResponse' => 'Mediapart\Selligent\Response\GetUserByIDResponse',
-                'RetrieveHashForUserResponse' => 'Mediapart\Selligent\Response\RetrieveHashForUserResponse',
-                'CountUsersByConstraintResponse' => 'Mediapart\Selligent\Response\CountUsersByConstraintResponse',
-                'GetUsersByConstraintResponse' => 'Mediapart\Selligent\Response\GetUsersByConstraintResponse',
-                'GetUserByConstraintResponse' => 'Mediapart\Selligent\Response\GetUserByConstraintResponse',
-                'CountUsersByFilterResponse' => 'Mediapart\Selligent\Response\CountUsersByFilterResponse',
-                'GetUsersByFilterResponse' => 'Mediapart\Selligent\Response\GetUsersByFilterResponse',
-                'GetUserByFilterResponse' => 'Mediapart\Selligent\Response\GetUserByFilterResponse',
-
-                # Manage Campaign
-                'TriggerCampaignResponse' => 'Mediapart\Selligent\Response\TriggerCampaignResponse',
-                'TriggerCampaignWithResultResponse' => 'Mediapart\Selligent\Response\TriggerCampaignWithResultResponse',
-                'TriggerCampaignForUserResponse' => 'Mediapart\Selligent\Response\TriggerCampaignForUserResponse',
-                'TriggerCampaignForUserWithResultResponse' => 'Mediapart\Selligent\Response\TriggerCampaignForUserWithResultResponse',
-
-                'CreateCampaignResponse' => 'Mediapart\Selligent\Response\CreateCampaignResponse',
-            ]
-        ];
-
-        if ($this->logger) {
-            $this->logger->debug('resolved options', $options);
-        }
-
-        return $options;
-    }
-
-    /**
      * {@inheritDoc}
      */
     public function setLogger(LoggerInterface $logger)
@@ -135,38 +92,42 @@ class Connection implements LoggerAwareInterface
         $this->logger = $logger;
     }
 
+
     /**
-     *
-     * @var string $login
-     * @var string $password
-     * @var string $wsdl
-     * @var string $namespace
+     * @param array $parameters
+     * @param string $config
      *
      * @return \SoapClient
      */
-    public function open($login, $password, $wsdl, $namespace = 'http://tempuri.org/')
+    public function open(array $parameters = [], $config = 'individual.yml')
     {
-        $this->options = $this->resolveOptions();
+        $processor = new Processor();
+        $configuration = $processor->processConfiguration(
+            new Configuration(),
+            [
+                Yaml::parse(file_get_contents(__DIR__.'/../config/'.$config)),
+                $parameters
+            ]
+        );
 
         if ($this->logger) {
-            $this->logger->debug(sprintf('connecting to %s', $wsdl));
+            $this->logger->debug(sprintf('connecting to %s', $configuration['wsdl']));
         }
 
         $client = $this
             ->client
-            ->newInstance($wsdl, $this->options)
+            ->newInstance($configuration['wsdl'], $configuration['options'])
         ;
         $client->__setSoapHeaders(
             $this->header->newInstance(
-                $namespace,
+                $configuration['namespace'],
                 'AutomationAuthHeader',
                 [
-                    'Login' => $login,
-                    'Password' => $password,
+                    'Login' => $configuration['login'],
+                    'Password' => $configuration['password'],
                 ]
             )
         );
-
 
         return $client;
     }

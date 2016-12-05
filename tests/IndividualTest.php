@@ -11,6 +11,10 @@
 
 namespace Mediapart\Selligent;
 
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Config\Definition\Processor;
+use Mediapart\Selligent\Configuration;
+
 /**
  *
  */
@@ -40,9 +44,13 @@ class IndividualTest extends \PHPUnit_Framework_TestCase
     {
         $con = new Connection();
         $this->client = $con->open(
-            getenv('soap_login'),
-            getenv('soap_password'),
-            getenv('soap_wsdl_individual')
+            [
+                'login' => getenv('soap_login'),
+                'password' => getenv('soap_password'),
+                'wsdl' => getenv('soap_wsdl_individual'),
+                'list' =>   getenv('selligent_list'),
+            ],
+            Connection::API_INDIVIDUAL
         );
 
         $response = $this

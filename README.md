@@ -14,22 +14,14 @@ use Mediapart\Selligent\Connection;
 use Mediapart\Selligent\Transport;
 use Mediapart\Selligent\Properties;
 
-/* define your API credentials */
-$config = [
-    'login' => '******',
-    'password' => '******',
-    'wsdl' => 'http://emsecure/?wsdl',
-    'list' => 'TESTLIST',
-    'campaign' => 'TESTGATE',
-];
 
 /* connect you to your Selligent API server */
 $connection = new Connection();
-$client = $connection->open(
-    $config['login'],
-    $config['password'],
-    $config['wsdl']
-);
+$client = $connection->open([
+    'login' => '*****',
+    'password' => '*****',
+    'wsdl' => 'http://emsecure/individual?wsdl', 
+]);
 
 /*
     Example : Trigger the TESTGATE campaign to an user.

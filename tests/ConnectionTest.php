@@ -22,7 +22,11 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
     public function testConnection()
     {
         $connection = new Connection();
-        $client = $connection->open('login', 'password', 'tests/individual.xml');
+        $client = $connection->open([
+            'login' => 'login',
+            'password' => 'password',
+            'wsdl' => 'tests/individual.xml',
+        ]);
 
         $this->assertInstanceOf(Connection::CLASS_SOAPCLIENT, $client);
     }
@@ -57,12 +61,16 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
             ->getMock()
         ;
         $logger
-            ->expects($this->exactly(2))
+            ->expects($this->exactly(1))
             ->method('debug')
         ;
 
         $connection = new Connection();
         $connection->setLogger($logger);
-        $connection->open('', '', 'tests/individual.xml');
+        $connection->open([
+            'login' => 'somelogin',
+            'password' => 'somepassword',
+            'wsdl' => 'tests/individual.xml',
+        ]);
     }
 }
