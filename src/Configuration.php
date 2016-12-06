@@ -24,13 +24,12 @@ use Psr\Log\LoggerInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-
     /**
      * Define configTree
      * @return TreeBuilder
      */
     public function getConfigTreeBuilder()
-    {
+    { 
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('selligent');
 
@@ -67,25 +66,4 @@ class Configuration implements ConfigurationInterface
 
         return $treeBuilder;
     }
-
-    /**
-     * load, validate and return configuration
-     * @param string $configFile
-     * @return array
-     */
-    public function loadConfig($configFile)
-    {
-        if (!empty($configFile)) {
-            $config = Yaml::parse($configFile);
-
-            $processor = new Processor();
-            $processedConfiguration = $processor->processConfiguration(
-              new Configuration(),
-              $config
-            );
-
-            return $processedConfiguration;
-        }
-    }
-
 }

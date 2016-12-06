@@ -28,6 +28,12 @@ class GetSegmentRecordCountResponse extends Response
      */
     protected $segmentCount;
 
+    public function __construct()
+    {
+        $this->GetSegmentRecordCountResult = Response::ERROR_NORESULT;
+        $this->segmentCount = 0;
+    }
+
     /**
      * {@inheritDoc}
      */

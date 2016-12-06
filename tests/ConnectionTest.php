@@ -21,22 +21,12 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
      */
     public function testConnection()
     {
-        $config = [
-          'selligent' => [
+        $connection = new Connection();
+        $client = $connection->open([
             'login' => 'login',
             'password' => 'password',
             'wsdl' => 'tests/individual.xml',
-            'namespace' => 'http://tempuri.org/',
-            'options' => [
-              'classmap' => [
-                'CountUsersByConstraint' => ''
-              ]
-            ]
-          ]
-        ];
-
-        $connection = new Connection();
-        $client = $connection->open($config['selligent']);
+        ]);
 
         $this->assertInstanceOf(Connection::CLASS_SOAPCLIENT, $client);
     }
@@ -75,22 +65,12 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
             ->method('debug')
         ;
 
-        $config = [
-          'selligent' => [
-            'login' => '',
-            'password' => '',
-            'wsdl' => 'tests/individual.xml',
-            'namespace' => 'http://tempuri.org/',
-            'options' => [
-              'classmap' => [
-                'CountUsersByConstraint' => ''
-              ]
-            ]
-          ]
-        ];
-
         $connection = new Connection();
         $connection->setLogger($logger);
-        $connection->open($config['selligent']);
+        $connection->open([
+            'login' => 'somelogin',
+            'password' => 'somepassword',
+            'wsdl' => 'tests/individual.xml',
+        ]);
     }
 }

@@ -11,10 +11,14 @@
 
 namespace Mediapart\Selligent;
 
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Config\Definition\Processor;
+use Mediapart\Selligent\Configuration;
+
 /**
  *
  */
-class RealTest extends \PHPUnit_Framework_TestCase
+class IndividualTest extends \PHPUnit_Framework_TestCase
 {
     const API_VERSION = 'v6.3';
 
@@ -38,28 +42,21 @@ class RealTest extends \PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
-        $config = [
-          'selligent' => [
-            'login' => getenv('soap_login'),
-            'password' => getenv('soap_password'),
-            'wsdl' => getenv('soap_wsdl'),
-            'namespace' => 'http://tempuri.org/',
-            'list' =>   getenv('selligent_list'),
-            'options' => [
-              'classmap' => [
-                'CountUsersByConstraint' => ''
-              ]
-            ]
-          ]
-        ];
-
         $con = new Connection();
-        $this->client = $con->open($config['selligent']);
+        $this->client = $con->open(
+            [
+                'login' => getenv('soap_login'),
+                'password' => getenv('soap_password'),
+                'wsdl' => getenv('soap_wsdl_individual'),
+                'list' =>   getenv('selligent_list'),
+            ],
+            Connection::API_INDIVIDUAL
+        );
 
         $response = $this
             ->client
             ->getListID([
-                'name' => $config['selligent']['list'],
+                'name' => getenv('selligent_list'),
             ])
         ;
 

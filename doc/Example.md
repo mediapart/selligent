@@ -5,16 +5,15 @@
 
 namespace Mediapart\Selligent;
 
-$configFile = file_get_contents(
-	__DIR__.'/config/individual_default_config.yaml'
-);
-$cfg = new \Mediapart\Selligent\Configuration();
-
 /* 
     Open a connection to Selligent.
  */
 $connection = new Connection();
-$client = $connection->open($cfg->loadConfig($configFile));
+$client = $connection->open([
+    'login' => '*****',
+    'password' => '*****',
+    'wsdl' => 'http://emsecure/individual?wsdl', 
+]);
 
 /* 
     Output lists infos.

@@ -29,6 +29,12 @@ class GetSegmentsResponse extends Response
      */
     protected $segments;
 
+    public function __construct()
+    {
+        $this->GetSegmentsResult = Response::ERROR_NORESULT;
+        $this->segments = [];
+    }
+
     /**
      * {@inheritDoc}
      */

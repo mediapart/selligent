@@ -11,31 +11,32 @@
 
 namespace Mediapart\Selligent;
 
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Config\Definition\Processor;
+
 /**
  *
  */
 class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
-
-    public function testConfigurationKO()
+    public function testConfiguration()
     {
-        $this->setExpectedException('\Symfony\Component\Config\Definition\Exception\InvalidConfigurationException');
+        $config = [
+            'login' => 'login',
+            'password' => 'password',
+            'wsdl' => 'http//wsdl?individual',
+            'list' => 'LISTNAME',
+        ];
+        $processor = new Processor();
+        $configuration = new Configuration();
 
-        $configFile = file_get_contents(__DIR__.'/test_config_ko.yaml');
-        $cfg = new Configuration();
+        $processedConfiguration = $processor->processConfiguration(
+            $configuration,
+            [$config]
+        );
 
-        $cfg->loadConfig($configFile);
-    }
-
-    public function testCheckReturnedConfig()
-    {
-        $configFile = file_get_contents(__DIR__.'/test_config_ok.yaml');
-        $fixture = ['login' => 'MY_LOGIN', 'namespace' => "http://tempuri.org/"];
-        $cfg = new Configuration();
-
-        $config = $cfg->loadConfig($configFile);
-
-        $this->assertEquals($fixture['login'], $config['login']);
-        $this->assertEquals($fixture['namespace'], $config['namespace']);
+        $this->assertEquals('login', $processedConfiguration['login']);
+        $this->assertEquals('password', $processedConfiguration['password']);
+        $this->assertEquals('http://tempuri.org/', $processedConfiguration['namespace']);
     }
 }

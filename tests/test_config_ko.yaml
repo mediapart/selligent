@@ -1,9 +1,0 @@
-selligent:
-  login: ""
-  password: "MY_PWD"
-  namespace: "http://tempuri.org/"
-  wsdl: "https://emsecure.net/automation/broadcast.asmx?WSDL"
-  list: "MY_LIST"
-  options:
-    classmap:
-      CreateCampaign: "MY_PATH"

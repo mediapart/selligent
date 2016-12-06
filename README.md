@@ -10,21 +10,18 @@
 
 require './vendor/autoload.php';
 
-use Mediapart\Selligent\Configuration;
 use Mediapart\Selligent\Connection;
 use Mediapart\Selligent\Transport;
 use Mediapart\Selligent\Properties;
 
-/* before define your API credentials in config/YOUR_CONFIG.yml*/
-$configFile = file_get_contents(
-	__DIR__.'/config/individual_default_config.yaml'
-);
-$cfg = new \Mediapart\Selligent\Configuration();
-
 
 /* connect you to your Selligent API server */
 $connection = new Connection();
-$client = $connection->open($cfg->loadConfig($configFile));
+$client = $connection->open([
+    'login' => '*****',
+    'password' => '*****',
+    'wsdl' => 'http://emsecure/individual?wsdl', 
+]);
 
 /*
     Example : Trigger the TESTGATE campaign to an user.
@@ -81,9 +78,16 @@ With the `real` testsuite, you could execute a serie of test who will be applied
 
 - soap_login
 - soap_password
-- soap_wsdl
+- soap_wsdl_individual
+- soap_wsdl_broadcast
 - selligent_list
 - selligent_gate
+- selligent_folderid 
+- selligent_maildomainid 
+- selligent_listid 
+- selligent_segmentid 
+- selligent_queueid 
+- selligent_macategory 
 
 
 ## Read More
@@ -91,3 +95,4 @@ With the `real` testsuite, you could execute a serie of test who will be applied
 - Illustrated [Reference](doc/Reference/Readme.md) of all available API endpoints.
 - Little use case [Example](doc/Example.md) from connection to triggering campaign
 - You could use PSR3 to [log informations from this library](doc/Logging.md).
+- You could [broadcast campaign based on complete HTML](doc/Broadcast.md) from the API.

@@ -13,6 +13,8 @@ namespace Mediapart\Selligent;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerAwareInterface;
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Config\Definition\Processor;
 
 /**
  *
@@ -28,6 +30,16 @@ class Connection implements LoggerAwareInterface
      * @var string
      */
     const CLASS_SOAPHEADER = 'SoapHeader';
+
+    /**
+     * @var string
+     */
+    const API_INDIVIDUAL = 'individual.yml';
+
+    /**
+     * @var string
+     */
+    const API_BROADCAST = 'broadcast.yml';
 
     /**
      * @var ReflectionClass
@@ -82,29 +94,37 @@ class Connection implements LoggerAwareInterface
 
 
     /**
-     * @param array $config
+     * @param array $parameters
+     * @param string $config
      *
      * @return \SoapClient
      */
-    public function open(array $config = [])
+    public function open(array $parameters = [], $config = 'individual.yml')
     {
-        $this->options = $config['options']['classmap'];
+        $processor = new Processor();
+        $configuration = $processor->processConfiguration(
+            new Configuration(),
+            [
+                Yaml::parse(file_get_contents(__DIR__.'/../config/'.$config)),
+                $parameters
+            ]
+        );
 
         if ($this->logger) {
-            $this->logger->debug(sprintf('connecting to %s', $config['wsdl']));
+            $this->logger->debug(sprintf('connecting to %s', $configuration['wsdl']));
         }
 
         $client = $this
             ->client
-            ->newInstance($config['wsdl'], $this->options)
+            ->newInstance($configuration['wsdl'], $configuration['options'])
         ;
         $client->__setSoapHeaders(
             $this->header->newInstance(
-                $config['namespace'],
+                $configuration['namespace'],
                 'AutomationAuthHeader',
                 [
-                    'Login' => $config['login'],
-                    'Password' => $config['password'],
+                    'Login' => $configuration['login'],
+                    'Password' => $configuration['password'],
                 ]
             )
         );
