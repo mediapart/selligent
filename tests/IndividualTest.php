@@ -48,7 +48,6 @@ class IndividualTest extends \PHPUnit_Framework_TestCase
                 'login' => getenv('soap_login'),
                 'password' => getenv('soap_password'),
                 'wsdl' => getenv('soap_wsdl_individual'),
-                'list' =>   getenv('selligent_list'),
             ],
             Connection::API_INDIVIDUAL
         );

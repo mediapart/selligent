@@ -25,7 +25,6 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
             'login' => 'login',
             'password' => 'password',
             'wsdl' => 'http//wsdl?individual',
-            'list' => 'LISTNAME',
         ];
         $processor = new Processor();
         $configuration = new Configuration();

@@ -2,7 +2,6 @@ login: ~
 password: ~
 namespace: "http://tempuri.org/"
 wsdl: ~
-list:
 options:
     classmap:
         ArrayOfListInfo:  "Mediapart\\Selligent\\ArrayOfListInfo"
