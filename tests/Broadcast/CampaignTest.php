@@ -9,10 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Mediapart\Selligent\Broadcast;
+namespace Mediapart\Selligent\Tests\Broadcast;
 
-use Mediapart\Selligent\Request\CreateCampaign;
 use \XMLWriter;
+use Mediapart\Selligent\Request\CreateCampaign;
+use Mediapart\Selligent\Broadcast\Campaign;
+use Mediapart\Selligent\Broadcast\Target;
+use Mediapart\Selligent\Broadcast\Email;
 
 /**
  *

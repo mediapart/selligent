@@ -9,10 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Mediapart\Selligent;
+namespace Mediapart\Selligent\Tests;
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Config\Definition\Processor;
+use Mediapart\Selligent\Configuration;
 
 /**
  *

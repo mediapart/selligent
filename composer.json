@@ -12,7 +12,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Mediapart\\Selligent\\": "src/"
+            "Mediapart\\Selligent\\": "src/",
+            "Mediapart\\Selligent\\Tests\\": "tests/"
         }
 	},
     "require": {

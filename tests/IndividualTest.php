@@ -9,16 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Mediapart\Selligent;
+namespace Mediapart\Selligent\Tests;
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Config\Definition\Processor;
 use Mediapart\Selligent\Configuration;
+use Mediapart\Selligent\Tests\RealTestCase;
 
 /**
  *
  */
-class IndividualTest extends \PHPUnit_Framework_TestCase
+class IndividualTest extends RealTestCase
 {
     const API_VERSION = 'v6.3';
 
@@ -40,8 +41,16 @@ class IndividualTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
-    public function __construct()
+    protected function setUp()
     {
+        $this->requireEnv([
+            'soap_login',
+            'soap_password',
+            'soap_wsdl_individual',
+            'selligent_list',
+            'selligent_gate',
+        ]);
+
         $con = new Connection();
         $this->client = $con->open(
             [
