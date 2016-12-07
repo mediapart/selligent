@@ -20,6 +20,8 @@ use Mediapart\Selligent\Broadcast\Email;
  */
 class CreateCampaign
 {
+    const DATETIME_FORMAT = 'YmdHmi';
+
     /**
      * @var \XMLWriter $writer
      */
@@ -92,7 +94,7 @@ class CreateCampaign
                 'NAME' => $campaign->getName(),
                 'STATE' => $campaign->getState(),
                 'FOLDERID' => $campaign->getFolderId(),
-                'START_DT' => $campaign->getStartDate()->format('Ymdhmi'),
+                'START_DT' => $campaign->getStartDate()->format(self::DATETIME_FORMAT),
                 'DESCRIPTION' => $campaign->getDescription(),
                 'MACATEGORY' => $campaign->getMaCategory(),
                 'PRODUCTID' => $campaign->getProductId(),
