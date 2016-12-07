@@ -16,10 +16,10 @@ namespace Mediapart\Selligent\Broadcast;
  */
 class Campaign
 {
-    const TEST = 'Test';
-    const ACTIVE = 'Active';
-    const HOLD = 'Hold';
-    const DESIGN = 'Design';
+    const TEST = 'TEST';
+    const ACTIVE = 'ACTIVE';
+    const HOLD = 'HOLD';
+    const DESIGN = 'DESIGN';
 
     /**
      * @var string The name of the journey map.
