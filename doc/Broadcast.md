@@ -1,4 +1,3 @@
-
 # Broadcast Complete HTML Campaign
 
 ```php
@@ -33,10 +32,8 @@ $campaign
 ;
 // ... 
 
-$writer = new XMLWriter();
-$request = new CreateCampaign($writer);
-$xml = $request->basedOn($campaign);
-$response = $this->client->CreateCampaign(['Xml' => $xml]);
+$broadcast = new Broadcast($client);
+$response = $broadcast->triggerCampaign($campaign);
 
 if ($response==Response::SUCCESSFUL) {
     print 'Your campaign has been created';

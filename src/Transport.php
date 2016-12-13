@@ -19,7 +19,7 @@ use Mediapart\Selligent\Response\GetUserByFilterResponse;
 /**
  *
  */
-class Transport
+class Transport implements LoggerAwareInterface
 {
     /**
      * @var \SoapClient

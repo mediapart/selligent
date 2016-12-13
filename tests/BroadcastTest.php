@@ -11,106 +11,134 @@
 
 namespace Mediapart\Selligent\Tests;
 
-use \XMLWriter;
-use Mediapart\Selligent\Response;
+use Psr\Log\LogLevel;
+use Mediapart\Selligent\Broadcast;
 use Mediapart\Selligent\Broadcast\Campaign;
-use Mediapart\Selligent\Broadcast\Target;
-use Mediapart\Selligent\Broadcast\Email;
-use Mediapart\Selligent\Request\CreateCampaign;
-use Mediapart\Selligent\Tests\RealTestCase;
+use Mediapart\Selligent\Response;
 
 /**
  *
  */
-class BroadcastTest extends RealTestCase
+class BroadcastTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     *
+     * Test simple broadcast campaign.
      */
-    protected function setUp()
+    public function testBroadcast()
     {
-        $this->requireEnv([
-            'soap_login',
-            'soap_password',
-            'soap_wsdl_broadcast',
-            'selligent_folderid',
-            'selligent_maildomainid',
-            'selligent_listid',
-            'selligent_segmentid',
-            'selligent_queueid',
-            'selligent_macategory',
-        ]);
+        $client = $this->getClient();
+        $campaign = $this->getCampaign();
 
-        $con = new Connection();
-        $this->client = $con->open(
-            [
-                'login' => getenv('soap_login'),
-                'password' => getenv('soap_password'),
-                'wsdl' => getenv('soap_wsdl_broadcast'),
-            ],
-            Connection::API_BROADCAST
-        );
+        $broadcast = new Broadcast($client);
+        $response = $broadcast->triggerCampaign($campaign);
+
+        $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
     }
 
     /**
-     *
+     * Test simple broadcast campaign with logging result.
      */
-    public function testCompleteHTML()
+    public function testBroadcastWithLogger()
+    {
+        $client = $this->getClient();
+        $campaign = $this->getCampaign();
+        $logger = $this->getLogger(LogLevel::INFO);
+
+        $broadcast = new Broadcast($client);
+        $broadcast->setLogger($logger);
+        $response = $broadcast->triggerCampaign($campaign);
+
+        $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
+    }
+
+    /**
+     * Test simple broadcast campaign, logging error.
+     */
+    public function testBroadcastWithError()
+    {
+        $client = $this->getClient(Response::ERROR_FAILED);
+        $campaign = $this->getCampaign();
+        $logger = $this->getLogger(LogLevel::ERROR);
+
+        $broadcast = new Broadcast($client);
+        $broadcast->setLogger($logger);
+        $response = $broadcast->triggerCampaign($campaign);
+
+        $this->assertEquals(Response::ERROR_FAILED, $response->getCode());
+    }
+
+    /**
+     * @return SoapClient
+     */
+    public function getClient($code = Response::SUCCESSFUL)
+    {
+        $response = $this
+            ->getMockBuilder('Mediapart\Selligent\Response\CreateCampaignResponse')
+            ->disableOriginalConstructor()
+            ->setMethods(['getCode', 'getXml'])
+            ->getMock()
+        ;
+        $response
+            ->method('getCode')
+            ->willReturn($code)
+        ;
+        $response
+            ->method('getXml')
+            ->willReturn('')
+        ;
+
+        $client = $this
+            ->getMockBuilder('SoapClient')
+            ->disableOriginalConstructor()
+            ->setMethods(['CreateCampaign'])
+            ->getMock()
+        ;
+        $client
+            ->method('CreateCampaign')
+            ->willReturn($response)
+        ;
+
+        return $client;
+    }
+
+    /**
+     * @return Campaign
+     */
+    public function getCampaign()
     {
         $tomorrow = new \DateTime('tomorrow');
-
-        $campaign = new Campaign();
+        $campaign = $this
+            ->getMockBuilder('Mediapart\Selligent\Broadcast\Campaign')
+            ->setMethods(['getStartDate', 'getStatus'])
+            ->getMock()
+        ;
         $campaign
-            ->setName('Broadcast Test ('.$tomorrow->format('l, jS F').')')
-            ->setFolderId(getenv('selligent_folderid'))
-            ->setState(Campaign::ACTIVE)
-            ->setStartDate($tomorrow)
-            ->setDescription(sprintf(
-                'Some broadcast test scheduled for the %s at %s.',
-                $tomorrow->format('L, jS F'),
-                $tomorrow->format('g:ia')
-            ))
+            ->method('getStartDate')
+            ->willReturn($tomorrow)
         ;
-        $target = new Target();
-        $target
-            ->setListId(getenv('selligent_listid'))
-            ->setPriorityField('CREATED_DT')
-            ->setPrioritySorting('DESC')
-            ->setSegmentid(getenv('selligent_segmentid'))
+        $campaign
+            ->method('getStatus')
+            ->willReturn(Campaign::TEST)
         ;
-        $email = new Email();
-        $email
-            ->setName('Broadcast Email Test ('.$tomorrow->format('l, jS F').')')
-            ->setFolderId(getenv('selligent_folderid'))                                       
-            ->setMailDomainId(getenv('selligent_maildomainid'))
-            ->listUnsubscribe(false)
-            ->setQueueId(getenv('selligent_queueid'))
-            ->setMaCategory(getenv('selligent_macategory'))
-            ->setTarget($target)
-            ->setContent([
-                'HTML' => 'html over here.',
-                'TEXT' => 'text over there.',
-                'FROM_ADDR' => 'from@domain.tld',
-                'FROM_NAME' => 'From Name',
-                'TO_ADDR' => '~MAIL~',
-                'TO_NAME' => '~NAME~',
-                'REPLY_ADDR' => 'reply-to@domain.tld',
-                'REPLY_NAME' => 'Reply To',
-                'SUBJECT' => sprintf(
-                    '%s at %s.',
-                    $tomorrow->format('l, jS F'),
-                    $tomorrow->format('g:ia')
-                ),
-            ])
-        ;
-        $campaign->addEmail($email);
 
-        $writer = new XMLWriter();
-        $request = new CreateCampaign($writer);
-        $xml = $request->basedOn($campaign);
-        $response = $this->client->CreateCampaign(['Xml' => $xml]);
+        return $campaign;
+    }
 
-        $this->assertEquals('', $response->getError());
-        $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
+    /**
+     * @return Psr\Log\LoggerInterface
+     */
+    public function getLogger($expecting)
+    {
+        $logger = $this
+            ->getMockBuilder('Psr\Log\NullLogger')
+            ->setMethods(['log'])
+            ->getMock()
+        ;
+        $logger
+            ->method('log')
+            ->with($this->equalTo($expecting))
+        ;
+
+        return $logger;
     }
 }

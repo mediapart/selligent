@@ -1,4 +1,3 @@
-
 # Logging
 
 This library allows you to connect a [PSR3](http://www.php-fig.org/psr/psr-3/) implementation to log an monitor how it's work.
@@ -22,22 +21,19 @@ use Mediapart\Selligent\Connection;
 use Mediapart\Selligent\Transport;
 use Mediapart\Selligent\Properties;
 
-$log = new Logger('selligent');
-$log->pushHandler(new StreamHandler('monolog-example.log'));
+$logger = new Logger('selligent');
+$logger->pushHandler(new StreamHandler('monolog-example.log'));
 
-$configFile = file_get_contents(
-	__DIR__.'/config/individual_default_config.yaml'
-);
-$cfg = new \Mediapart\Selligent\Configuration();
-
-
-$con = new Connection();
-$con->setLogger($log);
-
-$client = $con->open($cfg->loadConfig($configFile));
+$connection = new Connection();
+$connection->setLogger($logger);
+$client = $connection->open([
+    'login' => '*****',
+    'password' => '*****',
+    'wsdl' => 'http://emsecure/individual?wsdl', 
+]);
 
 $transport = new Transport($client);
-$transport->setLogger($log);
+$transport->setLogger($logger);
 $transport->setList('TESTLIST');
 
 $user = new Properties();
@@ -46,5 +42,3 @@ $user['MAIL'] = 'foo@bar.tld';
 $transport->subscribe($user);
 
 ```
-
-
