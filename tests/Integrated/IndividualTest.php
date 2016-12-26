@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Mediapart\Selligent\Tests;
+namespace Mediapart\Selligent\Tests\Integrated;
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Config\Definition\Processor;
 use Mediapart\Selligent\Configuration;
-use Mediapart\Selligent\Tests\RealTestCase;
+use Mediapart\Selligent\Tests\Integrated\IntegrationTestCase;
 
 /**
  *
  */
-class IndividualTest extends RealTestCase
+class IndividualTest extends IntegrationTestCase
 {
     const API_VERSION = 'v6.3';
 

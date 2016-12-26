@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Mediapart\Selligent\Tests;
+namespace Mediapart\Selligent\Tests\Integrated;
 
 /**
  *
  */
-class RealTestCase extends \PHPUnit_Framework_TestCase
+class IntegrationTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
      *

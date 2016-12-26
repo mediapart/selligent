@@ -6,12 +6,12 @@
   <testsuites>
     <testsuite name="default">
       <directory>./tests</directory>
-      <exclude>./tests/IndividualTest.php</exclude>
-      <exclude>./tests/BroadcastTest.php</exclude>
+      <exclude>./tests/Integrated/IndividualTest.php</exclude>
+      <exclude>./tests/Integrated/BroadcastTest.php</exclude>
     </testsuite>
     <testsuite name="real">
-      <file>./tests/IndividualTest.php</file>
-      <file>./tests/BroadcastTest.php</file>
+      <file>./tests/Integrated/IndividualTest.php</file>
+      <file>./tests/Integrated/BroadcastTest.php</file>
     </testsuite>
   </testsuites>
 

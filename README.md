@@ -2,6 +2,8 @@
 
 [![Build Status](https://secure.travis-ci.org/mediapart/selligent.svg?branch=master)](http://travis-ci.org/mediapart/selligent) [![Code Coverage](https://codecov.io/gh/mediapart/selligent/branch/master/graph/badge.svg)](https://scrutinizer-ci.com/g/mediapart/selligent) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/mediapart/selligent/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mediapart/selligent) [![Total Downloads](https://poser.pugx.org/mediapart/selligent/downloads.png)](https://packagist.org/packages/mediapart/selligent) [![Latest Stable Version](https://poser.pugx.org/mediapart/selligent/v/stable.png)](https://packagist.org/packages/mediapart/selligent)
 
+A simple PHP library to help you interact with both Selligent Individual and Broadcast API.
+
 
 ## Usage
 
@@ -54,6 +56,8 @@ try {
 }
 ```
 
+You could [broadcast campaign based on complete HTML](doc/Broadcast.md) from the API.
+
 
 ## Installation
 
@@ -64,35 +68,19 @@ composer require mediapart/selligent
 ```
 
 
-## Test
+## Tests
 
-Executing `default` test suite :
+Executing tests out of the box :
 
 ```bash
-./vendor/bin/phpunit --configuration phpunit.xml.dist --testsuite default
+./vendor/bin/phpunit
 ```
 
-### Test by connecting to a Soap server
-
-With the `real` testsuite, you could execute a serie of test who will be applied to a given host. Some environment variables are required to execute RealTestSuite :
-
-- soap_login
-- soap_password
-- soap_wsdl_individual
-- soap_wsdl_broadcast
-- selligent_list
-- selligent_gate
-- selligent_folderid 
-- selligent_maildomainid 
-- selligent_listid 
-- selligent_segmentid 
-- selligent_queueid 
-- selligent_macategory 
+Without setting [some environment variables](./doc/Tests.md), some tests will be skipped. Tests in `real` testsuite for example.
 
 
 ## Read More
 
-- Illustrated [Reference](doc/Reference/Readme.md) of all available API endpoints.
-- Little use case [Example](doc/Example.md) from connection to triggering campaign
+- Illustrated [Reference](doc/Reference/Readme.md) of all available API endpoints ;
+- Little use case [Example](doc/Example.md) from connection to triggering campaign ;
 - You could use PSR3 to [log informations from this library](doc/Logging.md).
-- You could [broadcast campaign based on complete HTML](doc/Broadcast.md) from the API.
