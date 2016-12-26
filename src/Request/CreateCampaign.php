@@ -157,6 +157,9 @@ class CreateCampaign
         $this->target($email->getTarget());
 
         $this->writer->startElement('CONTENT');
+        if ($email->hasHyperlinksToSensors()) {
+            $this->attr('HYPERLINKS_TO_SENSORS', 1);
+        }
         foreach ($email->getContent() as $key => $value) {
             $this->writer->startElement($key);
             $this->writer->startCData();

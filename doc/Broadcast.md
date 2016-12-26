@@ -40,3 +40,13 @@ if ($response==Response::SUCCESSFUL) {
 }
 
 ```
+
+## HYPERLINKS_TO_SENSORS Attribute
+
+Convert all your hyperlinks to sensors in your email :
+
+```php
+<?php
+$email = new Email();
+$email->setHyperlinksToSensors(true);
+```

@@ -59,7 +59,12 @@ class Email
     /**
      * @var array
      */
-    private $content;
+    private $content = [];
+
+    /**
+     * @var boolean
+     */
+    protected $hyperlinks_to_sensors = false;
 
     /**
      * @param string $name The name as defined for the email message properties.
@@ -243,5 +248,26 @@ class Email
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Set this value to TRUE when your hyperlinks must be converted to sensors.
+     *
+     * @param boolean $hyperlinks_to_sensors
+     * @return self
+     */
+    public function setHyperlinksToSensors($hyperlinks_to_sensors = true)
+    {
+        $this->hyperlinks_to_sensors = $hyperlinks_to_sensors;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function hasHyperlinksToSensors()
+    {
+        return $this->hyperlinks_to_sensors;
     }
 }
