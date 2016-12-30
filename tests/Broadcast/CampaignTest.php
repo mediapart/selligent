@@ -49,7 +49,7 @@ class CampaignTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($campaign->getName(), (string) $document->CAMPAIGN['NAME']);
         $this->assertEquals($campaign->getFolderId(), (int) $document->CAMPAIGN['FOLDERID']);
         $this->assertEquals($campaign->getState(), (string) $document->CAMPAIGN['STATE']);
-        $this->assertEquals($campaign->getStartDate()->format(CreateCampaign::DATETIME_FORMAT), (string) $document->CAMPAIGN['START_DT']);
+        $this->assertEquals($campaign->getStartDate()->format('YmdHis'), (string) $document->CAMPAIGN['START_DT']);
         $this->assertEquals($campaign->getDescription(), (string) $document->CAMPAIGN['DESCRIPTION']);
         $this->assertEquals($campaign->getMaCategory(), (string) $document->CAMPAIGN['MACATEGORY']);
         $this->assertEquals($campaign->getProductId(), (int) $document->CAMPAIGN['PRODUCTID']);
