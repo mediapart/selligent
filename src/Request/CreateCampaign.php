@@ -20,7 +20,7 @@ use Mediapart\Selligent\Broadcast\Email;
  */
 class CreateCampaign
 {
-    const DATETIME_FORMAT = 'YmdHmi';
+    const DATETIME_FORMAT = 'YmdHis';
 
     /**
      * @var \XMLWriter $writer
