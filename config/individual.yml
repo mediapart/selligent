@@ -36,3 +36,4 @@ options:
         TriggerCampaignForUserResponse: "Mediapart\\Selligent\\Response\\TriggerCampaignForUserResponse"
         TriggerCampaignForUserWithResultResponse: "Mediapart\\Selligent\\Response\\TriggerCampaignForUserWithResultResponse"
         TriggerCampaignForUserAndActionListItem: "Mediapart\\Selligent\\Response\\TriggerCampaignForUserAndActionListItemResponse"
+        TriggerCampaignForUserAndActionListItemWithResultResponse: "Mediapart\\Selligent\\Response\\TriggerCampaignForUserAndActionListItemWithResultResponse"
