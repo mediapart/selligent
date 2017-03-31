@@ -212,20 +212,30 @@ class Transport implements LoggerAwareInterface
     /**
      * @param int $userId
      * @param Properties $inputData
+     * @param array $actionProperties
      * @return string
      * @throws Exception
      */
-    public function triggerCampaign($userId, Properties $inputData)
+    public function triggerCampaign($userId, Properties $inputData, array $actionProperties = [])
     {
         $options = [
             'List' => $this->list,
             'UserID' => $userId,
             'GateName' => $this->campaign,
-            'InputData' => $inputData,
         ];
-        
-        $response = $this->client->TriggerCampaignForUserWithResult($options);
-       
+
+        if (empty($actionProperties)) {
+            $options['InputData'] = $inputData;
+
+            $response = $this->client->TriggerCampaignForUserWithResult($options);
+        } else {
+            $options['Actioncode'] = $actionProperties['Actioncode'];
+            $options['ActionListID'] = $actionProperties['ActionListID'];
+            $options['ActionListItemData'] = $inputData;
+
+            $response = $this->client->TriggerCampaignForUserAndActionListItemWithResult($options);
+        }
+
         $context = [
             'request' => $options, 
             'response' => [

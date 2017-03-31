@@ -24,11 +24,6 @@ class TriggerCampaignForUserAndActionListItemResponse extends Response
     protected $TriggerCampaignForUserAndActionListItem;
 
     /**
-     * @var string
-     */
-    protected $result;
-
-    /**
      *
      */
     public function __construct()
@@ -43,15 +38,5 @@ class TriggerCampaignForUserAndActionListItemResponse extends Response
     public function getCode()
     {
         return $this->TriggerCampaignForUserAndActionListItem;
-    }
-
-    /**
-     * Returns a html page if defined in the journey map, else the result is empty
-     *
-     * @return string
-     */
-    public function getResult()
-    {
-        return $this->result;
     }
 }

@@ -118,7 +118,7 @@ class TransportTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
-    protected function buildClientForTriggerCampaign($listId, $listName, $campaign, $userId, $TriggerCampaignResult, $inputData, $responseCode)
+    protected function buildClientForTriggerCampaign($listId, $listName, $campaign, $userId, $TriggerCampaignResult, $inputData, $responseCode, $actionProperties = [])
     {
         $GetListIdResponse = $this
             ->getMockBuilder('Mediapart\Selligent\Response\GetListIdResponse')
@@ -146,10 +146,24 @@ class TransportTest extends \PHPUnit_Framework_TestCase
             ->method('getResult')
             ->willReturn($TriggerCampaignResult)
         ;
+        $TriggerCampaignForUserAndActionListItemWithResultResponse = $this
+            ->getMockBuilder('Mediapart\Selligent\Response\TriggerCampaignForUserAndActionListItemWithResultResponse')
+            ->setMethods(['getCode', 'getResult'])
+            ->getMock()
+        ;
+        $TriggerCampaignForUserAndActionListItemWithResultResponse
+            ->method('getCode')
+            ->willReturn($responseCode)
+        ;
+        $TriggerCampaignForUserAndActionListItemWithResultResponse
+            ->method('getResult')
+            ->willReturn($TriggerCampaignResult)
+        ;
+
         $client = $this
             ->getMockBuilder('SoapClient')
             ->disableOriginalConstructor()
-            ->setMethods(['GetListID', 'TriggerCampaignForUserWithResult'])
+            ->setMethods(['GetListID', 'TriggerCampaignForUserWithResult', 'TriggerCampaignForUserAndActionListItemWithResult'])
             ->getMock()
         ;
         $client
@@ -168,6 +182,23 @@ class TransportTest extends \PHPUnit_Framework_TestCase
             ->willReturn($TriggerCampaignForUserWithResultResponse)
         ;
 
+        if (!empty($actionProperties)) {
+            $client
+                ->method('TriggerCampaignForUserAndActionListItemWithResult')
+                ->with(
+                    $this->equalTo(
+                        [
+                            'List' => $listId,
+                            'UserID' => $userId,
+                            'GateName' => $campaign,
+                            'Actioncode' => $actionProperties['Actioncode'],
+                            'ActionListID' => $actionProperties['ActionListID'],
+                            'ActionListItemData' => $inputData,
+                        ]
+                    )
+                )
+                ->willReturn($TriggerCampaignForUserAndActionListItemWithResultResponse);
+        }
         return $client;
     }
 
@@ -181,6 +212,7 @@ class TransportTest extends \PHPUnit_Framework_TestCase
         $campaign = 'TESTCAMPAIGN';
         $userId = 1337;
         $TriggerCampaignResult = '[OK]';
+
         $inputData = new Properties();
         $responseCode = Response::SUCCESSFUL;
 
@@ -193,6 +225,36 @@ class TransportTest extends \PHPUnit_Framework_TestCase
         $transport = new Transport($client, $listName, $campaign);
         $transport->setLogger($logger);
         $result = $transport->triggerCampaign($userId, $inputData);
+
+        $this->assertEquals($TriggerCampaignResult, $result);
+    }
+
+    /**
+     *
+     */
+    public function testTriggerCampaignActionList()
+    {
+        $listId = 42;
+        $listName = 'TESTLIST';
+        $campaign = 'TESTCAMPAIGN';
+        $userId = 1337;
+        $TriggerCampaignResult = '[OK]';
+
+        $actionProperties['Actioncode'] = 'AG';
+        $actionProperties['ActionListID'] = 42;
+
+        $inputData = new Properties();
+        $responseCode = Response::SUCCESSFUL;
+
+        $client = $this->buildClientForTriggerCampaign(
+            $listId, $listName, $campaign, $userId,
+            $TriggerCampaignResult, $inputData, $responseCode, $actionProperties
+        );
+        $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
+
+        $transport = new Transport($client, $listName, $campaign);
+        $transport->setLogger($logger);
+        $result = $transport->triggerCampaign($userId, $inputData, $actionProperties);
 
         $this->assertEquals($TriggerCampaignResult, $result);
     }
