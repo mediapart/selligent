@@ -213,31 +213,45 @@ class Transport implements LoggerAwareInterface
      * @param int $userId
      * @param Properties $inputData
      * @param array $actionProperties
-     * @return string
-     * @throws Exception
      */
-    public function triggerCampaign($userId, Properties $inputData, array $actionProperties = [])
+    public function TriggerCampaignForUserAndActionListItemWithResult($userId, Properties $inputData, array $actionProperties = [])
     {
-        $options = [
-            'List' => $this->list,
-            'UserID' => $userId,
-            'GateName' => $this->campaign,
-        ];
+        $options['Actioncode'] = $actionProperties['Actioncode'];
+        $options['ActionListID'] = $actionProperties['ActionListID'];
+        $options['ActionListItemData'] = $inputData;
 
-        if (empty($actionProperties)) {
-            $options['InputData'] = $inputData;
+        $this->triggerCampaign($userId,'TriggerCampaignForUserAndActionListItemWithResult', $options);
+    }
 
-            $response = $this->client->TriggerCampaignForUserWithResult($options);
-        } else {
-            $options['Actioncode'] = $actionProperties['Actioncode'];
-            $options['ActionListID'] = $actionProperties['ActionListID'];
-            $options['ActionListItemData'] = $inputData;
+    /**
+     * @param int $userId
+     * @param Properties $inputData
+     */
+    public function TriggerCampaignForUserWithResult($userId, Properties $inputData)
+    {
+        $options['InputData'] = $inputData;
 
-            $response = $this->client->TriggerCampaignForUserAndActionListItemWithResult($options);
-        }
+        $this->triggerCampaign($userId,'TriggerCampaignForUserWithResult', $options);
+    }
+
+    /**
+     * @param int $userId
+     * @param string $method
+     * @param array $options
+     * @return mixed
+     * @throws \Exception
+     */
+    private function triggerCampaign($userId, $method = 'TriggerCampaignForUserWithResult', array $options)
+    {
+        $options = array_merge($this->getOptions($userId), $options);
+
+        $response = call_user_func([$this->client, $method], $options);
 
         $context = [
-            'request' => $options, 
+            'request' => [
+                'method' => $method,
+                'value' => $options,
+           ],
             'response' => [
                 'code' => $response->getCode(),
                 'error' => $response->getError(),
@@ -259,5 +273,20 @@ class Transport implements LoggerAwareInterface
             }
             return $response->getResult();
         }
+    }
+
+    /**
+     * @param int $userId
+     * @return array
+     */
+    private function getOptions($userId)
+    {
+        $options = [
+            'List' => $this->list,
+            'UserID' => $userId,
+            'GateName' => $this->campaign,
+        ];
+
+        return $options;
     }
 }
