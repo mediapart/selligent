@@ -11,13 +11,14 @@
 
 namespace Mediapart\Selligent\Tests\Response;
 
+use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\Response;
 use Mediapart\Selligent\Response\CreateCampaignResponse;
 
 /**
  *
  */
-class CreateCampaignResponseTest extends \PHPUnit_Framework_TestCase
+class CreateCampaignResponseTest extends TestCase
 {
     /**
      *

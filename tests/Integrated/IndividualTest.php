@@ -13,6 +13,7 @@ namespace Mediapart\Selligent\Tests\Integrated;
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Config\Definition\Processor;
+use Mediapart\Selligent\Connection;
 use Mediapart\Selligent\Configuration;
 use Mediapart\Selligent\Tests\Integrated\IntegrationTestCase;
 

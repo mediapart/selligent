@@ -11,6 +11,7 @@
 
 namespace Mediapart\Selligent\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\Response;
 use Mediapart\Selligent\Transport;
 use Mediapart\Selligent\Properties;
@@ -18,7 +19,7 @@ use Mediapart\Selligent\Properties;
 /**
  *
  */
-class TransportTest extends \PHPUnit_Framework_TestCase
+class TransportTest extends TestCase
 {
     /**
      *
@@ -75,7 +76,7 @@ class TransportTest extends \PHPUnit_Framework_TestCase
     {
         $client = $this->buildClientForTestList(42, 'TESTLIST', Response::ERROR_NORESULT);
 
-        $this->setExpectedException('Exception');
+        $this->expectException('Exception');
 
         $transport = new Transport($client);
         $transport->setList('TESTLIST');
@@ -219,7 +220,7 @@ class TransportTest extends \PHPUnit_Framework_TestCase
         $transport = new Transport($client, $listName, $campaign);
         $transport->setLogger($logger);
 
-        $this->setExpectedException('\Exception');
+        $this->expectException('\Exception');
 
         $result = $transport->triggerCampaign($userId, $inputData);
     }
@@ -347,7 +348,7 @@ class TransportTest extends \PHPUnit_Framework_TestCase
         $transport = new Transport($client, $listName, $campaign);
         $transport->setLogger($logger);
 
-        $this->setExpectedException('\UnexpectedValueException');
+        $this->expectException('\UnexpectedValueException');
 
         $transport->subscribe($user);
     }
@@ -377,7 +378,7 @@ class TransportTest extends \PHPUnit_Framework_TestCase
         $transport = new Transport($client, $listName, $campaign);
         $transport->setLogger($logger);
 
-        $this->setExpectedException('\Exception');
+        $this->expectException('\Exception');
 
         $transport->subscribe($user);
     }
@@ -437,7 +438,7 @@ class TransportTest extends \PHPUnit_Framework_TestCase
         $transport = new Transport($client, $listName, $campaign);
         $transport->setLogger($logger);
 
-        $this->setExpectedException('\Exception');
+        $this->expectException('\Exception');
 
         $transport->subscribe($user);
     }

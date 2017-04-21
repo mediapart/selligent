@@ -11,12 +11,13 @@
 
 namespace Mediapart\Selligent\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\ListInfo;
 
 /**
  *
  */
-class ListInfoTest extends \PHPUnit_Framework_TestCase
+class ListInfoTest extends TestCase
 {
     /**
      *

@@ -11,6 +11,7 @@
 
 namespace Mediapart\Selligent\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Psr\Log\LogLevel;
 use Mediapart\Selligent\Broadcast;
 use Mediapart\Selligent\Broadcast\Campaign;
@@ -19,7 +20,7 @@ use Mediapart\Selligent\Response;
 /**
  *
  */
-class BroadcastTest extends \PHPUnit_Framework_TestCase
+class BroadcastTest extends TestCase
 {
     /**
      * Test simple broadcast campaign.
