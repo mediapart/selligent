@@ -11,6 +11,7 @@
 
 namespace Mediapart\Selligent\Tests\Broadcast;
 
+use PHPUnit\Framework\TestCase;
 use \XMLWriter;
 use Mediapart\Selligent\Request\CreateCampaign;
 use Mediapart\Selligent\Broadcast\Campaign;
@@ -20,7 +21,7 @@ use Mediapart\Selligent\Broadcast\Email;
 /**
  *
  */
-class HyperlinkToSensorsTest extends \PHPUnit_Framework_TestCase
+class HyperlinkToSensorsTest extends TestCase
 {
     /**
      *

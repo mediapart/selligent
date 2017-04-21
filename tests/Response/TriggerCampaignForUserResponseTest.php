@@ -11,13 +11,14 @@
 
 namespace Mediapart\Selligent\Tests\Response;
 
+use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\Response;
 use Mediapart\Selligent\Response\TriggerCampaignForUserResponse;
 
 /**
  *
  */
-class TriggerCampaignForUserResponseTest extends \PHPUnit_Framework_TestCase
+class TriggerCampaignForUserResponseTest extends TestCase
 {
     /**
      *

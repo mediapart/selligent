@@ -11,10 +11,12 @@
 
 namespace Mediapart\Selligent\Tests\Integrated;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  *
  */
-class IntegrationTestCase extends \PHPUnit_Framework_TestCase
+class IntegrationTestCase extends TestCase
 {
     /**
      *

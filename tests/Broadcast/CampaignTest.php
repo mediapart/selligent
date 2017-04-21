@@ -11,6 +11,7 @@
 
 namespace Mediapart\Selligent\Tests\Broadcast;
 
+use PHPUnit\Framework\TestCase;
 use \XMLWriter;
 use Mediapart\Selligent\Request\CreateCampaign;
 use Mediapart\Selligent\Broadcast\Campaign;
@@ -20,7 +21,7 @@ use Mediapart\Selligent\Broadcast\Email;
 /**
  *
  */
-class CampaignTest extends \PHPUnit_Framework_TestCase
+class CampaignTest extends TestCase
 {
     /**
      *
@@ -29,7 +30,7 @@ class CampaignTest extends \PHPUnit_Framework_TestCase
     {
         $campaign = new Campaign();
 
-        $this->setExpectedException(\InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         $campaign->setState('Lorem ipsum dolor');
     }

@@ -11,18 +11,19 @@
 
 namespace Mediapart\Selligent\Tests\Broadcast;
 
+use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\Broadcast\Target;
 
 /**
  *
  */
-class TargetTest extends \PHPUnit_Framework_TestCase
+class TargetTest extends TestCase
 {
     public function testSetPrioritySortingWithException()
     {
         $target = new Target();
 
-        $this->setExpectedException(\InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         $target->setPrioritySorting('lorem');
     }
