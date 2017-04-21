@@ -224,7 +224,7 @@ class TransportTest extends \PHPUnit_Framework_TestCase
 
         $transport = new Transport($client, $listName, $campaign);
         $transport->setLogger($logger);
-        $result = $transport->triggerCampaign($userId, $inputData);
+        $result = $transport->TriggerCampaignForUserWithResult($userId, $inputData);
 
         $this->assertEquals($TriggerCampaignResult, $result);
     }
@@ -254,10 +254,11 @@ class TransportTest extends \PHPUnit_Framework_TestCase
 
         $transport = new Transport($client, $listName, $campaign);
         $transport->setLogger($logger);
-        $result = $transport->triggerCampaign($userId, $inputData, $actionProperties);
+        $result = $transport->TriggerCampaignForUserAndActionListItemWithResult($userId, $inputData, $actionProperties);
 
         $this->assertEquals($TriggerCampaignResult, $result);
     }
+
 
     /**
      *
@@ -283,7 +284,7 @@ class TransportTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\Exception');
 
-        $result = $transport->triggerCampaign($userId, $inputData);
+        $result = $transport->TriggerCampaignForUserWithResult($userId, $inputData);
     }
 
     protected function buildClientForSubscribe($listId, $listName, $campaign, $user, $userProperties, $GetUserByFilterResponseCode, $CreateUserResponseCode)

@@ -220,7 +220,7 @@ class Transport implements LoggerAwareInterface
         $options['ActionListID'] = $actionProperties['ActionListID'];
         $options['ActionListItemData'] = $inputData;
 
-        $this->triggerCampaign($userId,'TriggerCampaignForUserAndActionListItemWithResult', $options);
+        return $this->triggerCampaign($userId,'TriggerCampaignForUserAndActionListItemWithResult', $options);
     }
 
     /**
@@ -231,7 +231,7 @@ class Transport implements LoggerAwareInterface
     {
         $options['InputData'] = $inputData;
 
-        $this->triggerCampaign($userId,'TriggerCampaignForUserWithResult', $options);
+        return $this->triggerCampaign($userId,'TriggerCampaignForUserWithResult', $options);
     }
 
     /**
