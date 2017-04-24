@@ -4,7 +4,7 @@
 - [TriggerCampaignWithResult](#triggercampaignwithresult)
 - [TriggerCampaignForUser](#triggercampaignforuser)
 - [TriggerCampaignForUserWithResult](#triggercampaignforuserwithresult)
-
+- [TriggerCampaignForUserAndActionListItemWithResult](#triggercampaignforuserandactionlistitemwithresult)
 
 ## TriggerCampaign
 
@@ -66,7 +66,7 @@ Trigger the execution of the specified journey map for a specific contact.
 <?php
 
 $inputData = new Properties();
-$TriggerCampaignForUserResponse = $client->TriggerCampaign([
+$TriggerCampaignForUserResponse = $client->TriggerCampaign ([
 
     /* ID or code of the targeted list */
     'List' => 1,
@@ -111,6 +111,37 @@ $TriggerCampaignForUserWithResultResponse = $client->TriggerCampaign([
 
 if (Response::SUCCESSFUL === $TriggerCampaignForUserWithResultResponse->getCode()) {
     print $TriggerCampaignForUserWithResultResponse->getResult();
+}
+
+``` 
+## TriggerCampaignForUserAndActionListItemWithResult
+
+Triggers a campaign for a specific contact using a specific action list record.
+
+```php
+<?php
+
+$inputData = new Properties();
+$TriggerCampaignForUserAndActionListItemWithResultResponse = $client->TriggerCampaign([
+
+    /* ID or code of the targeted list */
+    'List' => 1,
+
+    /* ID of the action list */
+    'ActionListID' => 1,
+
+    /* Name of the targeted gate */
+    'GateName' => 'TESTGATE',
+    
+    /* Code of the action record */
+    'Actioncode' => '',
+    
+    /* List of parameters passed to the gate */
+    'ActionListItemData' => $inputData,
+]);
+
+if (Response::SUCCESSFUL === $TriggerCampaignForUserAndActionListItemWithResultResponse->getCode()) {
+    print $TriggerCampaignForUserAndActionListItemWithResultResponse->getResult();
 }
 
 ```
