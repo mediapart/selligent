@@ -9,19 +9,18 @@
  */
 namespace Mediapart\Selligent\Tests\Response;
 use Mediapart\Selligent\Response;
-use Mediapart\Selligent\Response\TriggerCampaignForUserWithResultResponse;
+use Mediapart\Selligent\Response\TriggerCampaignForUserAndActionListItemResponse;
 /**
  *
  */
-class TriggerCampaignForUserWithResultResponseTest extends \PHPUnit_Framework_TestCase
+class TriggerCampaignForUserAndActionListItemResponseTest extends \PHPUnit_Framework_TestCase
 {
     /**
      *
      */
     public function testResponse()
     {
-        $response = new TriggerCampaignForUserWithResultResponse();
+        $response = new TriggerCampaignForUserAndActionListItemResponse();
         $this->assertEquals(Response::ERROR_NORESULT, $response->getCode());
-        $this->assertEquals('', $response->getResult());
     }
 }
