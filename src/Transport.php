@@ -214,7 +214,7 @@ class Transport implements LoggerAwareInterface
      * @param Properties $inputData
      * @param array $actionProperties
      */
-    public function TriggerCampaignForUserAndActionListItemWithResult($userId, Properties $inputData, array $actionProperties = [])
+    public function triggerCampaignForUserAndActionListItemWithResult($userId, Properties $inputData, array $actionProperties = [])
     {
         $options['Actioncode'] = $actionProperties['Actioncode'];
         $options['ActionListID'] = $actionProperties['ActionListID'];
@@ -227,7 +227,7 @@ class Transport implements LoggerAwareInterface
      * @param int $userId
      * @param Properties $inputData
      */
-    public function TriggerCampaignForUserWithResult($userId, Properties $inputData)
+    public function triggerCampaignForUserWithResult($userId, Properties $inputData)
     {
         $options['InputData'] = $inputData;
 
@@ -283,6 +283,7 @@ class Transport implements LoggerAwareInterface
     {
         $options = [
             'List' => $this->list,
+            'ListID' => $this->list,
             'UserID' => $userId,
             'GateName' => $this->campaign,
         ];
