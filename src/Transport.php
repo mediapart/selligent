@@ -216,7 +216,7 @@ class Transport implements LoggerAwareInterface
      */
     public function triggerCampaignForUserAndActionListItemWithResult($userId, Properties $inputData, array $actionProperties = [])
     {
-        $options['Actioncode'] = $actionProperties['Actioncode'];
+        $options['ActionCode'] = $actionProperties['Actioncode'];
         $options['ActionListID'] = $actionProperties['ActionListID'];
         $options['ActionListItemData'] = $inputData;
 

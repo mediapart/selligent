@@ -193,7 +193,7 @@ class TransportTest extends \PHPUnit_Framework_TestCase
                             'ListID' => $listId,
                             'UserID' => $userId,
                             'GateName' => $campaign,
-                            'Actioncode' => $actionProperties['Actioncode'],
+                            'ActionCode' => $actionProperties['Actioncode'],
                             'ActionListID' => $actionProperties['ActionListID'],
                             'ActionListItemData' => $inputData,
                         ]
