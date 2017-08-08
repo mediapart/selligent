@@ -7,7 +7,7 @@
 - [RetrieveHashForUser](#retrievehashforuser)
 - [CountUserByFilter](#countuserbyfilter)
 - [GetUsersByFilter](#getusersbyfilter)
-- [GetUserByFilter](#getusersbyfilter)
+- [GetUserByFilter](#getuserbyfilter)
 - [CountUserByConstraint](#countuserbyconstraint)
 - [GetUsersByConstraint](#getusersbyconstraint)
 - [GetUserByConstraint](#getusersbyconstraint)
@@ -247,7 +247,7 @@ $GetUserByConstraintResponse = $client->GetUsersByConstraint([
 ]);
 
 if (Response::SUCCESSFUL === $GetUserByConstraintResponse->getCode()) {
-    $user = $GetUserByConstraintResponse->getProperperties();
+    $user = $GetUserByConstraintResponse->getProperties();
 }
 
 ```
@@ -327,7 +327,7 @@ Retrieve contact information based on a filter
 $filter = new Properties();
 $filter['NAME'] = 'foobar';
 
-$GetUserByFilterResponse = $client->GetUsersByFilter([
+$GetUserByFilterResponse = $client->GetUserByFilter([
     
     /* ID or Code of the targeted list */
     'List' => $list_id,
@@ -338,7 +338,7 @@ $GetUserByFilterResponse = $client->GetUsersByFilter([
 ]);
 
 if (Response::SUCCESSFUL === $GetUserByFilterResponse->getCode()) {
-    $user = $GetUserByFilterResponse->getProperperties();
+    $user = $GetUserByFilterResponse->getProperties();
 }
 
 ```
