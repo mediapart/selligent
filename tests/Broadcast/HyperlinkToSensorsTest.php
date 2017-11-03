@@ -18,14 +18,8 @@ use Mediapart\Selligent\Broadcast\Campaign;
 use Mediapart\Selligent\Broadcast\Target;
 use Mediapart\Selligent\Broadcast\Email;
 
-/**
- *
- */
 class HyperlinkToSensorsTest extends TestCase
 {
-    /**
-     *
-     */
     public function testEmailAttribute()
     {
         $email = new Email();
@@ -35,9 +29,6 @@ class HyperlinkToSensorsTest extends TestCase
         $this->assertTrue($email->hasHyperlinksToSensors());
     }
 
-    /**
-     *
-     */
     public function testCreateCampaign()
     {
         $campaign = new Campaign();

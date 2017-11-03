@@ -15,14 +15,8 @@ use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\Response;
 use Mediapart\Selligent\Response\GetSegmentRecordCountResponse;
 
-/**
- *
- */
 class GetSegmentRecordCountResponseTest extends TestCase
 {
-    /**
-     *
-     */
     public function testResponse()
     {
         $response = new GetSegmentRecordCountResponse();

@@ -17,9 +17,6 @@ use Mediapart\Selligent\Connection;
 use Mediapart\Selligent\Configuration;
 use Mediapart\Selligent\Tests\Integrated\IntegrationTestCase;
 
-/**
- *
- */
 class IndividualTest extends IntegrationTestCase
 {
     const API_VERSION = 'v6.3';
@@ -39,9 +36,6 @@ class IndividualTest extends IntegrationTestCase
      */
     protected $gateName;
 
-    /**
-     *
-     */
     protected function setUp()
     {
         $this->requireEnv([
@@ -102,9 +96,6 @@ class IndividualTest extends IntegrationTestCase
         $this->assertEquals(self::API_VERSION, substr($response->getVersion(), 0, 4));
     }
 
-    /**
-     *
-     */
     public function testCountUsersByConstraint()
     {
         $response = $this->client->CountUsersByConstraint([
@@ -125,9 +116,6 @@ class IndividualTest extends IntegrationTestCase
         $this->assertGreaterThanOrEqual(1, count($response->getLists()));
     }
 
-    /**
-     *
-     */
     public function testListUsers()
     {
         $response = $this->client->GetUsersByConstraint([
@@ -143,11 +131,8 @@ class IndividualTest extends IntegrationTestCase
         }
     }
 
-    /**
-     *
-     */
     public function testRetrievesUserHash()
-    {        
+    {
         $response = $this->client->RetrieveHashForUser([
             'GateName' => $this->gateName,
             'List' => $this->listId,
@@ -158,9 +143,6 @@ class IndividualTest extends IntegrationTestCase
         $this->assertNotNull($response->getHashCode());
     }
 
-    /**
-     *
-     */
     public function testTriggerCampaign()
     {
         $response = $this->client->triggerCampaign([
@@ -171,9 +153,6 @@ class IndividualTest extends IntegrationTestCase
         $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
     }
 
-    /**
-     *
-     */
     public function testTriggerCampaignWithResult()
     {
         $response = $this->client->triggerCampaignWithResult([
@@ -184,9 +163,6 @@ class IndividualTest extends IntegrationTestCase
         $this->assertNotNull($response->getResult());
     }
 
-    /**
-     *
-     */
     public function testTriggerCampaignForUser()
     {
         $response = $this->client->triggerCampaignForUser([
@@ -199,9 +175,6 @@ class IndividualTest extends IntegrationTestCase
         $this->assertEquals(Response::SUCCESSFUL, $response->getCode());
     }
 
-    /**
-     *
-     */
     public function testTriggerCampaignForUserWithResult()
     {
         $response = $this->client->triggerCampaignForUserWithResult([

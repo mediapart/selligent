@@ -17,9 +17,6 @@ use Mediapart\Selligent\Broadcast;
 use Mediapart\Selligent\Broadcast\Campaign;
 use Mediapart\Selligent\Response;
 
-/**
- *
- */
 class BroadcastTest extends TestCase
 {
     /**

@@ -1,4 +1,4 @@
-<phpunit 
+<phpunit
     colors="true"
     bootstrap="vendor/autoload.php"
 >
@@ -17,11 +17,7 @@
 
   <filter>
       <whitelist>
-          <directory>./</directory>
-          <exclude>
-              <directory>./vendor</directory>
-              <directory>./tests</directory>
-          </exclude>
+          <directory>./src</directory>
       </whitelist>
   </filter>
 

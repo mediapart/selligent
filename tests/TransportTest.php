@@ -16,14 +16,8 @@ use Mediapart\Selligent\Response;
 use Mediapart\Selligent\Transport;
 use Mediapart\Selligent\Properties;
 
-/**
- *
- */
 class TransportTest extends TestCase
 {
-    /**
-     *
-     */
     protected function buildClientForTestList($listId, $listName, $responseCode)
     {
         $GetListIdResponse = $this
@@ -54,10 +48,7 @@ class TransportTest extends TestCase
         return $client;
     }
 
-    /**
-     *
-     */
-    public function testSetList() 
+    public function testSetList()
     {
         $listId = 42;
         $listName = 'TESTLIST';
@@ -69,10 +60,7 @@ class TransportTest extends TestCase
         $this->assertEquals($listId, $transport->getList());
     }
 
-    /**
-     *
-     */
-    public function testSetListWithException() 
+    public function testSetListWithException()
     {
         $client = $this->buildClientForTestList(42, 'TESTLIST', Response::ERROR_NORESULT);
 
@@ -82,9 +70,6 @@ class TransportTest extends TestCase
         $transport->setList('TESTLIST');
     }
 
-    /**
-     *
-     */
     public function testSetCampaign()
     {
         $campaign = 'TESTCAMPAIGN';
@@ -100,25 +85,19 @@ class TransportTest extends TestCase
         $this->assertEquals($campaign, $transport->getCampaign());
     }
 
-    /**
-     *
-     */
     public function testConstructor()
     {
         $listId = 42;
         $listName = 'TESTLIST';
         $campaign = 'TESTCAMPAIGN';
         $client = $this->buildClientForTestList(42, 'TESTLIST', Response::SUCCESSFUL);
-        
+
         $transport = new Transport($client, $listName, $campaign);
 
         $this->assertEquals($listId, $transport->getList());
         $this->assertEquals($campaign, $transport->getCampaign());
     }
 
-    /**
-     *
-     */
     protected function buildClientForTriggerCampaign($listId, $listName, $campaign, $userId, $TriggerCampaignResult, $inputData, $responseCode)
     {
         $GetListIdResponse = $this
@@ -172,9 +151,6 @@ class TransportTest extends TestCase
         return $client;
     }
 
-    /**
-     *
-     */
     public function testTriggerCampaign()
     {
         $listId = 42;
@@ -186,7 +162,7 @@ class TransportTest extends TestCase
         $responseCode = Response::SUCCESSFUL;
 
         $client = $this->buildClientForTriggerCampaign(
-            $listId, $listName, $campaign, $userId, 
+            $listId, $listName, $campaign, $userId,
             $TriggerCampaignResult, $inputData, $responseCode
         );
         $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
@@ -198,9 +174,6 @@ class TransportTest extends TestCase
         $this->assertEquals($TriggerCampaignResult, $result);
     }
 
-    /**
-     *
-     */
     public function testTriggerCampaignWithException()
     {
         $listId = 42;
@@ -212,7 +185,7 @@ class TransportTest extends TestCase
         $responseCode = Response::ERROR_FAILED;
 
         $client = $this->buildClientForTriggerCampaign(
-            $listId, $listName, $campaign, $userId, 
+            $listId, $listName, $campaign, $userId,
             $TriggerCampaignResult, $inputData, $responseCode
         );
         $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
@@ -293,9 +266,6 @@ class TransportTest extends TestCase
         return $client;
     }
 
-    /**
-     *
-     */
     public function testSubscribeWithExistingUser()
     {
         $listId = 42;
@@ -310,7 +280,7 @@ class TransportTest extends TestCase
         $CreateUserResponseCode = Response::ERROR_FAILED;
 
         $client = $this->buildClientForSubscribe(
-            $listId, $listName, $campaign, $user, $userProperties, 
+            $listId, $listName, $campaign, $user, $userProperties,
             $GetUserByFilterResponseCode, $CreateUserResponseCode
         );
         $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
@@ -323,9 +293,6 @@ class TransportTest extends TestCase
         $this->assertEquals($userProperties['ID'], $id);
     }
 
-    /**
-     *
-     */
     public function testSubscribeWithExistingUserAndUnexpectedValueException()
     {
         $listId = 42;
@@ -340,7 +307,7 @@ class TransportTest extends TestCase
         $CreateUserResponseCode = Response::ERROR_FAILED;
 
         $client = $this->buildClientForSubscribe(
-            $listId, $listName, $campaign, $user, $userProperties, 
+            $listId, $listName, $campaign, $user, $userProperties,
             $GetUserByFilterResponseCode, $CreateUserResponseCode
         );
         $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
@@ -353,9 +320,6 @@ class TransportTest extends TestCase
         $transport->subscribe($user);
     }
 
-    /**
-     *
-     */
     public function testSubscribeWithExistingUserAndException()
     {
         $listId = 42;
@@ -370,7 +334,7 @@ class TransportTest extends TestCase
         $CreateUserResponseCode = Response::ERROR_FAILED;
 
         $client = $this->buildClientForSubscribe(
-            $listId, $listName, $campaign, $user, $userProperties, 
+            $listId, $listName, $campaign, $user, $userProperties,
             $GetUserByFilterResponseCode, $CreateUserResponseCode
         );
         $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
@@ -383,9 +347,6 @@ class TransportTest extends TestCase
         $transport->subscribe($user);
     }
 
-    /**
-     *
-     */
     public function testSubscribeAndCreatingUser()
     {
         $listId = 42;
@@ -400,7 +361,7 @@ class TransportTest extends TestCase
         $CreateUserResponseCode = Response::SUCCESSFUL;
 
         $client = $this->buildClientForSubscribe(
-            $listId, $listName, $campaign, $user, $userProperties, 
+            $listId, $listName, $campaign, $user, $userProperties,
             $GetUserByFilterResponseCode, $CreateUserResponseCode
         );
         $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();
@@ -413,9 +374,6 @@ class TransportTest extends TestCase
         $this->assertEquals($userProperties['ID'], $id);
     }
 
-    /**
-     *
-     */
     public function testSubscribeAndCreatingUserWithException()
     {
         $listId = 42;
@@ -430,7 +388,7 @@ class TransportTest extends TestCase
         $CreateUserResponseCode = Response::ERROR_FAILED;
 
         $client = $this->buildClientForSubscribe(
-            $listId, $listName, $campaign, $user, $userProperties, 
+            $listId, $listName, $campaign, $user, $userProperties,
             $GetUserByFilterResponseCode, $CreateUserResponseCode
         );
         $logger = $this->getMockBuilder('Psr\Log\NullLogger')->getMock();

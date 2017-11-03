@@ -14,9 +14,6 @@ namespace Mediapart\Selligent\Tests\Broadcast;
 use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\Broadcast\Target;
 
-/**
- *
- */
 class TargetTest extends TestCase
 {
     public function testSetPrioritySortingWithException()
