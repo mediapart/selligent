@@ -15,21 +15,15 @@ use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\Property;
 use Mediapart\Selligent\Properties;
 
-/**
- *
- */
 class PropertiesTest extends TestCase
 {
-    /**
-     *
-     */
     public function testSimple()
     {
         $tested_properties = [
             'NAME' => 'thomas',
             'EMAIL' => 'thomas.gasc+test@mediapart.fr',
         ];
-        
+
         $properties = new Properties();
 
         foreach ($tested_properties as $key => $value) {
@@ -50,9 +44,6 @@ class PropertiesTest extends TestCase
         $this->assertEquals('jacques', $properties['NAME']);
     }
 
-    /**
-     *
-     */
     public function testObject()
     {
         $properties = new Properties();

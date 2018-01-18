@@ -15,14 +15,8 @@ use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\Response;
 use Mediapart\Selligent\Response\GetListIDResponse;
 
-/**
- *
- */
 class GetListIDResponseTest extends TestCase
 {
-    /**
-     *
-     */
     public function testResponse()
     {
         $response = new GetListIDResponse();

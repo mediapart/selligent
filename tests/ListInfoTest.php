@@ -14,14 +14,8 @@ namespace Mediapart\Selligent\Tests;
 use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\ListInfo;
 
-/**
- *
- */
 class ListInfoTest extends TestCase
 {
-    /**
-     *
-     */
     public function testSimple()
     {
         $id = 42;

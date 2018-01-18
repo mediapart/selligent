@@ -14,14 +14,8 @@ namespace Mediapart\Selligent\Tests;
 use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\Connection;
 
-/**
- *
- */
 class ConnectionTest extends TestCase
 {
-    /**
-     *
-     */
     public function testConnection()
     {
         $connection = new Connection();
@@ -34,9 +28,6 @@ class ConnectionTest extends TestCase
         $this->assertInstanceOf(Connection::CLASS_SOAPCLIENT, $client);
     }
 
-    /**
-     *
-     */
     public function testWrongSoapClassConnection()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -44,9 +35,6 @@ class ConnectionTest extends TestCase
         $connection = new Connection('stdClass');
     }
 
-    /**
-     *
-     */
     public function testWrongHeaderClassConnection()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -54,9 +42,6 @@ class ConnectionTest extends TestCase
         $connection = new Connection(Connection::CLASS_SOAPCLIENT, 'stdClass');
     }
 
-    /**
-     *
-     */
     public function testConnectionWithLogger()
     {
         $logger = $this

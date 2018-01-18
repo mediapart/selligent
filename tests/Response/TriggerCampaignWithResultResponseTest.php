@@ -15,14 +15,8 @@ use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\Response;
 use Mediapart\Selligent\Response\TriggerCampaignWithResultResponse;
 
-/**
- *
- */
 class TriggerCampaignWithResultResponseTest extends TestCase
 {
-    /**
-     *
-     */
     public function testResponse()
     {
         $response = new TriggerCampaignWithResultResponse();

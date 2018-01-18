@@ -16,9 +16,6 @@ use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Config\Definition\Processor;
 use Mediapart\Selligent\Configuration;
 
-/**
- *
- */
 class ConfigurationTest extends TestCase
 {
     public function testConfiguration()

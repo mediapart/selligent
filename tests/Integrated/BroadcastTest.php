@@ -19,14 +19,8 @@ use Mediapart\Selligent\Broadcast\Email;
 use Mediapart\Selligent\Request\CreateCampaign;
 use Mediapart\Selligent\Tests\Integrated\IntegrationTestCase;
 
-/**
- *
- */
 class BroadcastTest extends IntegrationTestCase
 {
-    /**
-     *
-     */
     protected function setUp()
     {
         $this->requireEnv([
@@ -52,9 +46,6 @@ class BroadcastTest extends IntegrationTestCase
         );
     }
 
-    /**
-     *
-     */
     public function testCompleteHTML()
     {
         $tomorrow = new \DateTime('tomorrow');
@@ -81,7 +72,7 @@ class BroadcastTest extends IntegrationTestCase
         $email = new Email();
         $email
             ->setName('Broadcast Email Test ('.$tomorrow->format('l, jS F').')')
-            ->setFolderId(getenv('selligent_folderid'))                                       
+            ->setFolderId(getenv('selligent_folderid'))
             ->setMailDomainId(getenv('selligent_maildomainid'))
             ->listUnsubscribe(false)
             ->setQueueId(getenv('selligent_queueid'))

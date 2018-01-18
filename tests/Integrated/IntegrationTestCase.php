@@ -13,14 +13,8 @@ namespace Mediapart\Selligent\Tests\Integrated;
 
 use PHPUnit\Framework\TestCase;
 
-/**
- *
- */
 class IntegrationTestCase extends TestCase
 {
-    /**
-     *
-     */
     protected function requireEnv($requiredEnv)
     {
         $defined = true;

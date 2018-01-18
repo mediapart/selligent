@@ -18,14 +18,8 @@ use Mediapart\Selligent\Broadcast\Campaign;
 use Mediapart\Selligent\Broadcast\Target;
 use Mediapart\Selligent\Broadcast\Email;
 
-/**
- *
- */
 class CampaignTest extends TestCase
 {
-    /**
-     *
-     */
     public function testWrongCampaignState()
     {
         $campaign = new Campaign();
@@ -35,9 +29,6 @@ class CampaignTest extends TestCase
         $campaign->setState('Lorem ipsum dolor');
     }
 
-    /**
-     *
-     */
     public function testXml()
     {
         $campaign = $this->getCampaign();
@@ -55,7 +46,7 @@ class CampaignTest extends TestCase
         $this->assertEquals($campaign->getMaCategory(), (string) $document->CAMPAIGN['MACATEGORY']);
         $this->assertEquals($campaign->getProductId(), (int) $document->CAMPAIGN['PRODUCTID']);
         $this->assertEquals($campaign->getClashPlanId(), (int) $document->CAMPAIGN['CLASHPLANID']);
-        
+
         $emails = $campaign->getEmails();
         $this->assertEquals(count($emails), (int) $document->EMAILS->count());
         for ($i=0; $i<$document->EMAILS->count(); $i++) {

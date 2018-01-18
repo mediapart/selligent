@@ -15,14 +15,8 @@ use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\Response;
 use Mediapart\Selligent\Response\GetUsersByFilterResponse;
 
-/**
- *
- */
 class GetUsersByFiltertResponseTest extends TestCase
 {
-    /**
-     *
-     */
     public function testResponse()
     {
         $response = new GetUsersByFilterResponse();

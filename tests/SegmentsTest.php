@@ -15,14 +15,8 @@ use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\SegmentInfo;
 use Mediapart\Selligent\ArrayOfSegmentInfo;
 
-/**
- *
- */
 class SegmentsTest extends TestCase
 {
-    /**
-     *
-     */
     public function testEmptyCollection()
     {
         $segments = new ArrayOfSegmentInfo();
@@ -30,9 +24,6 @@ class SegmentsTest extends TestCase
         $this->assertCount(0, $segments);
     }
 
-    /**
-     *
-     */
     public function testSegmentInfo()
     {
         $segment = new SegmentInfo();

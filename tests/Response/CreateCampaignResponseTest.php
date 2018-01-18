@@ -15,14 +15,8 @@ use PHPUnit\Framework\TestCase;
 use Mediapart\Selligent\Response;
 use Mediapart\Selligent\Response\CreateCampaignResponse;
 
-/**
- *
- */
 class CreateCampaignResponseTest extends TestCase
 {
-    /**
-     *
-     */
     public function testResponse()
     {
         $response = new CreateCampaignResponse();
@@ -31,9 +25,6 @@ class CreateCampaignResponseTest extends TestCase
         $this->assertEquals(Response::ERROR_NORESULT, $response->getCode());
     }
 
-    /**
-     *
-     */
     public function testResponseWithWarning()
     {
         $class = 'Mediapart\Selligent\Response\CreateCampaignResponse';
