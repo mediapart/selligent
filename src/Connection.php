@@ -99,7 +99,7 @@ class Connection implements LoggerAwareInterface
      *
      * @return \SoapClient
      */
-    public function open(array $parameters = [], $config = 'individual.yml')
+    public function open(array $parameters = [], $config = 'individual.yml', array $options = [])
     {
         $processor = new Processor();
         $configuration = $processor->processConfiguration(
@@ -116,7 +116,7 @@ class Connection implements LoggerAwareInterface
 
         $client = $this
             ->client
-            ->newInstance($configuration['wsdl'], $configuration['options'])
+            ->newInstance($configuration['wsdl'], array_merge($options, $configuration['options']))
         ;
         $client->__setSoapHeaders(
             $this->header->newInstance(
